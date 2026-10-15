@@ -161,8 +161,31 @@ def load_model_and_tokenizer(
 
         print("Stripping 'model.language_model.' prefix from checkpoint...")
         
+        # A local checkpoint directory has the weights on disk already;
+        # hf_hub_download would fail on it and the except-branch below would
+        # silently continue with randomly initialised weights.
+        local_weights = None
+        if is_local:
+            base = Path(model_ref) / (spec.subfolder or "")
+            for name in ("model.safetensors", "pytorch_model.bin"):
+                if (base / name).exists():
+                    local_weights = base / name
+                    break
+            if local_weights is None:
+                raise FileNotFoundError(
+                    f"strip_language_model_prefix set but no weight file under {base}"
+                )
+            print(f"Reading local weights: {local_weights}")
+            state_dict = (
+                safetensors.torch.load_file(str(local_weights))
+                if local_weights.suffix == ".safetensors"
+                else torch.load(str(local_weights), map_location="cpu")
+            )
+
         # Determine the weight file (safetensors preferred)
         try:
+            if local_weights is not None:
+                raise StopIteration  # already loaded above
             model_file = hf_hub_download(
                 repo_id=model_ref,
                 filename="model.safetensors",
@@ -171,6 +194,8 @@ def load_model_and_tokenizer(
                 local_files_only=is_local,
             )
             state_dict = safetensors.torch.load_file(model_file)
+        except StopIteration:
+            pass
         except Exception:
             # Fallback to PyTorch bin
             try:

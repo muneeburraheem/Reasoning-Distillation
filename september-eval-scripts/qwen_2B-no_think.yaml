@@ -1,8 +1,8 @@
 # Both requested models, evaluated with identical generation settings.
 models:
-  - name: qwen-reasondistill-final-continue-epoch_1-no_think
+  - name: qwen-logit-kd-continue-epoch_1-no_think
     checkpoint: Khaquan/qwen-khaquanS-distillations
-    subfolder: qwen_reasondistill_final_continue/epoch_1
+    subfolder: qwen-logitKD-final/qwen_logit_kd_continue/epoch_1
     trust_remote_code: true
     dtype: bfloat16
     device_map: auto

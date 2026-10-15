@@ -104,11 +104,16 @@ def run_evaluation(config: EvalConfig) -> List[Dict[str, Any]]:
                 config, benchmark_name, "repetition_penalty", config.repetition_penalty
             )
 
+            effective_stop_at_answer = bool(_get_benchmark_param(
+                config, benchmark_name, "stop_at_final_answer", config.stop_at_final_answer
+            ))
+
             if num_samples > 1 and effective_temp <= 0:
                 raise ValueError("Pass@k sampling requires temperature > 0 for every benchmark.")
             # Reset for each model/benchmark so comparisons use the same RNG seed.
             set_seed(config.seed)
             print(f"Effective max_new_tokens: {effective_max_tokens}")
+            print(f"Stop at final answer: {effective_stop_at_answer}")
 
             # Load benchmark data
             benchmark = load_benchmark(
@@ -140,6 +145,7 @@ def run_evaluation(config: EvalConfig) -> List[Dict[str, Any]]:
             batch_size = int(_get_benchmark_param(config, benchmark_name, "batch_size", config.batch_size))
             if batch_size <= 0:
                 raise ValueError("Benchmark batch_size must be positive.")
+            save_partial_every = int(getattr(config, "save_partial_every", 0) or 0)
             for i in tqdm(range(0, total, batch_size), desc=f"{model_spec.name}/{benchmark_name}"):
                 batch_examples = examples[i:i+batch_size]
                 questions = [ex.question for ex in batch_examples]
@@ -156,6 +162,7 @@ def run_evaluation(config: EvalConfig) -> List[Dict[str, Any]]:
                         repetition_penalty=effective_repetition_penalty,
                         pass_at_k=count, system_prompt=None, max_input_length=4096,
                         show_progress=True,
+                        stop_at_final_answer=effective_stop_at_answer,
                     )
                     if len(chunk) != len(questions) or any(len(group) != count for group in chunk):
                         raise RuntimeError("Generation returned an unexpected number of candidates.")
@@ -198,6 +205,35 @@ def run_evaluation(config: EvalConfig) -> List[Dict[str, Any]]:
                         "candidates": candidate_records,
                     })
 
+                # Incremental save so a long run can be inspected while it runs.
+                if save_partial_every and ((i // batch_size) + 1) % save_partial_every == 0:
+                    done = len(records)
+                    partial = {
+                        "summary": {
+                            "model": model_spec.name,
+                            "benchmark": benchmark.name,
+                            "status": "partial",
+                            "num_examples": done,
+                            "num_examples_total": total,
+                            "fraction_done": round(done / total, 4),
+                            "score": pass_sums[max(k_values)] / done,
+                            "score_k": max(k_values),
+                            "pass_at_k_scores": {str(k): pass_sums[k] / done for k in k_values},
+                            "correct": correct_count,
+                            "num_samples_per_question": num_samples,
+                            "token_limit_rate": token_limit_count / (done * num_samples),
+                            "empty_answer_rate": empty_answer_count / (done * num_samples),
+                            "max_new_tokens": effective_max_tokens,
+                            "elapsed_seconds": round(time.time() - started, 3),
+                        },
+                        "records": records,
+                    }
+                    tmp = output_dir / f"{_slug(model_spec.name)}__{benchmark_name}.partial.json.tmp"
+                    final_partial = tmp.with_suffix("")
+                    with tmp.open("w") as pf:
+                        json.dump(partial, pf, indent=2)
+                    tmp.replace(final_partial)   # atomic: never a half-written file
+
             elapsed = time.time() - started
             summary = {
                 "model": model_spec.name,
@@ -233,6 +269,10 @@ def run_evaluation(config: EvalConfig) -> List[Dict[str, Any]]:
             output_path = output_dir / f"{_slug(model_spec.name)}__{benchmark_name}.json"
             with output_path.open("w") as f:
                 json.dump(payload, f, indent=2)
+
+            stale = output_dir / f"{_slug(model_spec.name)}__{benchmark_name}.partial.json"
+            if stale.exists():
+                stale.unlink()
 
             print(f"Saved: {output_path}")
             print(f"Pass@k: {summary['pass_at_k_scores']}")

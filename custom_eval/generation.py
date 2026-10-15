@@ -12,6 +12,7 @@ from transformers import PreTrainedModel, PreTrainedTokenizer, StoppingCriteria,
 
 from custom_eval.prompts.qwen_formatter import QwenChatFormatter
 from custom_eval.math_scoring import extract_boxed_answer
+from custom_eval.answer_stopping import FinalAnswerStopper
 
 @dataclass
 class GeneratedCandidate:
@@ -193,6 +194,7 @@ def generate_candidates_batch(
     system_prompt: Optional[str] = None,
     max_input_length: int = 4096,
     show_progress: bool = False,
+    stop_at_final_answer: bool = False,
 ) -> List[List[GeneratedCandidate]]:
     """
     Generate candidates for a batch of questions, with support for pass@k.
@@ -239,6 +241,19 @@ def generate_candidates_batch(
         "eos_token_id": tokenizer.eos_token_id,
     }
 
+    # Stop each row as soon as it completes a final answer outside <think>.
+    stopper = None
+    criteria = []
+    if stop_at_final_answer:
+        stopper = FinalAnswerStopper(
+            tokenizer=tokenizer,
+            input_width=input_width,
+            batch_size=input_ids.shape[0],
+            thinking=bool(model_type == "qwen" and enable_thinking),
+            eos_token_ids=tokenizer.eos_token_id,
+        )
+        criteria.append(stopper)
+
     # Set up progress bar if requested
     progress_callback = None
     if show_progress:
@@ -250,7 +265,9 @@ def generate_candidates_batch(
             leave=False,
         )
         progress_callback = TokenProgressCallback(pbar, max_new_tokens)
-        generation_kwargs["stopping_criteria"] = StoppingCriteriaList([progress_callback])
+        criteria.append(progress_callback)
+    if criteria:
+        generation_kwargs["stopping_criteria"] = StoppingCriteriaList(criteria)
 
     with torch.no_grad():
         output_ids = model.generate(
@@ -266,15 +283,21 @@ def generate_candidates_batch(
     raw_outputs = []
     output_lengths = []
     limit_flags = []
-    for out in output_ids:
+    for row, out in enumerate(output_ids):
         gen_tokens = out[input_width:]
+        # A row stopped at its final answer; drop the padding HF appends after it
+        # so no trailing repetition or clipped box reaches the parser.
+        stop_len = stopper.stop_lengths[row] if stopper is not None else None
+        if stop_len is not None:
+            gen_tokens = gen_tokens[:stop_len]
         token_list = gen_tokens.tolist() if hasattr(gen_tokens, "tolist") else list(gen_tokens)
         eos = tokenizer.eos_token_id
         eos_ids = set(eos if isinstance(eos, (list, tuple)) else [eos])
         # Ignore EOS and batch padding when reporting answer length.
         end = next((i for i, token in enumerate(token_list) if int(token) in eos_ids), len(gen_tokens))
         output_lengths.append(end)
-        limit_flags.append(end == len(gen_tokens) and end >= max_new_tokens)
+        # A row that stopped on its own answer never hit the budget.
+        limit_flags.append(stop_len is None and end == len(gen_tokens) and end >= max_new_tokens)
         raw = tokenizer.decode(gen_tokens, skip_special_tokens=True).strip()
         raw_outputs.append(raw)
 
@@ -334,6 +357,7 @@ def generate_candidates(
     system_prompt: Optional[str] = None,
     max_input_length: int = 4096,
     show_progress: bool = False,
+    stop_at_final_answer: bool = False,
 ) -> List[GeneratedCandidate]:
     """
     Single‑question wrapper around batched generation.
@@ -354,5 +378,6 @@ def generate_candidates(
         system_prompt=system_prompt,
         max_input_length=max_input_length,
         show_progress=show_progress,
+        stop_at_final_answer=stop_at_final_answer,
     )
     return results[0] if results else []

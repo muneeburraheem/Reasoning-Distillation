@@ -46,6 +46,8 @@ OPTIONAL_CONFIG = {
     "scheduler_type": "onecycle",
     "restart_interval_steps": None,
     "restart_mult": 1,
+    "optimizer_8bit": False,
+    "kd_chunk_size": 0,
 }
 
 CONFIG_SECTIONS = {
@@ -80,8 +82,9 @@ CONFIG_SECTIONS = {
         "scheduler_type",
         "restart_interval_steps",
         "restart_mult",
+        "optimizer_8bit",
     ],
-    "loss": ["temperature", "alpha_kd", "alpha_align", "beta_ce"],
+    "loss": ["temperature", "alpha_kd", "alpha_align", "beta_ce", "kd_chunk_size"],
     "logging": ["checkpoint_dir", "log_dir", "loss_log_entries_per_epoch", "save_every_n_steps"],
 }
 
@@ -253,6 +256,7 @@ def main():
     config.weight_decay = args.weight_decay
     config.max_grad_norm = args.max_grad_norm
     config.adam_betas = tuple(args.adam_betas)
+    config.optimizer_8bit = args.optimizer_8bit
     config.scheduler_type = args.scheduler_type
     config.restart_interval_steps = args.restart_interval_steps
     config.restart_mult = args.restart_mult
@@ -260,6 +264,7 @@ def main():
     config.alpha_kd = args.alpha_kd
     config.alpha_align = args.alpha_align
     config.beta_ce = args.beta_ce
+    config.kd_chunk_size = args.kd_chunk_size
     config.checkpoint_dir = args.checkpoint_dir
     config.log_dir = args.log_dir or args.checkpoint_dir
     config.loss_log_entries_per_epoch = args.loss_log_entries_per_epoch
@@ -326,12 +331,8 @@ def main():
             params = list(trainer.student.parameters())
             if trainer.aligner is not None:
                 params += list(trainer.aligner.parameters())
-            trainer.optimizer = torch.optim.AdamW(
-                params,
-                lr=config.lr,
-                betas=config.adam_betas,
-                weight_decay=config.weight_decay
-            )
+            from training.base_trainer import build_optimizer
+            trainer.optimizer = build_optimizer(params, config)
             print("✅ Optimizer rebuilt with loaded weights (momentum reset).")
             print("⚠️  Note: Optimizer momentum was reset. Initial loss may spike briefly.")
             print("   This is expected and should recover within ~50-100 steps.")

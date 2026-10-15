@@ -13,6 +13,30 @@ from transformers import AutoModelForCausalLM
 from utils.csv_logger import AveragedCSVLogger
 
 
+def build_optimizer(params, config):
+    """AdamW, or bitsandbytes AdamW8bit when training.optimizer_8bit is set.
+
+    fp32 Adam moments cost ~8 bytes/param: ~12 GiB for this 1.6B student, which
+    does not fit a 24 GiB card alongside the 8-bit teacher. AdamW8bit cuts that
+    to ~3 GiB. Default is False, so existing configs behave exactly as before.
+    """
+    if getattr(config, "optimizer_8bit", False):
+        import bitsandbytes as bnb
+        # Paged: optimizer state spills to host memory under pressure instead of
+        # OOMing. On a 24 GiB card the state allocation lands at the first
+        # optimizer.step() (batch accum_steps), long after the run looks healthy.
+        print("Optimizer: bitsandbytes PagedAdamW8bit (optimizer_8bit: true)")
+        return bnb.optim.PagedAdamW8bit(
+            params, lr=config.lr, betas=config.adam_betas,
+            weight_decay=config.weight_decay,
+        )
+    print("Optimizer: torch AdamW (fp32 moments)")
+    return torch.optim.AdamW(
+        params, lr=config.lr, betas=config.adam_betas,
+        weight_decay=config.weight_decay,
+    )
+
+
 class BaseTrainer:
     """
     Base class for all distillation trainers.
@@ -35,12 +59,7 @@ class BaseTrainer:
         params = list(student.parameters())
         if aligner is not None:
             params += list(aligner.parameters())
-        self.optimizer = torch.optim.AdamW(
-            params,
-            lr=config.lr,
-            betas=config.adam_betas,
-            weight_decay=config.weight_decay
-        )
+        self.optimizer = build_optimizer(params, config)
 
         self.scheduler = None
         self.start_epoch = 0

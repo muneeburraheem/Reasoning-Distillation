@@ -44,6 +44,7 @@ class LogitKDTrainer(BaseTrainer):
             teacher_logits=t_logits,
             attention_mask=attn_mask,
             temperature=self.config.temperature,
+            chunk_size=getattr(self.config, "kd_chunk_size", 0),
         )
 
         # CE loss on ground truth

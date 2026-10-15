@@ -53,6 +53,8 @@ class EvalConfig:
     num_samples: Optional[int] = None
     sample_batch_size: Optional[int] = None
     require_real_data: bool = False
+    stop_at_final_answer: bool = False
+    save_partial_every: int = 0
     batch_size: int = 1
     benchmark_options: dict[str, dict[str, Any]] = field(default_factory=dict)
 
@@ -159,6 +161,8 @@ def load_config(path: str | Path) -> EvalConfig:
         num_samples=num_samples,
         sample_batch_size=sample_batch_size,
         require_real_data=bool(raw.get("require_real_data", False)),
+        stop_at_final_answer=bool(gen.get("stop_at_final_answer", False)),
+        save_partial_every=int(raw.get("save_partial_every", 0) or 0),
         batch_size=int(gen.get("batch_size", 1)),
         benchmark_options=raw.get("benchmark_options", {}) or {},
     )

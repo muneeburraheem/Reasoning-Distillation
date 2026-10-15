@@ -1,0 +1,71 @@
+# ALPHA SWEEP evaluation: MATH-500 at 8192 tokens, the four local sweep
+# checkpoints. Read the SHAPE of the curve, not the absolute scores.
+#
+# Why 8192 and not 32768: measured cost is ~3 h/checkpoint vs ~12.9 h. The cap
+# depresses every point identically (logitKD reads 0.628 at 8192 vs 0.780 at
+# 32768), so the ordering across alpha is still readable. Re-run the winning
+# alpha at 32768 for any number that gets reported.
+#
+# THESE CHECKPOINTS ARE NOT REPORTABLE. They were trained at max_length 512
+# (2048 OOMs on the 24 GiB card without flash-linear-attention) with a paged
+# 8-bit optimizer. AM-DeepSeek traces have a ~900-token median, so most were
+# truncated mid-reasoning. Comparable to EACH OTHER only - not to
+# qwen_reasondistill_final_continue or to logit_kd_continue. See docs/RUN_LOG.md.
+#
+# Run: python -m custom_eval.run_eval --config configs/sweep_alpha_eval.yaml
+models:
+  - name: sweep-alpha-0.00
+    checkpoint: ./checkpoints/qwen_reasondistill_sweep_a000/epoch_1
+    trust_remote_code: true
+    dtype: bfloat16
+    device_map: auto
+    enable_thinking: true
+    model_type: qwen
+    strip_language_model_prefix: true
+
+  - name: sweep-alpha-0.05
+    checkpoint: ./checkpoints/qwen_reasondistill_sweep_a005/epoch_1
+    trust_remote_code: true
+    dtype: bfloat16
+    device_map: auto
+    enable_thinking: true
+    model_type: qwen
+    strip_language_model_prefix: true
+
+  - name: sweep-alpha-0.10
+    checkpoint: ./checkpoints/qwen_reasondistill_sweep_a010/epoch_1
+    trust_remote_code: true
+    dtype: bfloat16
+    device_map: auto
+    enable_thinking: true
+    model_type: qwen
+    strip_language_model_prefix: true
+
+  - name: sweep-alpha-0.50
+    checkpoint: ./checkpoints/qwen_reasondistill_sweep_a050/epoch_1
+    trust_remote_code: true
+    dtype: bfloat16
+    device_map: auto
+    enable_thinking: true
+    model_type: qwen
+    strip_language_model_prefix: true
+
+benchmarks:
+  - math500
+
+output_dir: ./eval_outputs/sweep_alpha_8k
+cache_dir: ./cache
+split: test
+max_samples: null
+seed: 42
+require_real_data: true
+
+generation:
+  max_new_tokens: 8192
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  repetition_penalty: 1.0
+  pass_at_k: 1
+  stop_at_final_answer: true
+  batch_size: 8

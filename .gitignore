@@ -1,0 +1,13 @@
+# Eval artifacts: result JSONs carry full traces (2.7 GB). Summaries live in
+# docs/results/all_eval_summaries.csv; the raw JSONs stay local.
+eval_outputs/
+checkpoints/
+cache/
+logs/
+
+# Run logs - tqdm progress makes these hundreds of MB
+*.log
+
+__pycache__/
+*.pyc
+.DS_Store

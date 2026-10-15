@@ -43,24 +43,31 @@ cache_dir: ./cache
 split: test
 max_samples: 1000       # Full MATH-500 (500) and AIME 2025 (30); 1000 for the others.
 seed: 42
+save_partial_every: 5     # write a .partial.json every 5 batches so the run can be inspected live
 require_real_data: true
 
 generation:
-  max_new_tokens: 4096
+  max_new_tokens: 8192
   temperature: 1.0
   top_p: 0.95
   top_k: 20
   repetition_penalty: 1.0
   pass_at_k: [2, 4, 8]
   num_samples: 8
-  sample_batch_size: 1  # Samples per question per generate call; limits GPU memory.
-  batch_size: 1        # Questions per batch; matches qwen_logit_kd_continue.yaml.
+  stop_at_final_answer: false  # Enabled per benchmark below (boxed answers only).
+  sample_batch_size: 8  # All 8 samples per question in one generate call.
+  batch_size: 8         # Questions per batch; 64 concurrent sequences.
 
 benchmark_options:
+  gsm8k:
+    stop_at_final_answer: true
+  math500:
+    stop_at_final_answer: true
   mmlu:
     subject: all
   hellaswag:
     split: validation
   aime25:
-    max_new_tokens: 16384
-    batch_size: 1
+    max_new_tokens: 8192
+    batch_size: 2
+    stop_at_final_answer: true

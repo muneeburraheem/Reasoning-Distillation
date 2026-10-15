@@ -388,7 +388,7 @@ def main():
     specs = [
         ModelSpec(name='base', checkpoint='Qwen/Qwen3.5-2B', **common),
         ModelSpec(name='distilled', checkpoint='Khaquan/qwen-khaquanS-distillations',
-                  subfolder='qwen_reasondistill_final_continue/epoch_1',
+                  subfolder='qwen-logitKD-final/qwen_logit_kd_continue/epoch_1',
                   strip_language_model_prefix=True, **common),
     ]
     all_records, summaries = {}, {}
