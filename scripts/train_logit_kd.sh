@@ -19,5 +19,5 @@ esac
 "${PYTHON:-python3}" -c 'import torch; assert torch.cuda.is_available(), "Logit KD training requires a CUDA GPU with the current model loaders."'
 
 for config in "${configs[@]}"; do
-  "${PYTHON:-python3}" scripts/train.py --config "configs/${config}.yaml"
+  "${PYTHON:-python3}" scripts/train.py --config "configs/train/${config}.yaml"
 done

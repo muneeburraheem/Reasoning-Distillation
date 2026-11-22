@@ -1,0 +1,49 @@
+# TEACHER AT 32k: the 8192 teacher run truncates 55% (first 40 q; median
+# finished trace 4,923 tokens vs ~1,500 for the students), so its outcome mix is
+# censored. This reruns the teacher where the students' wrong-vs-truncate split
+# was measured and RD's committed-wrong excess is significant (61 vs 35, p=0.010).
+#
+# Questions answered, scored strict AND lenient (RUN_LOG §8d):
+#   - does the teacher stop inside <think> (RD's EOS-in-think habit)?
+#   - does it commit to wrong answers when it has room?
+#   - length / truncation vs both students at the same budget.
+#
+# Subset: first 120 MATH-500 questions (max_samples truncates in file order).
+# Level mix 12/31/24/25/28; on it the students' 32k gap is +9.2 pp vs +9.8 pp on
+# all 500, so it is representative. Students for comparison:
+# eval_outputs/test_math/math500_32k/ (same ids, 1 sample, same seed/sampling).
+#
+# Batch 8 OOMed at ~26k tokens (22 GiB, 5.6 GiB fragmented). Batch 6 +
+# PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True. ~45 min per batch -> ~13-15 h.
+#
+# Run: python -m custom_eval.run_eval --config configs/eval/teacher_math500_32k.yaml
+models:
+  - name: qwen-3.5-4b-teacher-think
+    checkpoint: Qwen/Qwen3.5-4B
+    trust_remote_code: true
+    dtype: bfloat16
+    device_map: auto
+    enable_thinking: true
+    model_type: qwen
+    strip_language_model_prefix: false
+
+benchmarks:
+  - math500
+
+output_dir: ./eval_outputs/teacher_qwen4b_32k
+cache_dir: ./cache
+split: test
+max_samples: 120
+seed: 42
+require_real_data: true
+save_partial_every: 5
+
+generation:
+  max_new_tokens: 32768
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  repetition_penalty: 1.0
+  pass_at_k: 1
+  stop_at_final_answer: true
+  batch_size: 6

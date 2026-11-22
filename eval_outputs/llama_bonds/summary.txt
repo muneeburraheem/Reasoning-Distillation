@@ -1,0 +1,66 @@
+Annotator vs keyword heuristic (rows: keyword R / E / none; cols: N D R E):
+  R: N=0.14  D=0.00  R=0.82  E=0.05  (n=10761)
+  E: N=0.20  D=0.00  R=0.20  E=0.60  (n=3637)
+  -: N=0.90  D=0.00  R=0.09  E=0.01  (n=118240)
+
+Means per model:
+  A_D              LKD=0.0007  RD=0.0009
+  A_E              LKD=0.0232  RD=0.0224
+  A_E->D           LKD=0.0003  RD=0.0016
+  A_N              LKD=0.8201  RD=0.8237
+  A_R              LKD=0.1560  RD=0.1530
+  A_R->D           LKD=0.0014  RD=0.0008
+  A_oscillation    LKD=26.4300  RD=26.0694
+  B_compact        LKD=0.4321  RD=0.4329
+  B_novelty        LKD=0.9755  RD=0.9735
+  B_reconnect      LKD=0.9358  RD=0.9293
+  C_convergence    LKD=0.1908  RD=0.1903
+  C_high_explore   LKD=0.0685  RD=0.0684
+  C_low_validate   LKD=0.0934  RD=0.0948
+  C_tail_slope     LKD=0.0305  RD=0.0429
+  S_D              LKD=0.0147  RD=0.0148
+  S_E              LKD=0.0402  RD=0.0396
+  S_N              LKD=0.7619  RD=0.7651
+  S_R              LKD=0.1832  RD=0.1805
+
+A5 transition-graph Pearson r with LKD: RD=0.9979
+
+== RD - LKD, paired per question (Holm within family)
+  A_D              +0.0002 [-0.0001, +0.0006] p=0.1524 Holm 0.9996 (n=1260)
+  A_E              -0.0008 [-0.0029, +0.0013] p=0.4362 Holm 0.9996 (n=1260)
+  A_E->D           +0.0021 [-0.0003, +0.0057] p=0.1428 Holm 0.9996 (n=407)
+  A_N              +0.0035 [-0.0012, +0.0084] p=0.1452 Holm 0.9996 (n=1260)
+  A_R              -0.0030 [-0.0072, +0.0012] p=0.1526 Holm 0.9996 (n=1260)
+  A_R->D           -0.0005 [-0.0026, +0.0008] p=0.6330 Holm 0.9996 (n=1255)
+  A_oscillation    -0.3606 [-0.9755, +0.2426] p=0.2390 Holm 0.9996 (n=1260)
+  B_compact        +0.0008 [-0.0006, +0.0021] p=0.2650 Holm 0.6786 (n=1260)
+  B_novelty        +0.0080 [-0.0113, +0.0292] p=0.4312 Holm 0.6786 (n=345)
+  B_reconnect      -0.0066 [-0.0175, +0.0042] p=0.2262 Holm 0.6786 (n=1255)
+  C_convergence    -0.0003 [-0.0153, +0.0146] p=0.9500 Holm 1.0000 (n=1259)
+  C_high_explore   -0.0002 [-0.0031, +0.0028] p=0.9274 Holm 1.0000 (n=1259)
+  C_low_validate   +0.0013 [-0.0025, +0.0052] p=0.5030 Holm 1.0000 (n=1259)
+  C_tail_slope     +0.0119 [-0.0234, +0.0482] p=0.5062 Holm 1.0000 (n=1259)
+  S_D              +0.0001 [-0.0004, +0.0006] p=0.7138 Holm 0.8712 (n=1260)
+  S_E              -0.0006 [-0.0023, +0.0010] p=0.4356 Holm 0.8712 (n=1260)
+  S_N              +0.0032 [-0.0009, +0.0074] p=0.1152 Holm 0.4528 (n=1260)
+  S_R              -0.0027 [-0.0060, +0.0007] p=0.1132 Holm 0.4528 (n=1260)
+
+== Family E: feature difference, correct minus wrong traces, within model (level-stratified)
+  A_D               LKD=-0.0007  RD=+0.0001
+  A_E               LKD=+0.0033  RD=-0.0027
+  A_E->D            LKD=-0.0003  RD=+0.0044
+  A_N               LKD=-0.0175  RD=-0.0139
+  A_R               LKD=+0.0148  RD=+0.0165
+  A_R->D            LKD=-0.0016  RD=-0.0003
+  A_oscillation     LKD=+2.3514  RD=+2.3105
+  B_compact         LKD=-0.0003  RD=-0.0028
+  B_novelty         LKD=-0.0385  RD=+0.0103
+  B_reconnect       LKD=+0.0220  RD=-0.0154
+  C_convergence     LKD=+0.0448  RD=+0.0364
+  C_high_explore    LKD=+0.0035  RD=+0.0032
+  C_low_validate    LKD=+0.0009  RD=+0.0088
+  C_tail_slope      LKD=-0.0091  RD=+0.0190
+  S_D               LKD=-0.0038  RD=-0.0031
+  S_E               LKD=+0.0016  RD=-0.0010
+  S_N               LKD=-0.0082  RD=-0.0080
+  S_R               LKD=+0.0104  RD=+0.0121

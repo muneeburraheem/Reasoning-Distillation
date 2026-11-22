@@ -1,0 +1,34 @@
+/home/cs/Desktop/KD/KnowledgeDistillation/venv/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]Loading weights:   1%|▏         | 6/426 [00:00<00:07, 58.93it/s]Loading weights:   3%|▎         | 13/426 [00:00<00:06, 64.14it/s]Loading weights:   6%|▋         | 27/426 [00:00<00:04, 88.37it/s]Loading weights:  10%|▉         | 41/426 [00:00<00:03, 98.20it/s]Loading weights:  12%|█▏        | 51/426 [00:00<00:04, 92.99it/s]Loading weights:  15%|█▌        | 66/426 [00:00<00:03, 103.20it/s]Loading weights:  19%|█▉        | 80/426 [00:00<00:03, 105.80it/s]Loading weights:  22%|██▏       | 94/426 [00:00<00:03, 108.05it/s]Loading weights:  25%|██▍       | 105/426 [00:01<00:03, 103.70it/s]Loading weights:  28%|██▊       | 119/426 [00:01<00:02, 105.80it/s]Loading weights:  31%|███       | 132/426 [00:01<00:02, 111.35it/s]Loading weights:  34%|███▍      | 146/426 [00:01<00:02, 112.05it/s]Loading weights:  37%|███▋      | 158/426 [00:01<00:02, 102.31it/s]Loading weights:  40%|████      | 172/426 [00:01<00:02, 106.43it/s]Loading weights:  44%|████▎     | 186/426 [00:01<00:02, 108.76it/s]Loading weights:  47%|████▋     | 200/426 [00:01<00:02, 110.45it/s]Loading weights:  50%|████▉     | 212/426 [00:02<00:02, 102.53it/s]Loading weights:  53%|█████▎    | 226/426 [00:02<00:01, 105.71it/s]Loading weights:  56%|█████▋    | 240/426 [00:02<00:01, 108.10it/s]Loading weights:  60%|█████▉    | 254/426 [00:02<00:01, 109.86it/s]Loading weights:  62%|██████▏   | 266/426 [00:02<00:01, 108.09it/s]Loading weights:  65%|██████▌   | 279/426 [00:02<00:01, 107.82it/s]Loading weights:  69%|██████▉   | 293/426 [00:02<00:01, 109.13it/s]Loading weights:  72%|███████▏  | 307/426 [00:02<00:01, 110.44it/s]Loading weights:  75%|███████▍  | 319/426 [00:03<00:00, 107.67it/s]Loading weights:  78%|███████▊  | 332/426 [00:03<00:00, 107.24it/s]Loading weights:  81%|████████  | 346/426 [00:03<00:00, 108.88it/s]Loading weights:  85%|████████▍ | 360/426 [00:03<00:00, 109.93it/s]Loading weights:  87%|████████▋ | 371/426 [00:03<00:00, 106.09it/s]Loading weights:  90%|█████████ | 385/426 [00:03<00:00, 107.79it/s]Loading weights:  94%|█████████▎| 399/426 [00:03<00:00, 109.02it/s]Loading weights:  97%|█████████▋| 413/426 [00:03<00:00, 109.75it/s]Loading weights: 100%|█████████▉| 424/426 [00:04<00:00, 105.59it/s]Loading weights: 100%|██████████| 426/426 [00:04<00:00, 106.01it/s]
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights:  40%|███▉      | 127/320 [00:00<00:00, 1267.21it/s]Loading weights:  81%|████████  | 258/320 [00:00<00:00, 1287.78it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 1284.92it/s]
+/home/cs/Desktop/KD/KnowledgeDistillation/venv/lib/python3.12/site-packages/bitsandbytes/autograd/_functions.py:123: UserWarning: MatMul8bitLt: inputs will be cast from torch.bfloat16 to float16 during quantization
+  warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")
+head pre-training: 1000 train rows, 40 held-out rows, K=196
+  [fresh head] held-out loss real targets 1.8234 | all-zero targets 1.7446 | target density 1.619e-02
+/home/cs/Desktop/KD/Clean_Awesome_Branch/Reasoning-Distillation/side_experiments/qwen_sae_l16_norm64/pretrain_head.py:116: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  run = 0.98 * run + 0.02 * float(loss) if n else float(loss)
+  row 0/1000 running loss 1.7371 (0s)
+  row 100/1000 running loss 0.4404 (21s)
+  [after 100 rows] held-out loss real targets 0.1634 | all-zero targets 0.1178 | target density 1.619e-02
+  row 200/1000 running loss 0.1708 (42s)
+  [after 200 rows] held-out loss real targets 0.1130 | all-zero targets 0.1158 | target density 1.619e-02
+  row 300/1000 running loss 0.1156 (64s)
+  [after 300 rows] held-out loss real targets 0.0931 | all-zero targets 0.1186 | target density 1.619e-02
+  row 400/1000 running loss 0.0946 (86s)
+  [after 400 rows] held-out loss real targets 0.0825 | all-zero targets 0.1132 | target density 1.619e-02
+  row 500/1000 running loss 0.0841 (108s)
+  [after 500 rows] held-out loss real targets 0.0765 | all-zero targets 0.1111 | target density 1.619e-02
+  row 600/1000 running loss 0.0785 (129s)
+  [after 600 rows] held-out loss real targets 0.0732 | all-zero targets 0.1127 | target density 1.619e-02
+  row 700/1000 running loss 0.0752 (151s)
+  [after 700 rows] held-out loss real targets 0.0719 | all-zero targets 0.1104 | target density 1.619e-02
+  row 800/1000 running loss 0.0730 (172s)
+  [after 800 rows] held-out loss real targets 0.0690 | all-zero targets 0.1128 | target density 1.619e-02
+  row 900/1000 running loss 0.0736 (195s)
+  [after 900 rows] held-out loss real targets 0.0683 | all-zero targets 0.1114 | target density 1.619e-02
+  [fitted head] held-out loss real targets 0.0669 | all-zero targets 0.1106 | target density 1.619e-02
+saved /home/cs/Desktop/KD/Clean_Awesome_Branch/Reasoning-Distillation/side_experiments/qwen_sae_l16_norm64/runs/rd_warmstart/student_init/aligner.pt (keys ['norm.weight', 'norm.bias', 'proj.weight', 'proj.bias']); final held-out loss 0.0669

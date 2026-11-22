@@ -13,6 +13,13 @@ SUPPORTED_BENCHMARKS = {
     "hellaswag",
     "mmlu",
     "gpqa",
+    "aime24",
+    "hmmt25",
+    "brumo25",
+    "cmimc25",
+    "olympiadbench",
+    "omnimath_hard",
+    "processbench",
 }
 
 

@@ -1,0 +1,23 @@
+######## omnimath_hard: 500 questions common to all runs, 1 sample each
+  RD_new     strict 0.064  lenient 0.074 | committed wrong 0.302  stopped in think 0.062  truncated 0.572 | median finished tokens 9941
+  LKD        strict 0.074  lenient 0.076 | committed wrong 0.226  stopped in think 0.010  truncated 0.690 | median finished tokens 10614
+  RD_new - LKD:
+    accuracy strict   -1.0 pp [-3.6, +1.6] p=0.5060
+    accuracy lenient  -0.2 pp [-2.8, +2.4] p=0.9275
+    correct (strict)   RD_new-only 21  LKD-only 26  sign p=0.5601
+    committed wrong    RD_new-only 92  LKD-only 54  sign p=0.0021
+    stopped in think   RD_new-only 30  LKD-only 4  sign p=0.0000
+
+Pre-registered primary test: does RD - LKD grow with difficulty? (paired, bootstrap over problems)
+  [strict]
+    difficulty 6: n=139  LKD 0.072  RD 0.058  RD-LKD -1.4 pp
+    difficulty 7: n=186  LKD 0.059  RD 0.075  RD-LKD +1.6 pp
+    difficulty 8: n=109  LKD 0.083  RD 0.055  RD-LKD -2.8 pp
+    difficulty 9: n= 66  LKD 0.106  RD 0.061  RD-LKD -4.5 pp
+    trend of RD-LKD per difficulty step: -1.22 pp [-4.02, +1.60] p=0.389
+  [lenient]
+    difficulty 6: n=139  LKD 0.079  RD 0.058  RD-LKD -2.2 pp
+    difficulty 7: n=186  LKD 0.059  RD 0.091  RD-LKD +3.2 pp
+    difficulty 8: n=109  LKD 0.083  RD 0.064  RD-LKD -1.8 pp
+    difficulty 9: n= 66  LKD 0.106  RD 0.076  RD-LKD -3.0 pp
+    trend of RD-LKD per difficulty step: -0.57 pp [-3.42, +2.34] p=0.691

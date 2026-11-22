@@ -1,0 +1,762 @@
+[
+ {
+  "from": "eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__aime25.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__aime25.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__arc-c.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__arc-c.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__gsm8k.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__gsm8k.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__hellaswag.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__hellaswag.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__math500.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__math500.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__mmlu.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/sweep_pass_k/20260929T073130Z-1261224/qwen-reasondistill-final-continue-epoch_1-think__mmlu.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/test_math/20260925T181224Z-112470/qwen-reasondistill-final-continue-epoch_1-think__aime25.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/test_math/20260925T181224Z-112470/qwen-reasondistill-final-continue-epoch_1-think__aime25.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/test_math/20260925T181224Z-112470/qwen-reasondistill-final-continue-epoch_1-think__math500.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/test_math/20260925T181224Z-112470/qwen-reasondistill-final-continue-epoch_1-think__math500.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/test_math/math500_32k/qwen-reasondistill-final-continue-epoch_1-think__math500.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/test_math/math500_32k/qwen-reasondistill-final-continue-epoch_1-think__math500.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/budget_forcing/rd__B1024.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/budget_forcing/rd__B1024.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/budget_forcing/rd__B2048.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/budget_forcing/rd__B2048.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/budget_forcing/rd__B4096.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/budget_forcing/rd__B4096.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/budget_forcing/rd__B512.json",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/budget_forcing/rd__B512.json",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/budget_forcing/summary.txt",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/budget_forcing/summary.txt",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/bonds",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/bonds",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/answer_entropy",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/answer_entropy",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/answer_entropy_v1_lastbox",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/answer_entropy_v1_lastbox",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "eval_outputs/teacher_forced",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/teacher_forced",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "configs/qwen_reasondistill.yaml",
+  "to": "../archive_paper_cleanup_2026-11-22/configs/qwen_reasondistill.yaml",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "configs/qwen_reasondistill_new.yaml",
+  "to": "../archive_paper_cleanup_2026-11-22/configs/qwen_reasondistill_new.yaml",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "configs/qwen_reasondistill_resume.yaml",
+  "to": "../archive_paper_cleanup_2026-11-22/configs/qwen_reasondistill_resume.yaml",
+  "why": "A1 September RD"
+ },
+ {
+  "from": "docs/notes/100samples_rd.md",
+  "to": "../archive_paper_cleanup_2026-11-22/docs/notes/100samples_rd.md",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "docs/notes/100samples_rd_nontruncated.md",
+  "to": "../archive_paper_cleanup_2026-11-22/docs/notes/100samples_rd_nontruncated.md",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "docs/notes/base_zero_shot_summary.md",
+  "to": "../archive_paper_cleanup_2026-11-22/docs/notes/base_zero_shot_summary.md",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "docs/notes/base_zero_shot_traces.md",
+  "to": "../archive_paper_cleanup_2026-11-22/docs/notes/base_zero_shot_traces.md",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "docs/notes/prompt_experiment_results.md",
+  "to": "../archive_paper_cleanup_2026-11-22/docs/notes/prompt_experiment_results.md",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "docs/notes/prompt_experiment_results_distilled_only.jsonl",
+  "to": "../archive_paper_cleanup_2026-11-22/docs/notes/prompt_experiment_results_distilled_only.jsonl",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "docs/notes/prompt_statistics_nontruncated.md",
+  "to": "../archive_paper_cleanup_2026-11-22/docs/notes/prompt_statistics_nontruncated.md",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "docs/notes/prompt_statistics_summary.md",
+  "to": "../archive_paper_cleanup_2026-11-22/docs/notes/prompt_statistics_summary.md",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "docs/notes/Logit KD vs ReasonDistill temp.pdf",
+  "to": "../archive_paper_cleanup_2026-11-22/docs/notes/Logit KD vs ReasonDistill temp.pdf",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "docs/notes/pass@k.pdf",
+  "to": "../archive_paper_cleanup_2026-11-22/docs/notes/pass@k.pdf",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "docs/notes/september-evaluation-analysis.pdf",
+  "to": "../archive_paper_cleanup_2026-11-22/docs/notes/september-evaluation-analysis.pdf",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "scripts/run_base_model_raw_behavior.py",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/run_base_model_raw_behavior.py",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "scripts/run_prefill_experiments.py",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/run_prefill_experiments.py",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "scripts/summarize_nontruncated.py",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/summarize_nontruncated.py",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "scripts/test_base.py",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/test_base.py",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "logs/base_model_raw_behavior.log",
+  "to": "../archive_paper_cleanup_2026-11-22/logs/base_model_raw_behavior.log",
+  "why": "A2 prompt and zero-shot notes"
+ },
+ {
+  "from": "scripts/export_cot_artifact_data.py",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/export_cot_artifact_data.py",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "scripts/export_eval_artifact_data.py",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/export_eval_artifact_data.py",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "scripts/export_teacher_artifact_data.py",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/export_teacher_artifact_data.py",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "scripts/analyze_like_september.py",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/analyze_like_september.py",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "scripts/recompute_self_entropy.py",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/recompute_self_entropy.py",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "scripts/run_rd_october_basic.sh",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/run_rd_october_basic.sh",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "scripts/run_rd_october_queue.sh",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/run_rd_october_queue.sh",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "scripts/run_bonds_then_bf.sh",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/run_bonds_then_bf.sh",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "scripts/run_tf_then_teacher32k.sh",
+  "to": "../archive_paper_cleanup_2026-11-22/scripts/run_tf_then_teacher32k.sh",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "examples",
+  "to": "../archive_paper_cleanup_2026-11-22/examples",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "final-run-evals",
+  "to": "../archive_paper_cleanup_2026-11-22/final-run-evals",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "september-eval-scripts/qwen_kd_comparison-think.yaml",
+  "to": "../archive_paper_cleanup_2026-11-22/september-eval-scripts/qwen_kd_comparison-think.yaml",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "september-eval-scripts/run_kd_comparison.sh",
+  "to": "../archive_paper_cleanup_2026-11-22/september-eval-scripts/run_kd_comparison.sh",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "eval_outputs/smoke_8q",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/smoke_8q",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "eval_outputs/llama_smoke/budget_forcing",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/llama_smoke/budget_forcing",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "eval_outputs/qwen_sae_check",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/qwen_sae_check",
+  "why": "A3 old helpers"
+ },
+ {
+  "from": "configs/qwen_reasondistill_sweep_a000.yaml",
+  "to": "../archive_paper_cleanup_2026-11-22/configs/qwen_reasondistill_sweep_a000.yaml",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "configs/qwen_reasondistill_sweep_a005.yaml",
+  "to": "../archive_paper_cleanup_2026-11-22/configs/qwen_reasondistill_sweep_a005.yaml",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "configs/qwen_reasondistill_sweep_a010.yaml",
+  "to": "../archive_paper_cleanup_2026-11-22/configs/qwen_reasondistill_sweep_a010.yaml",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "configs/qwen_reasondistill_sweep_a050.yaml",
+  "to": "../archive_paper_cleanup_2026-11-22/configs/qwen_reasondistill_sweep_a050.yaml",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "configs/sweep_alpha_eval.yaml",
+  "to": "../archive_paper_cleanup_2026-11-22/configs/sweep_alpha_eval.yaml",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "eval_outputs/sweep_alpha_8k",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/sweep_alpha_8k",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "logs/train_a000.log",
+  "to": "../archive_paper_cleanup_2026-11-22/logs/train_a000.log",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "logs/train_a005.log",
+  "to": "../archive_paper_cleanup_2026-11-22/logs/train_a005.log",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "logs/train_a010.log",
+  "to": "../archive_paper_cleanup_2026-11-22/logs/train_a010.log",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "logs/train_a050.log",
+  "to": "../archive_paper_cleanup_2026-11-22/logs/train_a050.log",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "logs/qwen_reasondistill_sweep_a000",
+  "to": "../archive_paper_cleanup_2026-11-22/logs/qwen_reasondistill_sweep_a000",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "logs/qwen_reasondistill_sweep_a005",
+  "to": "../archive_paper_cleanup_2026-11-22/logs/qwen_reasondistill_sweep_a005",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "logs/qwen_reasondistill_sweep_a010",
+  "to": "../archive_paper_cleanup_2026-11-22/logs/qwen_reasondistill_sweep_a010",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "logs/qwen_reasondistill_sweep_a050",
+  "to": "../archive_paper_cleanup_2026-11-22/logs/qwen_reasondistill_sweep_a050",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "logs/sweep_alpha_8k.log",
+  "to": "../archive_paper_cleanup_2026-11-22/logs/sweep_alpha_8k.log",
+  "why": "A4 alpha sweep"
+ },
+ {
+  "from": "scripts/eval_sae_norm64.py",
+  "to": "scripts/sae_norm64_health.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/gate_sae_norm64.py",
+  "to": "scripts/sae_norm64_gate.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/gate_sae_norm64_perfeature.py",
+  "to": "scripts/sae_norm64_gate_perfeature.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/reason_score_norm64.py",
+  "to": "scripts/sae_norm64_reason_score.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/qwen_sae_signal.py",
+  "to": "scripts/sae_old_signal.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/qwen_aligner_check.py",
+  "to": "scripts/sae_old_aligner_check.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/rd_newsae_pretrain_head.py",
+  "to": "scripts/train_rd_newsae_head.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/rd_newsae_smoke.py",
+  "to": "scripts/train_rd_newsae_smoke.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/rd_newsae_head_check.py",
+  "to": "scripts/analyze_rd_newsae_head.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/budget_forcing.py",
+  "to": "scripts/eval_budget_forcing.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/teacher_forced_kl.py",
+  "to": "scripts/eval_teacher_forced_kl.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/answer_entropy.py",
+  "to": "scripts/eval_answer_entropy.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/bond_annotate.py",
+  "to": "scripts/eval_bond_annotate.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/reflection_more.py",
+  "to": "scripts/eval_reflection_benchmarks.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/llama_passk.py",
+  "to": "scripts/eval_llama_passk.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/llama_bonds.py",
+  "to": "scripts/eval_llama_bonds.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/llama_budget_forcing.py",
+  "to": "scripts/eval_llama_budget_forcing.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/llama_teacher_forced_kl.py",
+  "to": "scripts/eval_llama_teacher_forced_kl.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/llama_reasoning_gen.py",
+  "to": "scripts/eval_llama_processbench.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/reflection_coupling.py",
+  "to": "scripts/analyze_reflection_coupling.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/analyze_llama_reasoning.py",
+  "to": "scripts/analyze_llama_processbench.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/analyze_mi_students_llama.py",
+  "to": "scripts/analyze_mi_llama_students.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/analyze_teacher_mi_norm64.py",
+  "to": "scripts/analyze_mi_qwen_teacher_newsae.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/mi_students_llama.py",
+  "to": "scripts/mi_llama_students.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/exp2_feature_breakdown.py",
+  "to": "scripts/mi_llama_exp2_feature_breakdown.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/exp3_feature_function.py",
+  "to": "scripts/mi_llama_exp3_feature_function.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/exp4_student_attribution.py",
+  "to": "scripts/mi_llama_exp4_student_attribution.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/exp5_cka.py",
+  "to": "scripts/mi_llama_exp5_cka.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/llama_sweep_audit.py",
+  "to": "scripts/mi_llama_sweep_audit.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/student_probe.py",
+  "to": "scripts/mi_qwen_student_probe.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/student_causal.py",
+  "to": "scripts/mi_qwen_student_causal.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/teacher_mi_norm64.py",
+  "to": "scripts/mi_qwen_teacher_newsae.py",
+  "why": "rename"
+ },
+ {
+  "from": "scripts/run_exp3_6.sh",
+  "to": "scripts/run_mi_llama_exp3_5.sh",
+  "why": "rename"
+ },
+ {
+  "from": "september-eval-scripts/run.sh",
+  "to": "scripts/run_september_eval.sh",
+  "why": "rename"
+ },
+ {
+  "from": "september-eval-scripts/gsm8k_generation_length.py",
+  "to": "scripts/eval_gsm8k_generation_length.py",
+  "why": "rename"
+ },
+ {
+  "from": "september-eval-scripts/README.md",
+  "to": "docs/september_eval.md",
+  "why": "rename"
+ },
+ {
+  "from": "configs/qwen_logit_kd.yaml",
+  "to": "configs/train/qwen_logit_kd.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/qwen_logit_kd_continue.yaml",
+  "to": "configs/train/qwen_logit_kd_continue.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/qwen_reasondistill_final.yaml",
+  "to": "configs/train/qwen_reasondistill_final.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/qwen_reasondistill_final_continue.yaml",
+  "to": "configs/train/qwen_reasondistill_final_continue.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/qwen_sae.yaml",
+  "to": "configs/train/qwen_sae.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/full_l1_003.yaml",
+  "to": "configs/train/sae_norm64_full.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/test_math.yaml",
+  "to": "configs/eval/qwen_math_basic.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/test_math500_32k.yaml",
+  "to": "configs/eval/qwen_math500_32k.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/sweep_pass_k.yaml",
+  "to": "configs/eval/qwen_passk.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "september-eval-scripts/qwen_2B-think.yaml",
+  "to": "configs/eval/qwen_september_think.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "september-eval-scripts/qwen_2B-no_think.yaml",
+  "to": "configs/eval/qwen_september_no_think.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/hard_A.yaml",
+  "to": "configs/eval/qwen_hard_A.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/hard_B.yaml",
+  "to": "configs/eval/qwen_hard_B.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/hard_C.yaml",
+  "to": "configs/eval/qwen_hard_C.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/processbench.yaml",
+  "to": "configs/eval/qwen_processbench.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/teacher_qwen4b_math500.yaml",
+  "to": "configs/eval/teacher_math500.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/teacher_qwen4b_math500_32k.yaml",
+  "to": "configs/eval/teacher_math500_32k.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/test_math_rd_october.yaml",
+  "to": "configs/eval/rd_october_math_basic.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/test_math500_32k_rd_october.yaml",
+  "to": "configs/eval/rd_october_math500_32k.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/sweep_pass_k_rd_october.yaml",
+  "to": "configs/eval/rd_october_passk.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/sweep_pass_k_rd_october_math500.yaml",
+  "to": "configs/eval/rd_october_passk_math500.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/september_rd_october_think.yaml",
+  "to": "configs/eval/rd_october_september_think.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/september_rd_october_no_think.yaml",
+  "to": "configs/eval/rd_october_september_no_think.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/mod_basic_math.yaml",
+  "to": "configs/eval/rd_mod_math_basic.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/mod_passk.yaml",
+  "to": "configs/eval/rd_mod_passk.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/mod_hard_A.yaml",
+  "to": "configs/eval/rd_mod_hard_A.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/mod_hard_B.yaml",
+  "to": "configs/eval/rd_mod_hard_B.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/mod_hard_C.yaml",
+  "to": "configs/eval/rd_mod_hard_C.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/mod_processbench.yaml",
+  "to": "configs/eval/rd_mod_processbench.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/mod_september_think.yaml",
+  "to": "configs/eval/rd_mod_september_think.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/mod_september_no_think.yaml",
+  "to": "configs/eval/rd_mod_september_no_think.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/math500_32k_rd_newsae_low.yaml",
+  "to": "configs/eval/rd_low_math500_32k.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/math500_32k_rd_newsae_moderate.yaml",
+  "to": "configs/eval/rd_mod_math500_32k.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/math500_32k_rd_newsae_high.yaml",
+  "to": "configs/eval/rd_high_math500_32k.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/lkd_seed43_math500_32k.yaml",
+  "to": "configs/eval/lkd_seed43_math500_32k.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/causal_gen_lkd.yaml",
+  "to": "configs/mech_interp/causal_gen_lkd.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/causal_gen_rd_moderate.yaml",
+  "to": "configs/mech_interp/causal_gen_rd_mod.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/pilot_norm_l1_0005.yaml",
+  "to": "configs/train/sae_norm64_pilot_norm_l1_0005.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/pilot_norm_l1_0015.yaml",
+  "to": "configs/train/sae_norm64_pilot_norm_l1_0015.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/pilot_norm_l1_005.yaml",
+  "to": "configs/train/sae_norm64_pilot_norm_l1_005.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/pilot_norm_l1_5.yaml",
+  "to": "configs/train/sae_norm64_pilot_norm_l1_5.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/pilot_raw_l1_0015.yaml",
+  "to": "configs/train/sae_norm64_pilot_raw_l1_0015.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/rd_newsae_low.yaml",
+  "to": "configs/train/rd_newsae_low.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/rd_newsae_moderate.yaml",
+  "to": "configs/train/rd_newsae_moderate.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/rd_newsae_high.yaml",
+  "to": "configs/train/rd_newsae_high.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "configs/rd_newsae/rd_newsae_smoke.yaml",
+  "to": "configs/train/rd_newsae_smoke.yaml",
+  "why": "rename"
+ },
+ {
+  "from": "docs/notes/restructure_2026-11-22_moves.json",
+  "to": "docs/repo_history/restructure_2026-11-22_moves.json",
+  "why": "rename"
+ },
+ {
+  "from": "eval_outputs/september/20260922T172432Z-1086805",
+  "to": "../archive_paper_cleanup_2026-11-22/eval_outputs/september/20260922T172432Z-1086805",
+  "why": "A3 old helpers (2-question smoke run)"
+ }
+]

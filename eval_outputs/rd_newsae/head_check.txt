@@ -1,0 +1,7 @@
+/home/cs/Desktop/KD/KnowledgeDistillation/venv/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+/home/cs/Desktop/KD/KnowledgeDistillation/venv/lib/python3.12/site-packages/bitsandbytes/autograd/_functions.py:123: UserWarning: MatMul8bitLt: inputs will be cast from torch.bfloat16 to float16 during quantization
+held-out tokens 68138, target density 1.713e-02, live features 196/196
+  fitted   total 0.0686 = value 0.0243 + 0.30*presence 0.0583 + 0.15*rank 0.1784 | R2 (live mean) +0.554 median +0.623 | AUC(on) 0.902 | mean pred 0.038 vs target 0.022
+  fresh    total 1.9916 = value 1.4319 + 0.30*presence 0.9143 + 0.15*rank 1.9031 | R2 (live mean) -71.264 median -15.506 | AUC(on) 0.539 | mean pred 0.918 vs target 0.022
+  constant total 0.2128 = value 0.1078 + 0.30*presence 0.0855 + 0.15*rank 0.5293 | R2 (live mean) +0.000 median +0.000 | AUC(on) 0.624 | mean pred 0.022 vs target 0.022

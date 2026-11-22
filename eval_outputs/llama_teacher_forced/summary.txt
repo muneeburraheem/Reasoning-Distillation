@@ -1,0 +1,110 @@
+1300 traces: heldout 1000, insample 300
+
+## heldout think/lt512  (422365 positions, 999 traces)
+       stat   teacher       lkd        rd      base
+        kl1         -    0.4750    0.4735    0.9823
+        kl4         -    0.0798    0.0797    0.1748
+        ent    0.4097    0.7841    0.7828    1.4607
+        nll    0.4666    0.7292    0.7277    1.3789
+  RD-LKD kl1   -0.0015 [-0.0018, -0.0012] p=0.0001  RD higher on 358/999 traces
+  RD-LKD kl4   -0.0001 [-0.0001, -0.0001] p=0.0001  RD higher on 118/999 traces
+  RD-LKD ent   -0.0013 [-0.0016, -0.0010] p=0.0001  RD higher on 402/999 traces
+  RD-LKD nll   -0.0015 [-0.0019, -0.0012] p=0.0001  RD higher on 400/999 traces
+
+## heldout think/ge512  (1127043 positions, 992 traces)
+       stat   teacher       lkd        rd      base
+        kl1         -    0.5200    0.5176    0.7878
+        kl4         -    0.0926    0.0925    0.1760
+        ent    0.4827    0.8988    0.8997    1.2156
+        nll    0.4444    0.8739    0.8715    1.1981
+  RD-LKD kl1   -0.0021 [-0.0024, -0.0018] p=0.0001  RD higher on 260/991 traces
+  RD-LKD kl4   -0.0001 [-0.0001, -0.0001] p=0.0001  RD higher on 221/991 traces
+  RD-LKD ent   +0.0009 [+0.0006, +0.0013] p=0.0001  RD higher on 567/991 traces
+  RD-LKD nll   -0.0022 [-0.0025, -0.0018] p=0.0001  RD higher on 296/991 traces
+
+## heldout answer/lt512  (472 positions, 8 traces)
+       stat   teacher       lkd        rd      base
+        kl1         -    0.5567    0.5474    0.8304
+        kl4         -    0.0877    0.0876    0.1770
+        ent    0.2937    0.6985    0.6972    1.2604
+        nll    0.6041    0.6816    0.6865    1.1221
+
+## heldout answer/ge512  (158081 positions, 527 traces)
+       stat   teacher       lkd        rd      base
+        kl1         -    0.3766    0.3727    0.4939
+        kl4         -    0.1036    0.1035    0.1854
+        ent    0.1417    0.5493    0.5500    0.7083
+        nll    0.2369    0.4696    0.4710    0.6229
+  RD-LKD kl1   -0.0052 [-0.0065, -0.0042] p=0.0001  RD higher on 147/526 traces
+  RD-LKD kl4   -0.0000 [-0.0001, -0.0000] p=0.0001  RD higher on 229/526 traces
+  RD-LKD ent   +0.0008 [+0.0000, +0.0016] p=0.0436  RD higher on 287/526 traces
+  RD-LKD nll   +0.0028 [+0.0017, +0.0041] p=0.0001  RD higher on 302/526 traces
+
+## heldout boxed/ge512  (1102 positions, 400 traces)
+       stat   teacher       lkd        rd      base
+        kl1         -    0.0887    0.0987    0.1654
+        kl4         -    0.0957    0.0959    0.1795
+        ent    0.0095    0.1521    0.1618    0.1932
+        nll    0.0193    0.0875    0.0984    0.1753
+  RD-LKD kl1   +0.0017 [-0.0022, +0.0056] p=0.3906  RD higher on 52/79 traces
+  RD-LKD kl4   +0.0002 [+0.0001, +0.0002] p=0.0002  RD higher on 57/79 traces
+  RD-LKD ent   +0.0067 [+0.0039, +0.0098] p=0.0001  RD higher on 59/79 traces
+  RD-LKD nll   +0.0022 [-0.0022, +0.0067] p=0.3196  RD higher on 53/79 traces
+
+## insample think/lt512  (122458 positions, 289 traces)
+       stat   teacher       lkd        rd      base
+        kl1         -    0.7201    0.7178    1.2305
+        kl4         -    0.0850    0.0850    0.1822
+        ent    0.8672    1.5361    1.5342    2.1330
+        nll    1.2047    1.3161    1.3141    2.0890
+  RD-LKD kl1   -0.0023 [-0.0032, -0.0015] p=0.0001  RD higher on 108/289 traces
+  RD-LKD kl4   -0.0001 [-0.0001, -0.0000] p=0.0001  RD higher on 61/289 traces
+  RD-LKD ent   -0.0020 [-0.0031, -0.0010] p=0.0001  RD higher on 113/289 traces
+  RD-LKD nll   -0.0023 [-0.0041, -0.0006] p=0.0068  RD higher on 129/289 traces
+
+## insample think/ge512  (232752 positions, 276 traces)
+       stat   teacher       lkd        rd      base
+        kl1         -    0.6606    0.6580    0.9445
+        kl4         -    0.0762    0.0761    0.1636
+        ent    0.8785    1.4344    1.4374    1.7533
+        nll    0.9656    1.3210    1.3186    1.7048
+  RD-LKD kl1   -0.0031 [-0.0038, -0.0024] p=0.0001  RD higher on 82/276 traces
+  RD-LKD kl4   -0.0001 [-0.0001, -0.0001] p=0.0001  RD higher on 31/276 traces
+  RD-LKD ent   +0.0019 [+0.0007, +0.0030] p=0.0022  RD higher on 166/276 traces
+  RD-LKD nll   -0.0027 [-0.0039, -0.0016] p=0.0001  RD higher on 90/276 traces
+
+## insample answer/lt512  (1406 positions, 24 traces)
+       stat   teacher       lkd        rd      base
+        kl1         -    1.0052    0.9955    1.1392
+        kl4         -    0.1018    0.1018    0.2040
+        ent    0.7379    1.6267    1.6162    1.9831
+        nll    1.5401    1.3443    1.3413    2.0309
+  RD-LKD kl1   -0.0114 [-0.0252, +0.0004] p=0.0590  RD higher on 11/24 traces
+  RD-LKD kl4   +0.0001 [-0.0000, +0.0002] p=0.0828  RD higher on 15/24 traces
+  RD-LKD ent   -0.0060 [-0.0163, +0.0042] p=0.2498  RD higher on 8/24 traces
+  RD-LKD nll   +0.0005 [-0.0093, +0.0113] p=0.9386  RD higher on 12/24 traces
+
+## insample answer/ge512  (103828 positions, 210 traces)
+       stat   teacher       lkd        rd      base
+        kl1         -    0.8910    0.8870    0.9312
+        kl4         -    0.1029    0.1028    0.2086
+        ent    0.7803    2.0449    2.0557    1.7629
+        nll    1.4740    1.6733    1.6706    1.8036
+  RD-LKD kl1   -0.0073 [-0.0096, -0.0053] p=0.0001  RD higher on 60/209 traces
+  RD-LKD kl4   -0.0001 [-0.0001, -0.0001] p=0.0001  RD higher on 56/209 traces
+  RD-LKD ent   +0.0079 [+0.0057, +0.0101] p=0.0001  RD higher on 145/209 traces
+  RD-LKD nll   -0.0010 [-0.0024, +0.0005] p=0.1832  RD higher on 88/209 traces
+
+## insample boxed/lt512  (6 positions, 2 traces)
+       stat   teacher       lkd        rd      base
+        kl1         -    0.1099    0.1295    0.8923
+        kl4         -    0.0902    0.0905    0.1800
+        ent    0.0727    0.4975    0.5406    2.5923
+        nll    1.9501    1.7234    1.8257    2.4102
+
+## insample boxed/ge512  (109 positions, 6 traces)
+       stat   teacher       lkd        rd      base
+        kl1         -    0.4765    0.4605    0.5052
+        kl4         -    0.0932    0.0932    0.1802
+        ent    0.3494    0.9971    0.9804    1.1148
+        nll    0.7836    0.9066    0.8980    1.0236

@@ -1,0 +1,33 @@
+# Student causal test, generation phase (mi_qwen_student_causal.py gen): rd_mod_passk.yaml settings, MATH-500 only,
+# 1 sample. output_dir is overridden per ablation condition by the script.
+models:
+- name: qwen-logit-kd-continue-epoch_1-think
+  checkpoint: Khaquan/qwen-khaquanS-distillations
+  subfolder: qwen-logitKD-final/qwen_logit_kd_continue/epoch_1
+  trust_remote_code: true
+  dtype: bfloat16
+  device_map: auto
+  enable_thinking: true
+  model_type: qwen
+  strip_language_model_prefix: true
+benchmarks:
+- math500
+output_dir: ./eval_outputs/rd_newsae/student_causal/gen/unset
+cache_dir: ./cache
+split: test
+max_samples: 1000
+seed: 42
+require_real_data: true
+save_partial_every: 5
+generation:
+  max_new_tokens: 8192
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  presence_penalty: 1.5
+  repetition_penalty: 1.0
+  pass_at_k: 1
+  num_samples: 1
+  sample_batch_size: 1
+  stop_at_final_answer: true
+  batch_size: 8

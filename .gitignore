@@ -1,11 +1,20 @@
-# Eval artifacts: result JSONs carry full traces (2.7 GB). Summaries live in
-# docs/results/all_eval_summaries.csv; the raw JSONs stay local.
-eval_outputs/
+# Raw evaluation outputs stay local (per-question traces, about 6 GB). The summary files behind every reported
+# number are tracked (results/README.md lists them); scripts/run_all_analyses.sh regenerates them from the raw outputs.
+eval_outputs/**
+!eval_outputs/**/
+!eval_outputs/**/analysis*.txt
+!eval_outputs/**/summary*.txt
+!eval_outputs/rd_newsae/sae/*.txt
+!eval_outputs/rd_newsae/head_check.txt
+!eval_outputs/rd_newsae/pretrain_head.out
+!eval_outputs/rd_newsae/vast_probe_analysis.txt
+!eval_outputs/rd_newsae/eval_mod/bonds/reflection_coupling.txt
+
+# Weights, caches, environments, logs
 checkpoints/
 cache/
+venv_fla/
 logs/
-
-# Run logs - tqdm progress makes these hundreds of MB
 *.log
 
 __pycache__/

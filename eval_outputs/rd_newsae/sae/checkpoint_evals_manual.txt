@@ -1,0 +1,4 @@
+full_l1_003/step_4300        input n64  FVE +0.441  L0   336.2  dead 0.224  latents>=20 tokens   6048  reasoning latents   58  (tokens 59371, reasoning-vocab tokens 1016)
+full_l1_003/step_8600        input n64  FVE +0.497  L0   192.6  dead 0.708  latents>=20 tokens   5831  reasoning latents   45  (tokens 59371, reasoning-vocab tokens 1016)
+full_l1_003/step_12900       input n64  FVE +0.521  L0   127.6  dead 0.821  latents>=20 tokens   5935  reasoning latents   44  (tokens 59371, reasoning-vocab tokens 1016)
+full_l1_003/step_17200       input n64  FVE +0.533  L0    97.8  dead 0.837  latents>=20 tokens   5981  reasoning latents   43  (tokens 59371, reasoning-vocab tokens 1016)

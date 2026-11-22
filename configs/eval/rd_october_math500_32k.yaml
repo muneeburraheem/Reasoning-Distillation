@@ -1,0 +1,34 @@
+# October ReasonDistill, MATH-500 at 32,768 tokens. Identical to
+# configs/eval/qwen_math500_32k.yaml except the model list; LKD and old RD outputs in
+# eval_outputs/test_math/math500_32k/ are reused (same seed and settings).
+#
+# Run: python -m custom_eval.run_eval --config configs/eval/rd_october_math500_32k.yaml
+models:
+  - name: qwen-reasondistill-october-continue-epoch_1-think
+    checkpoint: Khaquan/qwen-khaquanS-distillations
+    subfolder: qwen-reasondistill-october/qwen_reasondistill_final_continue/epoch_1
+    trust_remote_code: true
+    dtype: bfloat16
+    device_map: auto
+    enable_thinking: true
+    model_type: qwen
+    strip_language_model_prefix: true
+benchmarks:
+  - math500
+
+output_dir: ./eval_outputs/test_math_rd_october/math500_32k
+cache_dir: ./cache
+split: test
+max_samples: null
+seed: 42
+require_real_data: true
+
+generation:
+  max_new_tokens: 32768
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  repetition_penalty: 1.0
+  pass_at_k: 1
+  stop_at_final_answer: true   # End a row once its final answer is complete.
+  batch_size: 8

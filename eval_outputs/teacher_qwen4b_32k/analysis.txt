@@ -1,0 +1,22 @@
+######## math500: 120 questions common to all runs, 1 sample each
+  Teacher    strict 0.725  lenient 0.725 | committed wrong 0.008  stopped in think 0.000  truncated 0.267 | median finished tokens 5864
+  LKD        strict 0.783  lenient 0.792 | committed wrong 0.125  stopped in think 0.050  truncated 0.042 | median finished tokens 1904
+  RD_mod     strict 0.725  lenient 0.775 | committed wrong 0.125  stopped in think 0.075  truncated 0.075 | median finished tokens 2205
+  Teacher - LKD:
+    accuracy strict   -5.8 pp [-15.0, +3.3] p=0.2497
+    accuracy lenient  -6.7 pp [-15.8, +2.5] p=0.1779
+    correct (strict)   Teacher-only 13  LKD-only 20  sign p=0.2962
+    committed wrong    Teacher-only 0  LKD-only 14  sign p=0.0001
+    stopped in think   Teacher-only 0  LKD-only 6  sign p=0.0312
+  Teacher - RD_mod:
+    accuracy strict   +0.0 pp [-9.2, +9.2] p=1.0000
+    accuracy lenient  -5.0 pp [-14.2, +4.2] p=0.3184
+    correct (strict)   Teacher-only 17  RD_mod-only 17  sign p=1.0000
+    committed wrong    Teacher-only 0  RD_mod-only 14  sign p=0.0001
+    stopped in think   Teacher-only 0  RD_mod-only 9  sign p=0.0039
+  strict accuracy by level:
+    L1 n= 12 Teacher=0.75  LKD=0.75  RD_mod=0.92
+    L2 n= 31 Teacher=0.84  LKD=0.87  RD_mod=0.87
+    L3 n= 24 Teacher=0.75  LKD=0.88  RD_mod=0.88
+    L4 n= 25 Teacher=0.72  LKD=0.92  RD_mod=0.60
+    L5 n= 28 Teacher=0.57  LKD=0.50  RD_mod=0.46

@@ -1,0 +1,39 @@
+# Exp 3 · Feature function transfer (teacher-forced, 100 held-out texts, push r = 0.15 of |h|)
+matched = corr(teacher effect f, student effect f); mismatched = mean corr with the other features of the same set; specific = matched - mismatched
+  base rd   matched +0.082  mismatched +0.024  specific +0.058  (features with specific > 0: 26/30)
+  base rand matched +0.086  mismatched -0.000  specific +0.086  (features with specific > 0: 30/30)
+  lkd  rd   matched +0.173  mismatched +0.047  specific +0.126  (features with specific > 0: 29/30)
+  lkd  rand matched +0.127  mismatched -0.001  specific +0.128  (features with specific > 0: 29/30)
+  rd   rd   matched +0.176  mismatched +0.047  specific +0.129  (features with specific > 0: 29/30)
+  rd   rand matched +0.127  mismatched -0.000  specific +0.127  (features with specific > 0: 29/30)
+
+## paired over features, bootstrap
+  rd   specific rd-lkd  +0.0030 [-0.0006,+0.0064] p=0.0910
+  rd   specific lkd-base +0.0677 [+0.0505,+0.0856] p=0.0005
+  rand specific rd-lkd  -0.0007 [-0.0037,+0.0022] p=0.6430
+  rand specific lkd-base +0.0418 [+0.0212,+0.0609] p=0.0005
+  base specific rd-set - rand-set (paired by density partner) -0.0279 [-0.0505,-0.0064]
+  lkd  specific rd-set - rand-set (paired by density partner) -0.0020 [-0.0361,+0.0295]
+  rd   specific rd-set - rand-set (paired by density partner) +0.0017 [-0.0319,+0.0349]
+
+## examples: top 8 promoted tokens, teacher vs LKD vs RD (5 densest RD features)
+  f29499
+     teacher: 'pretty' 'got' 'stuff' 'right' 'yeah' 'bigger' 'basically' 'bunch'
+     lkd: 'because' ',' 'obviously' 'definitely' '.' 'yeah' 'probably' 'basically'
+     rd: 'because' ',' 'obviously' 'definitely' 'yeah' 'probably' 'right' 'actually'
+  f52689
+     teacher: 'stuff' 'kinda' 'thing' 'messed' 'weird' 'gotta' 'bunch' 'something'
+     lkd: '[…]' '[…]' '\xad' '—and' '\xad' '–and' '—' '‑'
+     rd: '[…]' '[…]' 'really' '\xad' '–and' '—and' '—they' '\xad'
+  f50065
+     teacher: 'sounds' 'sure' 'pretty' 'seems' 'yeah' 'shouldn' 'Yep' 'Yep'
+     lkd: 'yeah' 'Yep' 'Yep' 'Yeah' 'Yeah' 'yes' 'yeah' 'okay'
+     rd: 'yeah' 'Yep' 'Yep' 'Yeah' 'Yeah' 'yes' 'yeah' 'Yup'
+  f57945
+     teacher: 'maybe' 'Maybe' 'maybe' 'Maybe' 'myself' '想到' 'aybe' 'Should'
+     lkd: 'remember' 'remember' '—I' 'yeah' '!I' 'Maybe' 'Yeah' 'I'
+     rd: 'remember' 'Maybe' '!I' 'Maybe' 'remember' 'Remember' 'Yeah' 'Right'
+  f24247
+     teacher: 'somehow' 'onga' 'xFFFFFF' 'iferay' 'ongan' 'rim' 'stuff' 'onta'
+     lkd: '—if' 'whether' 'correctly' 'answer' 'answers' '—the' 'incorrectly' '—is'
+     rd: 'whether' 'answer' 'answers' 'correctly' '—if' 'correct' 'incorrectly' 'question'

@@ -1,0 +1,45 @@
+# Harder benchmarks, set A: OlympiadBench math EN (658) (RUN_LOG 8p/8q).
+# LKD vs October RD, 16,384-token cap, answer-stopper on, sampling as in every
+# earlier Qwen run (T=1.0, top_p 0.95, top_k 20), seed reset per model and
+# benchmark. Contaminated items removed in custom_eval/benchmarks/hard_math.py.
+# Run in venv_fla (fla kernels; numerically equivalent to the fallback: 100%
+# top-1 agreement, mean |log-prob diff| 0.0096 on a 3,000-token trace).
+#
+# Run: venv_fla/bin/python -m custom_eval.run_eval --config configs/eval/qwen_hard_A.yaml
+models:
+  - name: qwen-logit-kd-continue-epoch_1-think
+    checkpoint: Khaquan/qwen-khaquanS-distillations
+    subfolder: qwen-logitKD-final/qwen_logit_kd_continue/epoch_1
+    trust_remote_code: true
+    dtype: bfloat16
+    device_map: auto
+    enable_thinking: true
+    model_type: qwen
+    strip_language_model_prefix: true
+  - name: qwen-reasondistill-october-continue-epoch_1-think
+    checkpoint: Khaquan/qwen-khaquanS-distillations
+    subfolder: qwen-reasondistill-october/qwen_reasondistill_final_continue/epoch_1
+    trust_remote_code: true
+    dtype: bfloat16
+    device_map: auto
+    enable_thinking: true
+    model_type: qwen
+    strip_language_model_prefix: true
+benchmarks:
+  - olympiadbench
+output_dir: ./eval_outputs/hard_math/A
+cache_dir: ./cache
+split: test
+max_samples: null
+seed: 42
+require_real_data: true
+save_partial_every: 2
+generation:
+  max_new_tokens: 16384
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  repetition_penalty: 1.0
+  pass_at_k: 1
+  stop_at_final_answer: true
+  batch_size: 32

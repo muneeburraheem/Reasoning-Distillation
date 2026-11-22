@@ -1,0 +1,38 @@
+######## math500: 500 questions common to all runs, 1 sample each
+  RD_mod     strict 0.522  lenient 0.528 | committed wrong 0.034  stopped in think 0.022  truncated 0.422 | median finished tokens 1313
+  LKD        strict 0.540  lenient 0.556 | committed wrong 0.038  stopped in think 0.020  truncated 0.402 | median finished tokens 1266
+  RD_oct     strict 0.498  lenient 0.542 | committed wrong 0.042  stopped in think 0.064  truncated 0.396 | median finished tokens 1315
+  RD_mod - LKD:
+    accuracy strict   -1.8 pp [-5.8, +2.2] p=0.4082
+    accuracy lenient  -2.8 pp [-6.8, +1.0] p=0.1743
+    correct (strict)   RD_mod-only 48  LKD-only 57  sign p=0.4351
+    committed wrong    RD_mod-only 14  LKD-only 16  sign p=0.8555
+    stopped in think   RD_mod-only 11  LKD-only 10  sign p=1.0000
+  RD_mod - RD_oct:
+    accuracy strict   +2.4 pp [-2.2, +7.0] p=0.3302
+    accuracy lenient  -1.4 pp [-5.8, +3.0] p=0.5556
+    correct (strict)   RD_mod-only 75  RD_oct-only 63  sign p=0.3491
+    committed wrong    RD_mod-only 13  RD_oct-only 17  sign p=0.5847
+    stopped in think   RD_mod-only 10  RD_oct-only 31  sign p=0.0015
+  strict accuracy by level:
+    L1 n= 43 RD_mod=0.86  LKD=0.86  RD_oct=0.77
+    L2 n= 90 RD_mod=0.71  LKD=0.76  RD_oct=0.73
+    L3 n=105 RD_mod=0.62  LKD=0.61  RD_oct=0.61
+    L4 n=128 RD_mod=0.48  LKD=0.45  RD_oct=0.34
+    L5 n=134 RD_mod=0.25  LKD=0.32  RD_oct=0.31
+######## aime25: 30 questions common to all runs, 1 sample each
+  RD_mod     strict 0.200  lenient 0.233 | committed wrong 0.500  stopped in think 0.033  truncated 0.267 | median finished tokens 22966
+  LKD        strict 0.167  lenient 0.167 | committed wrong 0.633  stopped in think 0.000  truncated 0.200 | median finished tokens 21213
+  RD_oct     strict 0.133  lenient 0.133 | committed wrong 0.533  stopped in think 0.133  truncated 0.200 | median finished tokens 22690
+  RD_mod - LKD:
+    accuracy strict   +3.3 pp [-10.0, +16.7] p=0.8207
+    accuracy lenient  +6.7 pp [-6.7, +20.0] p=0.4408
+    correct (strict)   RD_mod-only 3  LKD-only 2  sign p=1.0000
+    committed wrong    RD_mod-only 5  LKD-only 9  sign p=0.4240
+    stopped in think   RD_mod-only 1  LKD-only 0  sign p=1.0000
+  RD_mod - RD_oct:
+    accuracy strict   +6.7 pp [-6.7, +20.0] p=0.4365
+    accuracy lenient  +10.0 pp [+0.0, +23.3] p=0.0884
+    correct (strict)   RD_mod-only 3  RD_oct-only 1  sign p=0.6250
+    committed wrong    RD_mod-only 6  RD_oct-only 7  sign p=1.0000
+    stopped in think   RD_mod-only 1  RD_oct-only 4  sign p=0.3750

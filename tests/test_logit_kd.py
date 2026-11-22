@@ -93,8 +93,8 @@ class LogitKDTests(unittest.TestCase):
             ("_continue", "qwen_reasondistill_final_continue"),
         ):
             with self.subTest(stage=suffix or "initial"):
-                kd = train._load_yaml_config(ROOT / f"configs/qwen_logit_kd{suffix}.yaml")
-                reason = train._load_yaml_config(ROOT / f"configs/{reference}.yaml")
+                kd = train._load_yaml_config(ROOT / f"configs/train/qwen_logit_kd{suffix}.yaml")
+                reason = train._load_yaml_config(ROOT / f"configs/train/{reference}.yaml")
                 keys = (
                     train.CONFIG_SECTIONS["training"]
                     + train.CONFIG_SECTIONS["data"]
@@ -129,7 +129,7 @@ class LogitKDTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             first_checkpoint = Path(directory) / "initial" / "epoch_1"
             for suffix, stage in (("", "initial"), ("_continue", "continue")):
-                raw = yaml.safe_load((ROOT / f"configs/qwen_logit_kd{suffix}.yaml").read_text())
+                raw = yaml.safe_load((ROOT / f"configs/train/qwen_logit_kd{suffix}.yaml").read_text())
                 raw["training"].update(accum_steps=2, max_length=8)
                 raw["data"].update(max_samples=4, skip_samples=4 if suffix else 0)
                 raw["model"]["student_checkpoint"] = str(first_checkpoint) if suffix else None
@@ -170,7 +170,7 @@ class LogitKDTests(unittest.TestCase):
                 self.assertTrue(all(p.grad is None for p in teacher.parameters()))
 
     def test_failed_continuation_does_not_train_from_scratch(self):
-        args = train._load_yaml_config(ROOT / "configs/qwen_logit_kd_continue.yaml")
+        args = train._load_yaml_config(ROOT / "configs/train/qwen_logit_kd_continue.yaml")
         with (
             patch.object(train, "parse_args", return_value=args),
             patch.object(train.torch.cuda, "is_available", return_value=False),

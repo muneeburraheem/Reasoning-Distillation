@@ -1,0 +1,32 @@
+
+######## B = 512  (500 questions, 4 samples each)
+  lkd hard_strict=0.058 hard_lenient=0.059 forced=0.398 | natural=0.059 closed_cut=0.022 eos_in_think=0.003 budget=0.916 | acc of forced-only samples=0.362
+  rd  hard_strict=0.035 hard_lenient=0.035 forced=0.387 | natural=0.035 closed_cut=0.017 eos_in_think=0.004 budget=0.944 | acc of forced-only samples=0.365
+  rd_mod-lkd hard_strict  -0.0230 [-0.0350, -0.0115] p=0.0001
+  rd_mod-lkd hard_lenient -0.0230 [-0.0350, -0.0115] p=0.0001
+  rd_mod-lkd forced       -0.0110 [-0.0300, +0.0080] p=0.2697
+  forced RD-LKD by level: L1:-0.041(n=43)  L2:-0.036(n=90)  L3:+0.010(n=105)  L4:-0.021(n=128)  L5:+0.009(n=134)
+
+######## B = 1024  (500 questions, 4 samples each)
+  lkd hard_strict=0.217 hard_lenient=0.221 forced=0.558 | natural=0.223 closed_cut=0.044 eos_in_think=0.011 budget=0.721 | acc of forced-only samples=0.439
+  rd  hard_strict=0.202 hard_lenient=0.203 forced=0.546 | natural=0.207 closed_cut=0.035 eos_in_think=0.014 budget=0.744 | acc of forced-only samples=0.434
+  rd_mod-lkd hard_strict  -0.0160 [-0.0345, +0.0030] p=0.1047
+  rd_mod-lkd hard_lenient -0.0175 [-0.0360, +0.0015] p=0.0754
+  rd_mod-lkd forced       -0.0125 [-0.0320, +0.0070] p=0.2124
+  forced RD-LKD by level: L1:+0.006(n=43)  L2:+0.017(n=90)  L3:-0.050(n=105)  L4:-0.023(n=128)  L5:+0.002(n=134)
+
+######## B = 2048  (500 questions, 4 samples each)
+  lkd hard_strict=0.395 hard_lenient=0.403 forced=0.663 | natural=0.415 closed_cut=0.026 eos_in_think=0.021 budget=0.537 | acc of forced-only samples=0.459
+  rd  hard_strict=0.387 hard_lenient=0.396 forced=0.654 | natural=0.403 closed_cut=0.017 eos_in_think=0.022 budget=0.558 | acc of forced-only samples=0.448
+  rd_mod-lkd hard_strict  -0.0075 [-0.0280, +0.0135] p=0.4999
+  rd_mod-lkd hard_lenient -0.0075 [-0.0280, +0.0135] p=0.5059
+  rd_mod-lkd forced       -0.0085 [-0.0275, +0.0100] p=0.3983
+  forced RD-LKD by level: L1:-0.017(n=43)  L2:-0.008(n=90)  L3:+0.000(n=105)  L4:-0.004(n=128)  L5:-0.017(n=134)
+
+######## B = 4096  (500 questions, 4 samples each)
+  lkd hard_strict=0.529 hard_lenient=0.544 forced=0.733 | natural=0.555 closed_cut=0.011 eos_in_think=0.025 budget=0.408 | acc of forced-only samples=0.458
+  rd  hard_strict=0.528 hard_lenient=0.544 forced=0.712 | natural=0.555 closed_cut=0.013 eos_in_think=0.029 budget=0.403 | acc of forced-only samples=0.411
+  rd_mod-lkd hard_strict  -0.0010 [-0.0215, +0.0200] p=0.9500
+  rd_mod-lkd hard_lenient +0.0000 [-0.0195, +0.0195] p=1.0000
+  rd_mod-lkd forced       -0.0215 [-0.0405, -0.0025] p=0.0248
+  forced RD-LKD by level: L1:-0.012(n=43)  L2:+0.003(n=90)  L3:-0.031(n=105)  L4:-0.031(n=128)  L5:-0.024(n=134)

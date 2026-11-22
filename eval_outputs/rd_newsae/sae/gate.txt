@@ -1,0 +1,4 @@
+# gate: 62871 tokens of RD training text, teacher 8-bit hidden_states[17], top-512 ReasonScore features
+  new (qwen_sae_l16_norm64)  density 1.53e-02  live (>=20 tokens) 512/512  ever nonzero 512/512  mean nonzero value 1.070  mass on reasoning-vocab tokens 0.12 (those tokens are 0.017 of text)
+  old HF SAE                 density 9.32e-08  live (>=20 tokens) 0/512  ever nonzero 3/512  mean nonzero value 0.010  mass on reasoning-vocab tokens 0.00 (those tokens are 0.017 of text)
+  reference Llama SAE: density 3.7e-3, 191/196 live

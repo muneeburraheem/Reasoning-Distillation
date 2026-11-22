@@ -1,0 +1,58 @@
+Means (texts with a final box), scorer reading author's texts:
+  LKD    reads LKD   : n= 1628 first_ent 0.0420  ans_ent 0.0240  trace_ent 0.4355
+  LKD    reads RD_mod: n= 1607 first_ent 0.0451  ans_ent 0.0264  trace_ent 0.4505
+  LKD    reads RD_new: n= 1672 first_ent 0.0427  ans_ent 0.0290  trace_ent 0.4617
+  RD_mod reads LKD   : n= 1628 first_ent 0.0515  ans_ent 0.0263  trace_ent 0.4393
+  RD_mod reads RD_mod: n= 1607 first_ent 0.0547  ans_ent 0.0287  trace_ent 0.4527
+  RD_mod reads RD_new: n= 1672 first_ent 0.0520  ans_ent 0.0313  trace_ent 0.4650
+  RD_new reads LKD   : n= 1628 first_ent 0.0485  ans_ent 0.0251  trace_ent 0.4464
+  RD_new reads RD_mod: n= 1607 first_ent 0.0500  ans_ent 0.0268  trace_ent 0.4608
+  RD_new reads RD_new: n= 1672 first_ent 0.0481  ans_ent 0.0298  trace_ent 0.4684
+
+== RD_mod vs LKD
+  self   first_ent all     +0.0135 [+0.0064, +0.0208] p=0.0002 (n_q=427)
+  self   first_ent correct +0.0130 [+0.0056, +0.0205] p=0.0008 (n_q=412)
+  self   first_ent wrong   +0.0335 [+0.0134, +0.0573] p=0.0004 (n_q=57)
+  cross  first_ent on RD_mod texts: RD_mod-scorer minus LKD-scorer +0.0096 [+0.0081, +0.0111] p=0.0001 (n=1607)
+  cross  first_ent on LKD    texts: RD_mod-scorer minus LKD-scorer +0.0096 [+0.0082, +0.0110] p=0.0001 (n=1628)
+  self   ans_ent   all     +0.0048 [+0.0019, +0.0076] p=0.0018 (n_q=427)
+  self   ans_ent   correct +0.0035 [+0.0001, +0.0068] p=0.0472 (n_q=412)
+  self   ans_ent   wrong   +0.0187 [+0.0056, +0.0350] p=0.0016 (n_q=57)
+  cross  ans_ent   on RD_mod texts: RD_mod-scorer minus LKD-scorer +0.0023 [+0.0020, +0.0026] p=0.0001 (n=1607)
+  cross  ans_ent   on LKD    texts: RD_mod-scorer minus LKD-scorer +0.0023 [+0.0020, +0.0026] p=0.0001 (n=1628)
+  self   trace_ent all     +0.0180 [+0.0133, +0.0226] p=0.0001 (n_q=427)
+  self   trace_ent correct +0.0196 [+0.0144, +0.0249] p=0.0001 (n_q=412)
+  self   trace_ent wrong   +0.0004 [-0.0221, +0.0226] p=0.9576 (n_q=57)
+  cross  trace_ent on RD_mod texts: RD_mod-scorer minus LKD-scorer +0.0022 [+0.0020, +0.0024] p=0.0001 (n=1607)
+  cross  trace_ent on LKD    texts: RD_mod-scorer minus LKD-scorer +0.0038 [+0.0036, +0.0041] p=0.0001 (n=1628)
+
+== RD_new vs LKD
+  self   first_ent all     +0.0074 [+0.0006, +0.0140] p=0.0332 (n_q=436)
+  self   first_ent correct +0.0111 [+0.0035, +0.0192] p=0.0046 (n_q=407)
+  self   first_ent wrong   +0.0136 [-0.0292, +0.0534] p=0.4948 (n_q=75)
+  cross  first_ent on RD_new texts: RD_new-scorer minus LKD-scorer +0.0053 [+0.0036, +0.0072] p=0.0001 (n=1672)
+  cross  first_ent on LKD    texts: RD_new-scorer minus LKD-scorer +0.0065 [+0.0045, +0.0086] p=0.0001 (n=1628)
+  self   ans_ent   all     +0.0061 [+0.0034, +0.0090] p=0.0001 (n_q=436)
+  self   ans_ent   correct +0.0056 [+0.0021, +0.0093] p=0.0020 (n_q=407)
+  self   ans_ent   wrong   +0.0132 [-0.0012, +0.0314] p=0.0742 (n_q=75)
+  cross  ans_ent   on RD_new texts: RD_new-scorer minus LKD-scorer +0.0009 [+0.0003, +0.0016] p=0.0030 (n=1672)
+  cross  ans_ent   on LKD    texts: RD_new-scorer minus LKD-scorer +0.0011 [+0.0004, +0.0019] p=0.0014 (n=1628)
+  self   trace_ent all     +0.0304 [+0.0256, +0.0353] p=0.0001 (n_q=436)
+  self   trace_ent correct +0.0269 [+0.0217, +0.0320] p=0.0001 (n_q=407)
+  self   trace_ent wrong   +0.0122 [-0.0072, +0.0318] p=0.2036 (n_q=75)
+  cross  trace_ent on RD_new texts: RD_new-scorer minus LKD-scorer +0.0068 [+0.0065, +0.0071] p=0.0001 (n=1672)
+  cross  trace_ent on LKD    texts: RD_new-scorer minus LKD-scorer +0.0109 [+0.0106, +0.0112] p=0.0001 (n=1628)
+
+Holm-adjusted p (primary answer-entropy tests):
+  RD_mod self first_ent                    p=0.0002  Holm 0.0012
+  RD_mod cross first_ent on RD_mod         p=0.0001  Holm 0.0012
+  RD_mod cross first_ent on LKD            p=0.0001  Holm 0.0012
+  RD_mod self ans_ent                      p=0.0018  Holm 0.0056
+  RD_mod cross ans_ent on RD_mod           p=0.0001  Holm 0.0012
+  RD_mod cross ans_ent on LKD              p=0.0001  Holm 0.0012
+  RD_new self first_ent                    p=0.0332  Holm 0.0332
+  RD_new cross first_ent on RD_new         p=0.0001  Holm 0.0012
+  RD_new cross first_ent on LKD            p=0.0001  Holm 0.0012
+  RD_new self ans_ent                      p=0.0001  Holm 0.0012
+  RD_new cross ans_ent on RD_new           p=0.0030  Holm 0.0060
+  RD_new cross ans_ent on LKD              p=0.0014  Holm 0.0056

@@ -1,0 +1,73 @@
+# Reflection follow-up 2: LKD vs RD_mod (RD α 0.15); shares in % of steps
+  coupling = share in correct minus wrong traces; within question (n = questions with both) where several traces,
+  else pooled over traces (n = wrong traces)
+
+## math500_p8  traces LKD 1631 (wrong 199) | RD 1608 (wrong 196)  [PRIMARY]
+  coupling R   LKD -0.09 [-1.13,+0.97] (n=136) | RD -0.18 [-1.57,+1.22] (n=125) | RD-LKD -0.08 [-1.75,+1.56] p=0.9044
+  coupling E   LKD -0.46 [-1.14,+0.19] (n=136) | RD +0.04 [-0.69,+0.75] (n=125) | RD-LKD +0.50 [-0.42,+1.43] p=0.2828
+  coupling osc LKD -0.87 [-2.06,+0.33] (n=136) | RD +0.27 [-1.16,+1.71] (n=125) | RD-LKD +1.14 [-0.74,+2.96] p=0.2408
+  both-correct R   LKD  16.75 RD  18.80 diff +2.05 [+1.15,+2.96] p=0.0001 (n=342)
+  both-correct E   LKD   4.26 RD   4.85 diff +0.59 [+0.17,+1.01] p=0.0056 (n=342)
+  both-correct N   LKD  78.66 RD  75.92 diff -2.74 [-3.75,-1.73] p=0.0001 (n=342)
+  both-correct osc LKD  26.28 RD  28.12 diff +1.84 [+0.88,+2.78] p=0.0004 (n=342)
+
+## aime25_p8  traces LKD 32 (wrong 7) | RD 34 (wrong 8)
+  coupling R   LKD -0.55 [-3.09,+2.98] (n=3) | RD -0.69 [-3.40,+2.08] (n=3) | RD-LKD -0.13 [-5.05,+4.40] p=0.8849
+  coupling E   LKD +1.82 [-0.37,+3.23] (n=3) | RD +2.18 [+1.38,+2.84] (n=3) | RD-LKD +0.36 [-1.53,+2.95] p=0.8080
+  coupling osc LKD +1.83 [+1.56,+2.01] (n=3) | RD +1.38 [-1.14,+3.07] (n=3) | RD-LKD -0.45 [-3.07,+1.42] p=0.8545
+  both-correct: only 6 questions, skipped
+
+## aime25_32k  traces LKD 24 (wrong 19) | RD 22 (wrong 16)
+  coupling R   LKD -2.13 [-7.95,+4.66] (n=19) | RD -3.34 [-7.82,+1.63] (n=16) | RD-LKD -1.20 [-7.16,+4.81] p=0.6506
+  coupling E   LKD -2.30 [-5.02,+1.04] (n=19) | RD -3.70 [-6.55,-1.10] (n=16) | RD-LKD -1.40 [-6.93,+2.74] p=0.6468
+  coupling osc LKD -0.71 [-5.75,+5.79] (n=19) | RD -1.36 [-5.61,+2.82] (n=16) | RD-LKD -0.65 [-7.18,+4.76] p=0.8692
+  both-correct: only 3 questions, skipped
+
+## olympiad  traces LKD 371 (wrong 132) | RD 369 (wrong 119)
+  coupling R   LKD -1.16 [-2.60,+0.27] (n=132) | RD -0.37 [-1.83,+1.11] (n=119) | RD-LKD +0.79 [-1.16,+2.75] p=0.4158
+  coupling E   LKD -1.97 [-2.96,-1.01] (n=132) | RD -1.89 [-2.96,-0.87] (n=119) | RD-LKD +0.07 [-1.31,+1.46] p=0.9130
+  coupling osc LKD -0.32 [-1.82,+1.17] (n=132) | RD -0.81 [-2.30,+0.68] (n=119) | RD-LKD -0.49 [-2.44,+1.47] p=0.6370
+  both-correct R   LKD  16.97 RD  19.20 diff +2.23 [+0.98,+3.45] p=0.0001 (n=178)
+  both-correct E   LKD   4.64 RD   4.50 diff -0.14 [-0.65,+0.36] p=0.6024 (n=178)
+  both-correct N   LKD  77.86 RD  75.76 diff -2.10 [-3.42,-0.71] p=0.0022 (n=178)
+  both-correct osc LKD  25.84 RD  27.13 diff +1.29 [+0.21,+2.36] p=0.0194 (n=178)
+
+## aime24  traces LKD 22 (wrong 14) | RD 29 (wrong 14)
+  coupling R   LKD -4.04 [-4.04,-4.04] (n=1) | RD -3.21 [-8.38,+2.38] (n=5) | RD-LKD +0.83 [-4.34,+6.88] p=0.7979
+  coupling E   LKD -1.84 [-1.84,-1.84] (n=1) | RD -2.28 [-4.80,-0.35] (n=5) | RD-LKD -0.44 [-3.14,+1.49] p=0.7327
+  coupling osc LKD -1.65 [-1.65,-1.65] (n=1) | RD -1.75 [-6.30,+4.01] (n=5) | RD-LKD -0.10 [-4.68,+5.87] p=0.9226
+  both-correct: only 1 questions, skipped
+
+## hmmt25  traces LKD 20 (wrong 12) | RD 25 (wrong 12)
+  coupling R   LKD +3.93 [+3.93,+3.93] (n=1) | RD +5.58 [+4.11,+7.05] (n=2) | RD-LKD +1.65 [+0.92,+3.12] p=0.0002
+  coupling E   LKD -1.82 [-1.82,-1.82] (n=1) | RD -0.56 [-1.55,+0.43] (n=2) | RD-LKD +1.26 [+0.77,+2.25] p=0.0002
+  coupling osc LKD +0.93 [+0.93,+0.93] (n=1) | RD +1.06 [-4.02,+6.14] (n=2) | RD-LKD +0.13 [-2.41,+5.21] p=0.3373
+  both-correct: only 2 questions, skipped
+
+## cmimc25  traces LKD 24 (wrong 20) | RD 19 (wrong 14)
+  coupling R   LKD +0.36 [-3.33,+4.05] (n=2) | RD -4.52 [-4.52,-4.52] (n=1) | RD-LKD -4.88 [-8.57,-1.19] p=0.0002
+  coupling E   LKD +2.32 [+1.17,+3.47] (n=2) | RD -4.37 [-4.37,-4.37] (n=1) | RD-LKD -6.69 [-7.84,-5.54] p=0.0002
+  coupling osc LKD +2.25 [-0.43,+4.93] (n=2) | RD -6.22 [-6.22,-6.22] (n=1) | RD-LKD -8.47 [-11.15,-5.79] p=0.0002
+  both-correct: only 1 questions, skipped
+
+## mmlu_think  traces LKD 901 (wrong 247) | RD 898 (wrong 222)
+  coupling R   LKD -4.51 [-6.01,-3.00] (n=247) | RD -3.65 [-5.28,-2.05] (n=222) | RD-LKD +0.85 [-1.26,+2.92] p=0.4216
+  coupling E   LKD -4.39 [-5.39,-3.40] (n=247) | RD -3.96 [-5.14,-2.78] (n=222) | RD-LKD +0.43 [-0.83,+1.73] p=0.5042
+  coupling osc LKD -2.83 [-4.45,-1.18] (n=247) | RD -2.24 [-3.75,-0.68] (n=222) | RD-LKD +0.59 [-1.51,+2.69] p=0.5906
+  both-correct R   LKD  18.60 RD  20.14 diff +1.54 [+0.57,+2.53] p=0.0026 (n=528)
+  both-correct E   LKD   5.05 RD   5.79 diff +0.75 [+0.22,+1.28] p=0.0054 (n=528)
+  both-correct N   LKD  75.45 RD  73.18 diff -2.26 [-3.42,-1.10] p=0.0002 (n=528)
+  both-correct osc LKD  31.48 RD  32.80 diff +1.32 [+0.05,+2.63] p=0.0432 (n=528)
+
+## hellaswag_think  traces LKD 978 (wrong 522) | RD 988 (wrong 516)
+  coupling R   LKD +0.25 [-0.81,+1.32] (n=522) | RD +0.44 [-0.77,+1.66] (n=516) | RD-LKD +0.19 [-1.38,+1.72] p=0.8082
+  coupling E   LKD -1.50 [-2.49,-0.50] (n=522) | RD -2.75 [-3.79,-1.71] (n=516) | RD-LKD -1.25 [-2.62,+0.13] p=0.0742
+  coupling osc LKD +0.18 [-0.99,+1.37] (n=522) | RD +0.49 [-0.71,+1.74] (n=516) | RD-LKD +0.31 [-1.35,+2.00] p=0.7204
+  both-correct R   LKD  22.35 RD  23.71 diff +1.36 [+0.06,+2.61] p=0.0434 (n=309)
+  both-correct E   LKD  13.99 RD  14.10 diff +0.11 [-1.04,+1.26] p=0.8788 (n=309)
+  both-correct N   LKD  62.73 RD  61.41 diff -1.32 [-3.07,+0.42] p=0.1372 (n=309)
+  both-correct osc LKD  41.05 RD  40.60 diff -0.45 [-1.95,+1.04] p=0.5482 (n=309)
+
+## Non-MATH benchmarks, reflection coupling RD - LKD (unweighted mean over benchmarks; descriptive)
+  aime25_p8 -0.13  aime25_32k -1.20  olympiad +0.79  aime24 +0.83  hmmt25 +1.65  cmimc25 -4.88  mmlu_think +0.85  hellaswag_think +0.19
+  mean -0.24; RD above LKD on 5 of 8

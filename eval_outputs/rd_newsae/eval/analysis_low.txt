@@ -1,0 +1,36 @@
+######## math500: 500 questions common to all runs, 1 sample each
+  RD_low     strict 0.756  lenient 0.778 | committed wrong 0.144  stopped in think 0.032  truncated 0.068 | median finished tokens 2459
+  LKD        strict 0.780  lenient 0.808 | committed wrong 0.124  stopped in think 0.048  truncated 0.048 | median finished tokens 2423
+  RD_mod     strict 0.746  lenient 0.780 | committed wrong 0.148  stopped in think 0.050  truncated 0.056 | median finished tokens 2519
+  RD_high    strict 0.742  lenient 0.776 | committed wrong 0.146  stopped in think 0.050  truncated 0.062 | median finished tokens 2573
+  RD_oct     strict 0.668  lenient 0.734 | committed wrong 0.208  stopped in think 0.086  truncated 0.038 | median finished tokens 2248
+  RD_low - LKD:
+    accuracy strict   -2.4 pp [-6.6, +1.6] p=0.2688
+    accuracy lenient  -3.0 pp [-6.8, +0.6] p=0.1189
+    correct (strict)   RD_low-only 50  LKD-only 62  sign p=0.2986
+    committed wrong    RD_low-only 37  LKD-only 27  sign p=0.2604
+    stopped in think   RD_low-only 16  LKD-only 24  sign p=0.2682
+  RD_low - RD_mod:
+    accuracy strict   +1.0 pp [-3.0, +5.0] p=0.6694
+    accuracy lenient  -0.2 pp [-4.0, +3.6] p=0.9586
+    correct (strict)   RD_low-only 54  RD_mod-only 49  sign p=0.6937
+    committed wrong    RD_low-only 37  RD_mod-only 39  sign p=0.9088
+    stopped in think   RD_low-only 14  RD_mod-only 23  sign p=0.1877
+  RD_low - RD_high:
+    accuracy strict   +1.4 pp [-2.8, +5.6] p=0.5340
+    accuracy lenient  +0.2 pp [-3.6, +4.0] p=0.9653
+    correct (strict)   RD_low-only 60  RD_high-only 53  sign p=0.5727
+    committed wrong    RD_low-only 41  RD_high-only 42  sign p=1.0000
+    stopped in think   RD_low-only 16  RD_high-only 25  sign p=0.2110
+  RD_low - RD_oct:
+    accuracy strict   +8.8 pp [+4.6, +13.2] p=0.0001
+    accuracy lenient  +4.4 pp [+0.6, +8.2] p=0.0238
+    correct (strict)   RD_low-only 84  RD_oct-only 40  sign p=0.0001
+    committed wrong    RD_low-only 25  RD_oct-only 57  sign p=0.0005
+    stopped in think   RD_low-only 15  RD_oct-only 42  sign p=0.0005
+  strict accuracy by level:
+    L1 n= 43 RD_low=0.88  LKD=0.81  RD_mod=0.93  RD_high=0.81  RD_oct=0.88
+    L2 n= 90 RD_low=0.87  LKD=0.89  RD_mod=0.86  RD_high=0.87  RD_oct=0.88
+    L3 n=105 RD_low=0.86  LKD=0.87  RD_mod=0.86  RD_high=0.86  RD_oct=0.79
+    L4 n=128 RD_low=0.74  LKD=0.77  RD_mod=0.69  RD_high=0.73  RD_oct=0.62
+    L5 n=134 RD_low=0.57  LKD=0.63  RD_mod=0.58  RD_high=0.55  RD_oct=0.41

@@ -1,0 +1,246 @@
+# ridge probe, held-out R^2 (pooled | median per feature), per layer; hidden_states index
+  layer    base-rd            lkd-rd             rd-rd           base-rand          lkd-rand           rd-rand      
+  h[ 1]   +0.436 +0.129      +0.449 +0.130      +0.447 +0.130      +0.202 +0.008      +0.202 +0.008      +0.203 +0.008    
+  h[ 2]   +0.458 +0.138      +0.476 +0.141      +0.476 +0.142      +0.214 +0.011      +0.218 +0.012      +0.218 +0.012    
+  h[ 3]   +0.471 +0.146      +0.495 +0.156      +0.495 +0.155      +0.227 +0.014      +0.231 +0.016      +0.231 +0.016    
+  h[ 4]   +0.477 +0.163      +0.507 +0.174      +0.507 +0.174      +0.231 +0.015      +0.237 +0.017      +0.237 +0.018    
+  h[ 5]   +0.474 +0.171      +0.498 +0.190      +0.499 +0.192      +0.232 +0.018      +0.241 +0.020      +0.241 +0.020    
+  h[ 6]   +0.463 +0.179      +0.488 +0.186      +0.488 +0.188      +0.234 +0.021      +0.245 +0.025      +0.246 +0.024    
+  h[ 7]   +0.450 +0.179      +0.473 +0.189      +0.474 +0.188      +0.232 +0.023      +0.246 +0.027      +0.245 +0.027    
+  h[ 8]   +0.445 +0.178      +0.472 +0.190      +0.474 +0.190      +0.234 +0.025      +0.251 +0.030      +0.251 +0.030    
+  h[ 9]   +0.457 +0.196      +0.486 +0.212      +0.493 +0.215      +0.259 +0.030      +0.277 +0.034      +0.277 +0.034    
+  h[10]   +0.462 +0.195      +0.502 +0.222      +0.515 +0.222      +0.269 +0.030      +0.289 +0.037      +0.289 +0.037    
+  h[11]*  +0.449 +0.195      +0.493 +0.231      +0.514 +0.234      +0.292 +0.032      +0.315 +0.039      +0.316 +0.040    
+  h[12]   +0.439 +0.190      +0.481 +0.216      +0.498 +0.222      +0.305 +0.032      +0.330 +0.041      +0.330 +0.041    
+  h[13]   +0.429 +0.177      +0.474 +0.210      +0.485 +0.218      +0.308 +0.031      +0.332 +0.040      +0.332 +0.039    
+  h[14]   +0.419 +0.167      +0.457 +0.204      +0.467 +0.208      +0.306 +0.030      +0.327 +0.036      +0.327 +0.037    
+  h[15]   +0.404 +0.160      +0.444 +0.192      +0.452 +0.191      +0.298 +0.027      +0.321 +0.034      +0.321 +0.034    
+  h[16]   +0.381 +0.148      +0.423 +0.188      +0.428 +0.188      +0.268 +0.022      +0.282 +0.025      +0.282 +0.025    
+  * = guided layer (student block 10 output)
+
+# paired differences in pooled R^2 (bootstrap over test sequences)
+  h[ 6] rd   rd-lkd  -0.0001 [-0.0002,+0.0001] p=0.476
+  h[ 6] rd   lkd-base +0.0250 [+0.0241,+0.0258] p=0.001
+  h[ 6] rd   rd-base +0.0249 [+0.0240,+0.0258] p=0.001
+  h[ 6] rand rd-lkd  +0.0003 [+0.0001,+0.0004] p=0.002
+  h[ 6] rand lkd-base +0.0112 [+0.0103,+0.0121] p=0.001
+  h[ 6] rand rd-base +0.0115 [+0.0106,+0.0123] p=0.001
+  h[ 9] rd   rd-lkd  +0.0072 [+0.0069,+0.0074] p=0.001
+  h[ 9] rd   lkd-base +0.0290 [+0.0280,+0.0300] p=0.001
+  h[ 9] rd   rd-base +0.0362 [+0.0352,+0.0373] p=0.001
+  h[ 9] rand rd-lkd  +0.0003 [+0.0002,+0.0005] p=0.002
+  h[ 9] rand lkd-base +0.0178 [+0.0166,+0.0190] p=0.001
+  h[ 9] rand rd-base +0.0181 [+0.0170,+0.0194] p=0.001
+  h[11] rd   rd-lkd  +0.0208 [+0.0204,+0.0213] p=0.001
+  h[11] rd   lkd-base +0.0439 [+0.0425,+0.0452] p=0.001
+  h[11] rd   rd-base +0.0647 [+0.0632,+0.0662] p=0.001
+  h[11] rand rd-lkd  +0.0010 [+0.0008,+0.0012] p=0.001
+  h[11] rand lkd-base +0.0223 [+0.0205,+0.0240] p=0.001
+  h[11] rand rd-base +0.0233 [+0.0215,+0.0250] p=0.001
+  h[13] rd   rd-lkd  +0.0113 [+0.0110,+0.0116] p=0.001
+  h[13] rd   lkd-base +0.0449 [+0.0434,+0.0464] p=0.001
+  h[13] rd   rd-base +0.0562 [+0.0546,+0.0578] p=0.001
+  h[13] rand rd-lkd  +0.0005 [+0.0002,+0.0007] p=0.001
+  h[13] rand lkd-base +0.0237 [+0.0218,+0.0258] p=0.001
+  h[13] rand rd-base +0.0242 [+0.0222,+0.0262] p=0.001
+  h[16] rd   rd-lkd  +0.0054 [+0.0051,+0.0056] p=0.001
+  h[16] rd   lkd-base +0.0417 [+0.0385,+0.0447] p=0.001
+  h[16] rd   rd-base +0.0471 [+0.0438,+0.0501] p=0.001
+  h[16] rand rd-lkd  +0.0004 [+0.0002,+0.0007] p=0.004
+  h[16] rand lkd-base +0.0139 [+0.0109,+0.0167] p=0.001
+  h[16] rand rd-base +0.0143 [+0.0112,+0.0172] p=0.001
+  h[11] (rd-lkd on rd set) - (rd-lkd on rand set) +0.0198 [+0.0193,+0.0203] p=0.001
+
+# pipeline readout at h[11] (aligner + frozen SAE), held-out R^2 (pooled | median)
+  base fresh aligner rd   -0.0119 -0.0025
+  base fresh aligner rand -0.0146 -0.0020
+  lkd  fresh aligner rd   -0.0119 -0.0025
+  lkd  fresh aligner rand -0.0146 -0.0020
+  rd   fresh aligner rd   -0.0119 -0.0025
+  rd   fresh aligner rand -0.0146 -0.0020
+  rd   RD's trained aligner rd   +0.3725 -0.0011
+
+# pipeline readout, least-squares start (init) then RD's loss (trained); held-out R^2 (pooled | median)
+  init    rd   base +0.6399 +0.2438   lkd +0.7324 +0.4009   rd +0.7498 +0.4078
+  init    rand base +0.4076 +0.0069   lkd +0.4636 +0.0257   rd +0.4657 +0.0279
+  trained rd   base +0.7594 +0.4914   lkd +0.8230 +0.5890   rd +0.8290 +0.6008
+  trained rand base +0.5308 +0.0794   lkd +0.5789 +0.1462   rd +0.5788 +0.1270
+  RD's own trained aligner on RD, same live features: +0.3725
+  trained rd   rd-lkd  +0.0060 [+0.0057,+0.0062] p=0.001
+  trained rd   lkd-base +0.0636 [+0.0619,+0.0654] p=0.001
+  trained rand rd-lkd  -0.0001 [-0.0012,+0.0009] p=0.802
+  trained rand lkd-base +0.0481 [+0.0451,+0.0510] p=0.001
+  trained (rd-lkd on rd set) - (rd-lkd on rand set) +0.0061 [+0.0050,+0.0073] p=0.001
+
+# RD's trained aligner (barely moved from its Xavier init) applied to every student, rd set, h[11]
+  base rd_aligner  pooled R^2 +0.1893  median -0.0019
+  base random_proj pooled R^2 -11.3982  median -17.8501
+  lkd  rd_aligner  pooled R^2 +0.3428  median -0.0012
+  lkd  random_proj pooled R^2 -9.4851  median -11.7885
+  rd   rd_aligner  pooled R^2 +0.3725  median -0.0011
+  rd   random_proj pooled R^2 -9.8039  median -13.6764
+  rd_aligner rd-lkd  +0.0297 [+0.0289,+0.0305] p=0.001
+  rd_aligner rd-base +0.1832 [+0.1798,+0.1866] p=0.001
+
+# teacher-forced mean-ablation at h[11], 400 held-out rows; per-row change vs clean, bootstrap over rows
+  metrics: pm_mk = d P(marker class) at marker targets; lp_mk = d log p(actual marker); kl at all positions; nll_think = d NLL inside <think>; size = |dh|/|h|
+  ## base
+    rd|k8        pm_mk +0.0007 lp_mk +0.0100 nll_think +0.0006 kl 0.0033 size 0.024
+    rand|k8      pm_mk -0.0007 lp_mk -0.0749 nll_think +0.0033 kl 0.0022 size 0.024
+    randdir|k8   pm_mk -0.0005 lp_mk -0.0272 nll_think +0.0015 kl 0.0029 size 0.051
+    aligner|k8   pm_mk -0.0036 lp_mk -0.0610 nll_think +0.0073 kl 0.0055 size 0.052
+      k8 rd-rand    pm_mk +0.0013 [+0.0010,+0.0016] p=0.001
+      k8 rd-rand    kl    +0.0012 [+0.0011,+0.0012] p=0.001
+      k8 rd-randdir pm_mk +0.0012 [+0.0008,+0.0016] p=0.001
+      k8 rd-randdir kl    +0.0004 [+0.0004,+0.0004] p=0.001
+      k8 aligner-randdir pm_mk -0.0031 [-0.0035,-0.0027] p=0.001
+      k8 aligner-randdir kl    +0.0026 [+0.0026,+0.0027] p=0.001
+    rd|k32       pm_mk -0.0020 lp_mk -0.0702 nll_think +0.0079 kl 0.0079 size 0.053
+    rand|k32     pm_mk -0.0013 lp_mk -0.0462 nll_think +0.0084 kl 0.0065 size 0.056
+    randdir|k32  pm_mk -0.0022 lp_mk -0.0751 nll_think +0.0057 kl 0.0113 size 0.107
+    aligner|k32  pm_mk -0.0038 lp_mk -0.1092 nll_think +0.0140 kl 0.0113 size 0.101
+      k32 rd-rand    pm_mk -0.0007 [-0.0015,+0.0001] p=0.098
+      k32 rd-rand    kl    +0.0015 [+0.0014,+0.0017] p=0.001
+      k32 rd-randdir pm_mk +0.0002 [-0.0006,+0.0010] p=0.580
+      k32 rd-randdir kl    -0.0033 [-0.0035,-0.0032] p=0.001
+      k32 aligner-randdir pm_mk -0.0016 [-0.0021,-0.0011] p=0.001
+      k32 aligner-randdir kl    -0.0000 [-0.0002,+0.0001] p=0.522
+    rd|k128      pm_mk -0.0150 lp_mk -0.1809 nll_think +0.0268 kl 0.0307 size 0.110
+    rand|k128    pm_mk +0.0020 lp_mk -0.0454 nll_think +0.0262 kl 0.0297 size 0.120
+    randdir|k128 pm_mk -0.0026 lp_mk -0.0403 nll_think +0.0571 kl 0.0603 size 0.213
+    aligner|k128 pm_mk -0.0038 lp_mk -0.2466 nll_think +0.0428 kl 0.0394 size 0.203
+      k128 rd-rand    pm_mk -0.0171 [-0.0185,-0.0156] p=0.001
+      k128 rd-rand    kl    +0.0012 [+0.0008,+0.0016] p=0.001
+      k128 rd-randdir pm_mk -0.0124 [-0.0139,-0.0111] p=0.001
+      k128 rd-randdir kl    -0.0295 [-0.0301,-0.0288] p=0.001
+      k128 aligner-randdir pm_mk -0.0012 [-0.0021,-0.0005] p=0.002
+      k128 aligner-randdir kl    -0.0209 [-0.0215,-0.0204] p=0.001
+  ## lkd
+    rd|k8        pm_mk -0.0204 lp_mk -0.0616 nll_think +0.0044 kl 0.0048 size 0.021
+    rand|k8      pm_mk -0.0126 lp_mk -0.0434 nll_think +0.0020 kl 0.0021 size 0.022
+    randdir|k8   pm_mk +0.0015 lp_mk -0.0079 nll_think +0.0022 kl 0.0030 size 0.048
+    aligner|k8   pm_mk -0.0454 lp_mk -0.1498 nll_think +0.0090 kl 0.0120 size 0.055
+      k8 rd-rand    pm_mk -0.0078 [-0.0108,-0.0051] p=0.001
+      k8 rd-rand    kl    +0.0027 [+0.0027,+0.0028] p=0.001
+      k8 rd-randdir pm_mk -0.0218 [-0.0263,-0.0174] p=0.001
+      k8 rd-randdir kl    +0.0018 [+0.0018,+0.0018] p=0.001
+      k8 aligner-randdir pm_mk -0.0469 [-0.0511,-0.0432] p=0.001
+      k8 aligner-randdir kl    +0.0091 [+0.0089,+0.0092] p=0.001
+    rd|k32       pm_mk -0.0472 lp_mk -0.1806 nll_think +0.0166 kl 0.0141 size 0.049
+    rand|k32     pm_mk -0.0022 lp_mk -0.0105 nll_think +0.0073 kl 0.0076 size 0.051
+    randdir|k32  pm_mk -0.0222 lp_mk -0.0914 nll_think +0.0107 kl 0.0130 size 0.102
+    aligner|k32  pm_mk -0.0715 lp_mk -0.2466 nll_think +0.0193 kl 0.0201 size 0.101
+      k32 rd-rand    pm_mk -0.0449 [-0.0511,-0.0392] p=0.001
+      k32 rd-rand    kl    +0.0066 [+0.0064,+0.0068] p=0.001
+      k32 rd-randdir pm_mk -0.0249 [-0.0312,-0.0188] p=0.001
+      k32 rd-randdir kl    +0.0012 [+0.0010,+0.0014] p=0.001
+      k32 aligner-randdir pm_mk -0.0493 [-0.0548,-0.0443] p=0.001
+      k32 aligner-randdir kl    +0.0072 [+0.0069,+0.0074] p=0.001
+    rd|k128      pm_mk -0.1222 lp_mk -0.5202 nll_think +0.0523 kl 0.0491 size 0.102
+    rand|k128    pm_mk +0.0200 lp_mk +0.0745 nll_think +0.0317 kl 0.0411 size 0.111
+    randdir|k128 pm_mk -0.0704 lp_mk -0.2843 nll_think +0.0713 kl 0.0755 size 0.205
+    aligner|k128 pm_mk -0.0981 lp_mk -0.3994 nll_think +0.0669 kl 0.0603 size 0.197
+      k128 rd-rand    pm_mk -0.1423 [-0.1505,-0.1346] p=0.001
+      k128 rd-rand    kl    +0.0084 [+0.0078,+0.0091] p=0.001
+      k128 rd-randdir pm_mk -0.0518 [-0.0607,-0.0441] p=0.001
+      k128 rd-randdir kl    -0.0260 [-0.0269,-0.0251] p=0.001
+      k128 aligner-randdir pm_mk -0.0278 [-0.0351,-0.0211] p=0.001
+      k128 aligner-randdir kl    -0.0150 [-0.0159,-0.0142] p=0.001
+  ## rd
+    rd|k8        pm_mk -0.0211 lp_mk -0.0751 nll_think +0.0054 kl 0.0050 size 0.021
+    rand|k8      pm_mk -0.0109 lp_mk -0.0358 nll_think +0.0019 kl 0.0021 size 0.022
+    randdir|k8   pm_mk +0.0011 lp_mk -0.0130 nll_think +0.0023 kl 0.0031 size 0.048
+    aligner|k8   pm_mk -0.0384 lp_mk -0.1246 nll_think +0.0082 kl 0.0118 size 0.055
+      k8 rd-rand    pm_mk -0.0103 [-0.0127,-0.0078] p=0.001
+      k8 rd-rand    kl    +0.0029 [+0.0029,+0.0030] p=0.001
+      k8 rd-randdir pm_mk -0.0223 [-0.0264,-0.0184] p=0.001
+      k8 rd-randdir kl    +0.0020 [+0.0019,+0.0020] p=0.001
+      k8 aligner-randdir pm_mk -0.0396 [-0.0435,-0.0362] p=0.001
+      k8 aligner-randdir kl    +0.0088 [+0.0087,+0.0090] p=0.001
+    rd|k32       pm_mk -0.0517 lp_mk -0.1991 nll_think +0.0183 kl 0.0136 size 0.049
+    rand|k32     pm_mk -0.0027 lp_mk -0.0120 nll_think +0.0086 kl 0.0073 size 0.051
+    randdir|k32  pm_mk -0.0191 lp_mk -0.0807 nll_think +0.0109 kl 0.0121 size 0.102
+    aligner|k32  pm_mk -0.0636 lp_mk -0.2136 nll_think +0.0184 kl 0.0195 size 0.102
+      k32 rd-rand    pm_mk -0.0490 [-0.0548,-0.0437] p=0.001
+      k32 rd-rand    kl    +0.0065 [+0.0063,+0.0067] p=0.001
+      k32 rd-randdir pm_mk -0.0326 [-0.0392,-0.0266] p=0.001
+      k32 rd-randdir kl    +0.0016 [+0.0014,+0.0018] p=0.001
+      k32 aligner-randdir pm_mk -0.0445 [-0.0497,-0.0395] p=0.001
+      k32 aligner-randdir kl    +0.0075 [+0.0073,+0.0077] p=0.001
+    rd|k128      pm_mk -0.1256 lp_mk -0.5267 nll_think +0.0521 kl 0.0465 size 0.102
+    rand|k128    pm_mk +0.0184 lp_mk +0.0701 nll_think +0.0307 kl 0.0391 size 0.111
+    randdir|k128 pm_mk -0.0627 lp_mk -0.2451 nll_think +0.0730 kl 0.0755 size 0.204
+    aligner|k128 pm_mk -0.0933 lp_mk -0.3785 nll_think +0.0652 kl 0.0581 size 0.199
+      k128 rd-rand    pm_mk -0.1440 [-0.1527,-0.1361] p=0.001
+      k128 rd-rand    kl    +0.0078 [+0.0072,+0.0084] p=0.001
+      k128 rd-randdir pm_mk -0.0629 [-0.0721,-0.0546] p=0.001
+      k128 rd-randdir kl    -0.0287 [-0.0296,-0.0277] p=0.001
+      k128 aligner-randdir pm_mk -0.0307 [-0.0378,-0.0236] p=0.001
+      k128 aligner-randdir kl    -0.0172 [-0.0180,-0.0164] p=0.001
+  ## does ablating its own RD-readout subspace hurt RD more than LKD? (paired rows; effect = cond - clean)
+    k8 rd      pm_mk (RD - LKD) of (cond - randdir) -0.0004 [-0.0017,+0.0008] p=0.458
+    k8 rd      kl    (RD - LKD) of (cond - randdir) +0.0002 [+0.0001,+0.0002] p=0.001
+    k8 aligner pm_mk (RD - LKD) of (cond - randdir) +0.0074 [+0.0061,+0.0085] p=0.001
+    k8 aligner kl    (RD - LKD) of (cond - randdir) -0.0002 [-0.0003,-0.0002] p=0.001
+    k32 rd      pm_mk (RD - LKD) of (cond - randdir) -0.0077 [-0.0092,-0.0062] p=0.001
+    k32 rd      kl    (RD - LKD) of (cond - randdir) +0.0004 [+0.0004,+0.0005] p=0.001
+    k32 aligner pm_mk (RD - LKD) of (cond - randdir) +0.0048 [+0.0036,+0.0060] p=0.001
+    k32 aligner kl    (RD - LKD) of (cond - randdir) +0.0003 [+0.0003,+0.0004] p=0.001
+    k128 rd      pm_mk (RD - LKD) of (cond - randdir) -0.0111 [-0.0129,-0.0093] p=0.001
+    k128 rd      kl    (RD - LKD) of (cond - randdir) -0.0026 [-0.0028,-0.0024] p=0.001
+    k128 aligner pm_mk (RD - LKD) of (cond - randdir) -0.0029 [-0.0044,-0.0015] p=0.001
+    k128 aligner kl    (RD - LKD) of (cond - randdir) -0.0022 [-0.0024,-0.0020] p=0.001
+
+# GSM8K generation under mean-ablation at h[11] (500 q x 2, cap 4096); per-question means, paired
+  lkd|none             strict 0.118 lenient 0.118 tokens 1532.198 loop 0.287 hit_limit 0.360
+  lkd|rd|k32           strict 0.134 lenient 0.136 tokens 1217.066 loop 0.222 hit_limit 0.281
+  lkd|rand|k32         strict 0.121 lenient 0.122 tokens 1497.565 loop 0.313 hit_limit 0.375
+  lkd|randdir|k32      strict 0.136 lenient 0.136 tokens 1389.945 loop 0.226 hit_limit 0.304
+  lkd|aligner|k32      strict 0.109 lenient 0.110 tokens 1505.830 loop 0.393 hit_limit 0.449
+  rd|none              strict 0.143 lenient 0.143 tokens 1510.616 loop 0.269 hit_limit 0.359
+  rd|rd|k32            strict 0.137 lenient 0.139 tokens 1273.217 loop 0.217 hit_limit 0.280
+  rd|rand|k32          strict 0.116 lenient 0.116 tokens 1593.928 loop 0.329 hit_limit 0.405
+  rd|randdir|k32       strict 0.127 lenient 0.127 tokens 1448.577 loop 0.260 hit_limit 0.344
+  rd|aligner|k32       strict 0.109 lenient 0.110 tokens 1539.441 loop 0.392 hit_limit 0.452
+  lkd rd|k32      - none        strict      +1.6 [-0.8, +4.1] p=0.190
+  lkd rd|k32      - none        lenient     +1.8 [-0.7, +4.3] p=0.144
+  lkd rd|k32      - none        tokens    -315.1 [-418.3, -225.7] p=0.001
+  lkd rand|k32    - none        strict      +0.3 [-2.0, +2.8] p=0.832
+  lkd rand|k32    - none        lenient     +0.4 [-1.9, +2.8] p=0.766
+  lkd rand|k32    - none        tokens     -34.6 [-144.3, +59.5] p=0.500
+  lkd randdir|k32 - none        strict      +1.8 [-0.5, +4.4] p=0.116
+  lkd randdir|k32 - none        lenient     +1.8 [-0.5, +4.4] p=0.116
+  lkd randdir|k32 - none        tokens    -142.3 [-248.2, -50.7] p=0.001
+  lkd aligner|k32 - none        strict      -0.9 [-3.4, +1.7] p=0.540
+  lkd aligner|k32 - none        lenient     -0.8 [-3.2, +1.8] p=0.584
+  lkd aligner|k32 - none        tokens     -26.4 [-130.7, +68.9] p=0.546
+  lkd rd|k32      - rand|k32    strict      +1.3 [-1.1, +3.6] p=0.294
+  lkd rd|k32      - rand|k32    lenient     +1.4 [-1.0, +3.8] p=0.254
+  lkd rd|k32      - rand|k32    tokens    -280.5 [-366.0, -188.9] p=0.001
+  lkd rd|k32      - randdir|k32 strict      -0.2 [-2.7, +2.2] p=0.866
+  lkd rd|k32      - randdir|k32 lenient     +0.0 [-2.5, +2.4] p=0.972
+  lkd rd|k32      - randdir|k32 tokens    -172.9 [-262.1, -78.2] p=0.001
+  lkd aligner|k32 - randdir|k32 strict      -2.7 [-5.2, -0.2] p=0.042
+  lkd aligner|k32 - randdir|k32 lenient     -2.6 [-5.1, +0.0] p=0.056
+  lkd aligner|k32 - randdir|k32 tokens    +115.9 [+26.4, +208.9] p=0.008
+  rd rd|k32      - none        strict      -0.6 [-3.0, +2.2] p=0.726
+  rd rd|k32      - none        lenient     -0.4 [-2.8, +2.4] p=0.844
+  rd rd|k32      - none        tokens    -237.4 [-331.5, -136.5] p=0.001
+  rd rand|k32    - none        strict      -2.7 [-5.2, -0.1] p=0.048
+  rd rand|k32    - none        lenient     -2.7 [-5.2, -0.1] p=0.048
+  rd rand|k32    - none        tokens     +83.3 [-10.2, +174.4] p=0.084
+  rd randdir|k32 - none        strict      -1.6 [-3.8, +0.8] p=0.226
+  rd randdir|k32 - none        lenient     -1.6 [-3.8, +0.8] p=0.226
+  rd randdir|k32 - none        tokens     -62.0 [-162.4, +39.8] p=0.234
+  rd aligner|k32 - none        strict      -3.4 [-5.8, -0.8] p=0.010
+  rd aligner|k32 - none        lenient     -3.3 [-5.7, -0.7] p=0.012
+  rd aligner|k32 - none        tokens     +28.8 [-65.9, +130.8] p=0.526
+  rd rd|k32      - rand|k32    strict      +2.1 [-0.2, +4.5] p=0.088
+  rd rd|k32      - rand|k32    lenient     +2.3 [+0.0, +4.7] p=0.058
+  rd rd|k32      - rand|k32    tokens    -320.7 [-422.1, -212.7] p=0.001
+  rd rd|k32      - randdir|k32 strict      +1.0 [-1.4, +3.4] p=0.400
+  rd rd|k32      - randdir|k32 lenient     +1.2 [-1.2, +3.6] p=0.316
+  rd rd|k32      - randdir|k32 tokens    -175.4 [-281.9, -67.6] p=0.002
+  rd aligner|k32 - randdir|k32 strict      -1.8 [-4.1, +0.4] p=0.102
+  rd aligner|k32 - randdir|k32 lenient     -1.7 [-4.0, +0.5] p=0.128
+  rd aligner|k32 - randdir|k32 tokens     +90.9 [-12.3, +191.9] p=0.074

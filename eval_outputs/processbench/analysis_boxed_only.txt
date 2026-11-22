@@ -1,0 +1,35 @@
+
+=== gsm8k  n=400  (correct solutions 193)
+  LKD official: err 0.261 ok 0.472 F1 0.336 | valid-only (n=116+98): err 0.466 ok 0.929 F1 0.620 | compliance 0.535
+      outcomes {'valid': 214, 'no_integer_answer': 143, 'out_of_range': 15, 'truncated': 11, 'stopped_in_think': 17} | flags an error on erroneous 0.415, answers -1 on correct 0.472 | flagged erroneous: {'too late': 26, 'exact': 54, 'too early': 6} | median tokens 949
+  RD  official: err 0.237 ok 0.404 F1 0.299 | valid-only (n=111+86): err 0.441 ok 0.907 F1 0.594 | compliance 0.492
+      outcomes {'out_of_range': 34, 'stopped_in_think': 18, 'valid': 197, 'no_integer_answer': 146, 'truncated': 5} | flags an error on erroneous 0.367, answers -1 on correct 0.404 | flagged erroneous: {'exact': 49, 'too late': 20, 'too early': 7} | median tokens 845
+  paired exact: LKD-only 96, RD-only 78, sign p=0.1973 | official F1 RD-LKD 95% [-0.110, +0.039] p=0.3184 | valid-only F1 [-0.142, +0.089] p=0.6472 | compliance LKD-only 107, RD-only 90, p=0.2542
+
+=== math  n=400  (correct solutions 164)
+  LKD official: err 0.212 ok 0.341 F1 0.261 | valid-only (n=95+71): err 0.526 ok 0.789 F1 0.631 | compliance 0.415
+      outcomes {'no_integer_answer': 159, 'valid': 166, 'stopped_in_think': 18, 'truncated': 46, 'out_of_range': 11} | flags an error on erroneous 0.364, answers -1 on correct 0.341 | flagged erroneous: {'exact': 50, 'too late': 17, 'too early': 19} | median tokens 1955
+  RD  official: err 0.297 ok 0.372 F1 0.330 | valid-only (n=139+75): err 0.504 ok 0.813 F1 0.622 | compliance 0.535
+      outcomes {'valid': 214, 'no_integer_answer': 129, 'out_of_range': 14, 'truncated': 19, 'stopped_in_think': 24} | flags an error on erroneous 0.508, answers -1 on correct 0.372 | flagged erroneous: {'exact': 70, 'too early': 16, 'too late': 34} | median tokens 1642
+  paired exact: LKD-only 59, RD-only 84, sign p=0.0444 | official F1 RD-LKD 95% [+0.007, +0.131] p=0.0260 | valid-only F1 [-0.101, +0.087] p=0.8416 | compliance LKD-only 72, RD-only 120, p=0.0007
+
+=== olympiadbench  n=400  (correct solutions 141)
+  LKD official: err 0.154 ok 0.312 F1 0.207 | valid-only (n=109+59): err 0.367 ok 0.746 F1 0.492 | compliance 0.420
+      outcomes {'valid': 168, 'truncated': 62, 'no_integer_answer': 144, 'stopped_in_think': 13, 'out_of_range': 13} | flags an error on erroneous 0.375, answers -1 on correct 0.312 | flagged erroneous: {'too early': 33, 'exact': 40, 'too late': 24} | median tokens 2688
+  RD  official: err 0.224 ok 0.326 F1 0.266 | valid-only (n=130+60): err 0.446 ok 0.767 F1 0.564 | compliance 0.475
+      outcomes {'valid': 190, 'no_integer_answer': 129, 'truncated': 35, 'stopped_in_think': 26, 'out_of_range': 20} | flags an error on erroneous 0.436, answers -1 on correct 0.326 | flagged erroneous: {'exact': 58, 'too early': 19, 'too late': 36} | median tokens 2374
+  paired exact: LKD-only 56, RD-only 76, sign p=0.0978 | official F1 RD-LKD 95% [-0.001, +0.117] p=0.0580 | valid-only F1 [-0.031, +0.180] p=0.1732 | compliance LKD-only 89, RD-only 111, p=0.1374
+
+=== omnimath  n=400  (correct solutions 113)
+  LKD official: err 0.174 ok 0.372 F1 0.237 | valid-only (n=112+59): err 0.446 ok 0.712 F1 0.549 | compliance 0.427
+      outcomes {'out_of_range': 11, 'no_integer_answer': 129, 'stopped_in_think': 18, 'valid': 171, 'truncated': 71} | flags an error on erroneous 0.355, answers -1 on correct 0.372 | flagged erroneous: {'too early': 17, 'exact': 50, 'too late': 35} | median tokens 2928
+  RD  official: err 0.167 ok 0.301 F1 0.215 | valid-only (n=132+57): err 0.364 ok 0.596 F1 0.452 | compliance 0.472
+      outcomes {'no_integer_answer': 128, 'valid': 189, 'truncated': 49, 'out_of_range': 15, 'stopped_in_think': 19} | flags an error on erroneous 0.390, answers -1 on correct 0.301 | flagged erroneous: {'too late': 42, 'too early': 22, 'exact': 48} | median tokens 2418
+  paired exact: LKD-only 65, RD-only 55, sign p=0.4114 | official F1 RD-LKD 95% [-0.082, +0.035] p=0.4712 | valid-only F1 [-0.201, +0.007] p=0.0660 | compliance LKD-only 91, RD-only 109, p=0.2292
+
+=== all  n=1600  (correct solutions 611)
+  LKD official: err 0.196 ok 0.381 F1 0.259 | valid-only (n=432+287): err 0.449 ok 0.812 F1 0.578 | compliance 0.449
+      outcomes {'valid': 719, 'no_integer_answer': 575, 'out_of_range': 50, 'truncated': 190, 'stopped_in_think': 66} | flags an error on erroneous 0.375, answers -1 on correct 0.381 | flagged erroneous: {'too late': 102, 'exact': 194, 'too early': 75} | median tokens 2006
+  RD  official: err 0.228 ok 0.358 F1 0.278 | valid-only (n=512+278): err 0.439 ok 0.788 F1 0.564 | compliance 0.494
+      outcomes {'out_of_range': 83, 'stopped_in_think': 87, 'valid': 790, 'no_integer_answer': 532, 'truncated': 108} | flags an error on erroneous 0.426, answers -1 on correct 0.358 | flagged erroneous: {'exact': 225, 'too late': 132, 'too early': 64} | median tokens 1757
+  paired exact: LKD-only 276, RD-only 293, sign p=0.5024 | official F1 RD-LKD 95% [-0.012, +0.051] p=0.2264 | valid-only F1 [-0.066, +0.039] p=0.5928 | compliance LKD-only 359, RD-only 430, p=0.0127

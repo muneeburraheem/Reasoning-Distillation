@@ -1,0 +1,38 @@
+# Reflection-success coupling, 426 questions with one finished trace from every model (RD_new = October RD)
+  wrong traces: LKD 55  RD_mod 42  RD_new 103
+
+## 1. Coupling = correct minus wrong, level-stratified, per model; bootstrap over questions
+  R     LKD -0.0166 [-0.0418,+0.0049]  RD_mod +0.0114 [-0.0286,+0.0361]  RD_new -0.0190 [-0.0366,-0.0010]
+        RD_mod - LKD coupling +0.0280 [-0.0167,+0.0604] p=0.3148
+        RD_new - LKD coupling -0.0024 [-0.0294,+0.0274] p=0.9032
+        RD_mod - RD_new coupling +0.0304 [-0.0149,+0.0591] p=0.2698
+  E     LKD -0.0107 [-0.0237,+0.0024]  RD_mod +0.0090 [-0.0221,+0.0188]  RD_new -0.0081 [-0.0192,+0.0022]
+        RD_mod - LKD coupling +0.0197 [-0.0127,+0.0346] p=0.3320
+        RD_new - LKD coupling +0.0025 [-0.0141,+0.0180] p=0.7966
+        RD_mod - RD_new coupling +0.0171 [-0.0151,+0.0318] p=0.4120
+  N     LKD +0.0284 [+0.0020,+0.0570]  RD_mod -0.0238 [-0.0540,+0.0434]  RD_new +0.0285 [+0.0055,+0.0516]
+        RD_mod - LKD coupling -0.0522 [-0.0890,+0.0168] p=0.2232
+        RD_new - LKD coupling +0.0000 [-0.0344,+0.0337] p=0.9886
+        RD_mod - RD_new coupling -0.0522 [-0.0885,+0.0195] p=0.2558
+  osc   LKD -2.7293 [-6.5588,+0.2838]  RD_mod +0.8532 [-2.5752,+3.2431]  RD_new +0.5474 [-1.7142,+2.8063]
+        RD_mod - LKD coupling +3.5825 [-1.2580,+7.9251] p=0.1836
+        RD_new - LKD coupling +3.2767 [-0.4314,+7.7198] p=0.0854
+        RD_mod - RD_new coupling +0.3058 [-3.9452,+3.4194] p=0.8332
+  steps LKD -27.5474 [-62.2954,+6.6883]  RD_mod -33.6333 [-72.1450,+1.4084]  RD_new -43.0222 [-68.4160,-20.1049]
+        RD_mod - LKD coupling -6.0859 [-55.6969,+40.8171] p=0.8080
+        RD_new - LKD coupling -15.4748 [-58.4060,+26.3736] p=0.4498
+        RD_mod - RD_new coupling +9.3889 [-32.6053,+51.2243] p=0.6288
+
+## 2. Both-correct control: questions where both traces are correct, paired RD - LKD
+  RD_mod vs LKD, n=341
+    R       0.1877 vs   0.1674  diff +0.0203 [+0.0112,+0.0293] p=0.0001
+    E       0.0484 vs   0.0423  diff +0.0060 [+0.0017,+0.0103] p=0.0060
+    N       0.7596 vs   0.7871  diff -0.0275 [-0.0375,-0.0172] p=0.0001
+    osc    28.1278 vs  26.2423  diff +1.8855 [+0.9350,+2.8251] p=0.0001
+    steps 138.1789 vs 126.0205  diff +12.1584 [+2.1346,+22.5250] p=0.0188
+  RD_new vs LKD, n=290
+    R       0.1830 vs   0.1640  diff +0.0191 [+0.0095,+0.0287] p=0.0001
+    E       0.0458 vs   0.0398  diff +0.0060 [+0.0012,+0.0108] p=0.0150
+    N       0.7670 vs   0.7933  diff -0.0262 [-0.0374,-0.0148] p=0.0001
+    osc    27.9243 vs  26.0017  diff +1.9226 [+0.8071,+3.0477] p=0.0012
+    steps 119.2931 vs 120.2103  diff -0.9172 [-12.2622,+10.2348] p=0.8788

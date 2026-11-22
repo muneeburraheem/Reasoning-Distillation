@@ -1,0 +1,63 @@
+
+######## aime25: 30 questions x 8 samples, cap 8192 tokens
+  LKD acc lenient 0.0000 strict 0.0000 | pass@1=0.0000 pass@2=0.0000 pass@4=0.0000 pass@8=0.0000
+      solved on all 8: 0  never: 30  #correct histogram 0..8: [30, 0, 0, 0, 0, 0, 0, 0, 0]
+      truncated 0.979 (loop 0.871, long 0.108) | states answered=0.021 loop=0.871 truncated_in_think=0.108
+      tokens all: mean 3700 median 3008 (censored at cap) | answered only: mean 1499 median 1706 (n=5)
+      distinct answers/question: mean 0.167
+  RD  acc lenient 0.0000 strict 0.0000 | pass@1=0.0000 pass@2=0.0000 pass@4=0.0000 pass@8=0.0000
+      solved on all 8: 0  never: 30  #correct histogram 0..8: [30, 0, 0, 0, 0, 0, 0, 0, 0]
+      truncated 0.996 (loop 0.883, long 0.113) | states answered=0.004 loop=0.883 truncated_in_think=0.113
+      tokens all: mean 3651 median 3008 (censored at cap) | answered only: mean 2222 median 2222 (n=1)
+      distinct answers/question: mean 0.033
+  RD - LKD, paired over questions (95% bootstrap CI):
+    per-sample accuracy      +0.0000 [+0.0000, +0.0000] p=1.0000
+    per-sample acc strict    +0.0000 [+0.0000, +0.0000] p=1.0000
+    truncation rate          +0.0167 [-0.0042, +0.0417] p=0.1706
+    loop rate                +0.0125 [-0.0375, +0.0625] p=0.7022
+    distinct answers         -0.1333 [-0.3333, +0.0333] p=0.1706
+    pass@8 (any correct)     RD-only 0  LKD-only 0  sign p=1.0000
+    solved on all 8          RD-only 0  LKD-only 0  sign p=1.0000
+
+######## math500: 500 questions x 8 samples, cap 8192 tokens
+  LKD acc lenient 0.0150 strict 0.0147 | pass@1=0.0150 pass@2=0.0279 pass@4=0.0497 pass@8=0.0840
+      solved on all 8: 0  never: 458  #correct histogram 0..8: [458, 31, 7, 2, 1, 1, 0, 0, 0]
+      truncated 0.715 (loop 0.614, long 0.101) | states answer_cut=0.001 answered=0.285 answered_unclosed=0.000 loop=0.614 truncated_in_think=0.100
+      tokens all: mean 3269 median 3008 (censored at cap) | answered only: mean 1007 median 838 (n=1139)
+      distinct answers/question: mean 2.058
+  RD  acc lenient 0.0180 strict 0.0180 | pass@1=0.0180 pass@2=0.0326 pass@4=0.0569 pass@8=0.0940
+      solved on all 8: 0  never: 453  #correct histogram 0..8: [453, 34, 5, 7, 0, 0, 0, 1, 0]
+      truncated 0.741 (loop 0.636, long 0.105) | states answer_cut=0.000 answered=0.259 answered_unclosed=0.000 loop=0.636 truncated_in_think=0.105
+      tokens all: mean 3356 median 3008 (censored at cap) | answered only: mean 966 median 804 (n=1034)
+      distinct answers/question: mean 1.856
+  RD - LKD, paired over questions (95% bootstrap CI):
+    per-sample accuracy      +0.0030 [-0.0022, +0.0085] p=0.2862
+    per-sample acc strict    +0.0032 [-0.0018, +0.0085] p=0.2458
+    truncation rate          +0.0262 [+0.0092, +0.0435] p=0.0028
+    loop rate                +0.0220 [+0.0020, +0.0420] p=0.0330
+    distinct answers         -0.2020 [-0.3300, -0.0720] p=0.0012
+    median answered tokens   -37.8 [-104.3, +27.5] p=0.2546 (n=311; RD shorter on 174, sign p=0.0410)
+    pass@8 (any correct)     RD-only 27  LKD-only 22  sign p=0.5682
+    solved on all 8          RD-only 0  LKD-only 0  sign p=1.0000
+
+######## gsm8k: 1319 questions x 8 samples, cap 4096 tokens
+  LKD acc lenient 0.1141 strict 0.1127 | pass@1=0.1141 pass@2=0.1873 pass@4=0.2813 pass@8=0.3889
+      solved on all 8: 3  never: 806  #correct histogram 0..8: [806, 227, 106, 72, 44, 29, 20, 12, 3]
+      truncated 0.384 (loop 0.256, long 0.128) | states answer_cut=0.000 answered=0.616 loop=0.256 truncated_in_think=0.127
+      tokens all: mean 1744 median 999 (censored at cap) | answered only: mean 744 median 636 (n=6498)
+      distinct answers/question: mean 3.958
+  RD  acc lenient 0.1163 strict 0.1154 | pass@1=0.1163 pass@2=0.1887 pass@4=0.2840 pass@8=0.3958
+      solved on all 8: 7  never: 797  #correct histogram 0..8: [797, 236, 111, 72, 34, 28, 17, 17, 7]
+      truncated 0.399 (loop 0.257, long 0.142) | states answer_cut=0.001 answered=0.601 answered_unclosed=0.000 loop=0.257 truncated_in_think=0.141
+      tokens all: mean 1780 median 1006 (censored at cap) | answered only: mean 725 median 622 (n=6341)
+      distinct answers/question: mean 3.842
+  RD - LKD, paired over questions (95% bootstrap CI):
+    per-sample accuracy      +0.0022 [-0.0051, +0.0096] p=0.5660
+    per-sample acc strict    +0.0027 [-0.0045, +0.0102] p=0.4730
+    truncation rate          +0.0147 [+0.0032, +0.0262] p=0.0132
+    loop rate                +0.0006 [-0.0106, +0.0116] p=0.9292
+    distinct answers         -0.1168 [-0.2085, -0.0273] p=0.0146
+    distinct, all 8 committed -0.1333 [-0.7111, +0.4444] p=0.6632 (n=45)
+    median answered tokens   -16.3 [-33.8, +1.1] p=0.0662 (n=1260; RD shorter on 646, sign p=0.3234)
+    pass@8 (any correct)     RD-only 152  LKD-only 143  sign p=0.6414
+    solved on all 8          RD-only 6  LKD-only 2  sign p=0.2891

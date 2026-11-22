@@ -49,6 +49,10 @@ def extract_json_answer(text: str) -> Optional[str]:
     return None
 
 
+# Benchmarks scored on the final \\boxed{} after </think> (never reasoning-only text).
+BOXED_MATH = {"math500", "aime25", "aime24", "hmmt25", "brumo25", "cmimc25", "olympiadbench", "omnimath_hard", "processbench"}
+
+
 def extract_final_response(
     text: str,
     benchmark_name: str = "default",
@@ -61,7 +65,7 @@ def extract_final_response(
     if not text:
         return ""
 
-    if benchmark_name in {"math500", "aime25"}:
+    if benchmark_name in BOXED_MATH:
         # The opening think tag may be in the prompt. Do not score reasoning-only
         # completions, including those truncated before a final answer.
         if model_type == "qwen" and enable_thinking:
@@ -80,7 +84,7 @@ def extract_final_response(
 
     text = text.strip()
 
-    if benchmark_name in {"math500", "aime25", "gsm8k"}:
+    if benchmark_name in BOXED_MATH | {"gsm8k"}:
         ans = extract_final_answer_from_boxed(text)
         if ans:
             return ans

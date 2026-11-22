@@ -1,0 +1,8 @@
+######## math500: 500 questions common to all runs, 1 sample each
+  Teacher    strict 0.432  lenient 0.432 | committed wrong 0.002  stopped in think 0.000  truncated 0.566 | median finished tokens 4106
+  strict accuracy by level:
+    L1 n= 43 Teacher=0.74
+    L2 n= 90 Teacher=0.61
+    L3 n=105 Teacher=0.53
+    L4 n=128 Teacher=0.39
+    L5 n=134 Teacher=0.17

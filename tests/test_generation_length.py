@@ -6,7 +6,7 @@ import unittest
 from types import SimpleNamespace
 from unittest.mock import patch
 
-SCRIPT = Path(__file__).resolve().parents[1] / 'september-eval-scripts/gsm8k_generation_length.py'
+SCRIPT = Path(__file__).resolve().parents[1] / 'scripts/eval_gsm8k_generation_length.py'
 spec = importlib.util.spec_from_file_location('gsm8k_generation_length', SCRIPT)
 lengths = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(lengths)

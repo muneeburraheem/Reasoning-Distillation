@@ -1,0 +1,9 @@
+######## olympiadbench: 658 questions common to all runs, 1 sample each
+  RD_new     strict 0.312  lenient 0.356 | committed wrong 0.226  stopped in think 0.070  truncated 0.392 | median finished tokens 4412
+  LKD        strict 0.363  lenient 0.378 | committed wrong 0.179  stopped in think 0.021  truncated 0.436 | median finished tokens 4291
+  RD_new - LKD:
+    accuracy strict   -5.2 pp [-8.8, -1.5] p=0.0053
+    accuracy lenient  -2.3 pp [-5.8, +1.4] p=0.2219
+    correct (strict)   RD_new-only 56  LKD-only 90  sign p=0.0061
+    committed wrong    RD_new-only 102  LKD-only 71  sign p=0.0223
+    stopped in think   RD_new-only 45  LKD-only 13  sign p=0.0000

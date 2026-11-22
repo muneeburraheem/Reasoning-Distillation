@@ -1,0 +1,64 @@
+# ReasonDistill tuning from the 40k LogitKD student checkpoint.
+# Each regime continues on the next 12,032 ReasonDistill samples.
+# The configs share the continuation settings and vary alpha_align.
+# Run with: python scripts/train.py --config <config-path>
+# New-SAE RD: trained with the awesomeReasonDistill code at commit a25867d, from the repo root (docs/rd_newsae.md).
+
+experiment:
+  name: rd_newsae_smoke
+  seed: 42
+
+data:
+  dataset: amdeepseek
+  max_samples: 32                  # SMOKE
+  skip_samples: 40_000
+  cache_dir: ./cache
+
+method:
+  name: reasondistill
+  sae_checkpoint: ./checkpoints/rd_newsae_sae/sae.pt                  # SIDE: new SAE (was the HF L16 SAE)
+  reason_score_path: ./checkpoints/rd_newsae_sae/reasonscore.pt    # SIDE: its ReasonScore ranking
+  reasoning_neuron_count: 196                   # SIDE: was 512; ranks 197-512 near-generic
+
+model:
+  teacher: Qwen/Qwen3.5-4B
+  student: Qwen/Qwen3.5-2B
+  teacher_quantize_8bit: true
+  student_checkpoint: ./checkpoints/rd_newsae_student_init   # SIDE: LKD qwen_logit_kd/epoch_1 + pre-trained head
+
+alignment:
+  teacher_align_layer: 16
+  student_align_layer: 12
+  target_norm: 64.0
+  reason_active_threshold: 0.0
+  reason_presence_weight: 0.30     # INCREASED: stronger reasoning presence
+  reason_rank_weight: 0.15         # INCREASED: prioritize top reasoning features
+
+training:
+  max_length: 256                  # SMOKE (4090 memory)
+  batch_size: 1
+  accum_steps: 8                   # SMOKE
+  epochs: 1
+
+  lr: 3.0e-5                       # INCREASED: more aggressive
+  min_lr: 1.5e-5                   # INCREASED: keeps optimizer active
+  warmup_ratio: 0.04               # Slightly shorter warmup
+  weight_decay: 0.015              # Slightly higher regularization
+  max_grad_norm: 1.2               # INCREASED: allow larger updates
+  adam_betas: [0.9, 0.98]
+
+  scheduler_type: cosine_restarts
+  restart_interval_steps: 31
+  restart_mult: 1
+
+loss:
+  temperature: 4.0
+  alpha_kd: 0.30                   # Unchanged
+  alpha_align: 0.05
+  beta_ce: 0.75                    # DECREASED: reduce task loss dominance
+
+logging:
+  checkpoint_dir: ./checkpoints/rd_newsae_smoke
+  log_dir: ./logs/rd_newsae_smoke
+  loss_log_entries_per_epoch: 16
+  save_every_n_steps: 1000         # SMOKE

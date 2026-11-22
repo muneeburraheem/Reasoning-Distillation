@@ -1,0 +1,108 @@
+# qwen_teacher_l16n64 patching: 385 traces
+  attribution rank, rd k15: mean attr +7.95e-05 (random sets +2.31e-05, max +5.88e-05); median rank 1401/65536; in top-200 4 (random [0, 1, 1, 0, 0])
+  attribution rank, rd k50: mean attr +5.22e-04 (random sets +1.99e-08, max +2.01e-05); median rank 364/65536; in top-200 20 (random [2, 2, 0, 3, 1])
+  attribution rank, rd k0: mean attr +3.46e-04 (random sets -3.81e-06, max +1.12e-05); median rank 927/65536; in top-200 60 (random [3, 2, 4, 2, 3])
+  attr top-50 overlap with the ReasonScore set: 23
+
+## NECESSITY: ablate at marker positions  (level per condition; rd - rand(mean of 5); rd - randdir), bootstrap over traces
+  k=15
+    lp   rd -0.0026 rand -0.0000 randdir +0.0009 | rd-rand  -0.0025 [-0.0043,-0.0007] p=0.009 | rd-randdir  -0.0034 [-0.0057,-0.0013] p=0.002
+    pm   rd -0.0008 rand -0.0000 randdir +0.0001 | rd-rand  -0.0008 [-0.0013,-0.0002] p=0.005 | rd-randdir  -0.0008 [-0.0014,-0.0002] p=0.006
+    kl   rd +0.0016 rand +0.0005 randdir +0.0008 | rd-rand  +0.0011 [+0.0009,+0.0013] p=0.000 | rd-randdir  +0.0008 [+0.0007,+0.0009] p=0.000
+    size rd +0.0466 rand +0.0034 randdir +0.0466 | rd-rand  +0.0432 [+0.0409,+0.0455] p=0.000 | rd-randdir  -0.0000 [-0.0000,+0.0000] p=0.486
+    lp   [split B] attr -0.1040 | attr-rand  -0.1046 [-0.1192,-0.0915] p=0.000 | attr-rd  -0.1023 [-0.1169,-0.0888] p=0.000
+    pm   [split B] attr -0.0338 | attr-rand  -0.0340 [-0.0394,-0.0295] p=0.000 | attr-rd  -0.0335 [-0.0388,-0.0290] p=0.000
+    kl   [split B] attr +0.0162 | attr-rand  +0.0157 [+0.0127,+0.0193] p=0.000 | attr-rd  +0.0146 [+0.0116,+0.0182] p=0.000
+    size [split B] attr +0.1532 | attr-rand  +0.1499 [+0.1410,+0.1591] p=0.000 | attr-rd  +0.1062 [+0.0988,+0.1138] p=0.000
+  k=50
+    lp   rd -0.0245 rand -0.0010 randdir +0.0001 | rd-rand  -0.0235 [-0.0265,-0.0204] p=0.000 | rd-randdir  -0.0245 [-0.0282,-0.0209] p=0.000
+    pm   rd -0.0081 rand -0.0004 randdir -0.0001 | rd-rand  -0.0077 [-0.0087,-0.0067] p=0.000 | rd-randdir  -0.0080 [-0.0091,-0.0069] p=0.000
+    kl   rd +0.0056 rand +0.0007 randdir +0.0016 | rd-rand  +0.0050 [+0.0044,+0.0055] p=0.000 | rd-randdir  +0.0040 [+0.0035,+0.0045] p=0.000
+    size rd +0.1286 rand +0.0153 randdir +0.1286 | rd-rand  +0.1133 [+0.1085,+0.1182] p=0.000 | rd-randdir  -0.0000 [-0.0000,+0.0000] p=0.382
+    lp   [split B] attr -0.1880 | attr-rand  -0.1880 [-0.2133,-0.1651] p=0.000 | attr-rd  -0.1634 [-0.1872,-0.1422] p=0.000
+    pm   [split B] attr -0.0585 | attr-rand  -0.0585 [-0.0675,-0.0511] p=0.000 | attr-rd  -0.0512 [-0.0598,-0.0441] p=0.000
+    kl   [split B] attr +0.0429 | attr-rand  +0.0422 [+0.0342,+0.0524] p=0.000 | attr-rd  +0.0371 [+0.0292,+0.0473] p=0.000
+    size [split B] attr +0.2545 | attr-rand  +0.2398 [+0.2291,+0.2508] p=0.000 | attr-rd  +0.1292 [+0.1190,+0.1400] p=0.000
+  k=all
+    lp   rd -0.0818 rand -0.0007 randdir -0.0020 | rd-rand  -0.0811 [-0.0947,-0.0695] p=0.000 | rd-randdir  -0.0798 [-0.0938,-0.0676] p=0.000
+    pm   rd -0.0240 rand -0.0004 randdir -0.0005 | rd-rand  -0.0236 [-0.0261,-0.0211] p=0.000 | rd-randdir  -0.0235 [-0.0263,-0.0208] p=0.000
+    kl   rd +0.0311 rand +0.0009 randdir +0.0050 | rd-rand  +0.0302 [+0.0243,+0.0379] p=0.000 | rd-randdir  +0.0261 [+0.0205,+0.0336] p=0.000
+    size rd +0.2664 rand +0.0332 randdir +0.2664 | rd-rand  +0.2332 [+0.2238,+0.2423] p=0.000 | rd-randdir  -0.0000 [-0.0000,+0.0000] p=0.818
+    lp   [split B] attr -0.5738 | attr-rand  -0.5740 [-0.6631,-0.4953] p=0.000 | attr-rd  -0.4936 [-0.5788,-0.4186] p=0.000
+    pm   [split B] attr -0.1106 | attr-rand  -0.1104 [-0.1248,-0.0970] p=0.000 | attr-rd  -0.0867 [-0.0997,-0.0748] p=0.000
+    kl   [split B] attr +0.3361 | attr-rand  +0.3351 [+0.2680,+0.4089] p=0.000 | attr-rd  +0.3077 [+0.2418,+0.3809] p=0.000
+    size [split B] attr +0.4229 | attr-rand  +0.3901 [+0.3756,+0.4048] p=0.000 | attr-rd  +0.1618 [+0.1487,+0.1754] p=0.000
+
+## SUFFICIENCY: patch in at control positions  (level per condition; rd - rand(mean of 5); rd - randdir), bootstrap over traces
+  k=15
+    pm   rd +0.0000 rand -0.0000 randdir +0.0000 | rd-rand  +0.0000 [-0.0000,+0.0001] p=0.126 | rd-randdir  +0.0000 [+0.0000,+0.0000] p=0.028
+    kl   rd +0.0006 rand +0.0002 randdir +0.0003 | rd-rand  +0.0004 [+0.0003,+0.0006] p=0.000 | rd-randdir  +0.0003 [+0.0002,+0.0005] p=0.000
+    size rd +0.0474 rand +0.0076 randdir +0.0474 | rd-rand  +0.0398 [+0.0372,+0.0425] p=0.000 | rd-randdir  +0.0000 [-0.0000,+0.0000] p=0.202
+    pm   [split B] attr -0.0000 | attr-rand  -0.0000 [-0.0001,+0.0001] p=0.511 | attr-rd  -0.0001 [-0.0002,+0.0000] p=0.399
+    kl   [split B] attr +0.0034 | attr-rand  +0.0033 [+0.0022,+0.0045] p=0.000 | attr-rd  +0.0029 [+0.0019,+0.0041] p=0.000
+    size [split B] attr +0.1481 | attr-rand  +0.1405 [+0.1303,+0.1507] p=0.000 | attr-rd  +0.1008 [+0.0922,+0.1094] p=0.000
+  k=50
+    pm   rd +0.0000 rand +0.0000 randdir +0.0000 | rd-rand  +0.0000 [+0.0000,+0.0001] p=0.033 | rd-randdir  +0.0000 [-0.0000,+0.0001] p=0.096
+    kl   rd +0.0025 rand +0.0003 randdir +0.0008 | rd-rand  +0.0022 [+0.0017,+0.0027] p=0.000 | rd-randdir  +0.0017 [+0.0013,+0.0021] p=0.000
+    size rd +0.1232 rand +0.0225 randdir +0.1232 | rd-rand  +0.1008 [+0.0952,+0.1064] p=0.000 | rd-randdir  +0.0000 [-0.0000,+0.0000] p=0.872
+    pm   [split B] attr -0.0001 | attr-rand  -0.0001 [-0.0003,+0.0001] p=0.413 | attr-rd  -0.0001 [-0.0003,+0.0000] p=0.242
+    kl   [split B] attr +0.0092 | attr-rand  +0.0089 [+0.0061,+0.0126] p=0.000 | attr-rd  +0.0068 [+0.0040,+0.0104] p=0.000
+    size [split B] attr +0.2378 | attr-rand  +0.2151 [+0.2028,+0.2272] p=0.000 | attr-rd  +0.1178 [+0.1058,+0.1301] p=0.000
+  k=all
+    pm   rd +0.0004 rand +0.0000 randdir -0.0000 | rd-rand  +0.0004 [+0.0001,+0.0006] p=0.000 | rd-randdir  +0.0004 [+0.0001,+0.0007] p=0.000
+    kl   rd +0.0149 rand +0.0007 randdir +0.0023 | rd-rand  +0.0142 [+0.0084,+0.0218] p=0.000 | rd-randdir  +0.0126 [+0.0069,+0.0203] p=0.000
+    size rd +0.2507 rand +0.0501 randdir +0.2507 | rd-rand  +0.2007 [+0.1907,+0.2104] p=0.000 | rd-randdir  -0.0000 [-0.0000,+0.0000] p=0.216
+    pm   [split B] attr +0.0012 | attr-rand  +0.0012 [+0.0003,+0.0022] p=0.002 | attr-rd  +0.0009 [-0.0000,+0.0019] p=0.061
+    kl   [split B] attr +0.0700 | attr-rand  +0.0694 [+0.0423,+0.1047] p=0.000 | attr-rd  +0.0592 [+0.0309,+0.0945] p=0.000
+    size [split B] attr +0.3849 | attr-rand  +0.3340 [+0.3175,+0.3495] p=0.000 | attr-rd  +0.1451 [+0.1295,+0.1606] p=0.000
+
+# qwen_teacher_l16n64 suppression full (200 q x 2, 4096)
+  base|k0|s0|r+0.00        strict 0.242 lenient 0.343 tokens 3678.215 loop 0.003 hit_limit 0.757
+  rd|k0                    strict 0.318 lenient 0.385 tokens 3138.160 loop 0.280 hit_limit 0.682
+  rand|k0|s0               strict 0.233 lenient 0.325 tokens 3621.477 loop 0.000 hit_limit 0.767
+  rd|k50                   strict 0.270 lenient 0.372 tokens 3572.985 loop 0.005 hit_limit 0.730
+  rand|k50|s0              strict 0.217 lenient 0.318 tokens 3670.122 loop 0.000 hit_limit 0.782
+  attr|k50                 strict 0.247 lenient 0.357 tokens 3666.608 loop 0.005 hit_limit 0.752
+  rd|k0        - base|k0|s0|r+0.00  strict      +7.5 [+2.8, +12.5] p=0.0020
+  rd|k0        - base|k0|s0|r+0.00  lenient     +4.2 [+0.2, +8.2] p=0.0445
+  rd|k0        - base|k0|s0|r+0.00  tokens    -540.1 [-647.3, -435.7] p=0.0003
+  rand|k0|s0   - base|k0|s0|r+0.00  strict      -1.0 [-5.5, +3.2] p=0.6750
+  rand|k0|s0   - base|k0|s0|r+0.00  lenient     -1.8 [-6.2, +2.5] p=0.4905
+  rand|k0|s0   - base|k0|s0|r+0.00  tokens     -56.7 [-137.8, +21.2] p=0.1690
+  rd|k50       - base|k0|s0|r+0.00  strict      +2.8 [-1.8, +7.0] p=0.2565
+  rd|k50       - base|k0|s0|r+0.00  lenient     +3.0 [-1.2, +7.2] p=0.1895
+  rd|k50       - base|k0|s0|r+0.00  tokens    -105.2 [-182.1, -25.1] p=0.0070
+  rand|k50|s0  - base|k0|s0|r+0.00  strict      -2.5 [-7.2, +2.0] p=0.3225
+  rand|k50|s0  - base|k0|s0|r+0.00  lenient     -2.5 [-7.0, +2.0] p=0.2905
+  rand|k50|s0  - base|k0|s0|r+0.00  tokens      -8.1 [-85.0, +70.2] p=0.8365
+  attr|k50     - base|k0|s0|r+0.00  strict      +0.5 [-4.5, +5.2] p=0.8555
+  attr|k50     - base|k0|s0|r+0.00  lenient     +1.5 [-2.8, +5.8] p=0.5090
+  attr|k50     - base|k0|s0|r+0.00  tokens     -11.6 [-93.9, +72.1] p=0.7625
+  rd|k0        - rand|k0|s0         strict      +8.5 [+4.5, +12.8] p=0.0003
+  rd|k0        - rand|k0|s0         lenient     +6.0 [+1.0, +10.8] p=0.0215
+  rd|k0        - rand|k0|s0         tokens    -483.3 [-582.4, -384.4] p=0.0003
+  rd|k50       - rand|k50|s0        strict      +5.2 [+1.2, +9.8] p=0.0145
+  rd|k50       - rand|k50|s0        lenient     +5.5 [+1.2, +10.0] p=0.0130
+  rd|k50       - rand|k50|s0        tokens     -97.1 [-179.3, -20.7] p=0.0105
+  attr|k50     - rand|k50|s0        strict      +3.0 [-1.5, +7.8] p=0.2090
+  attr|k50     - rand|k50|s0        lenient     +4.0 [-0.5, +8.8] p=0.0885
+  attr|k50     - rand|k50|s0        tokens      -3.5 [-90.9, +84.5] p=0.9325
+  attr|k50     - rd|k50             strict      -2.2 [-6.2, +1.8] p=0.2985
+  attr|k50     - rd|k50             lenient     -1.5 [-5.2, +2.0] p=0.4755
+  attr|k50     - rd|k50             tokens     +93.6 [+16.4, +173.5] p=0.0205
+
+# reflection: reasoning-marker words per 1k words of thinking
+  base|k0|s0|r+0.00        6.76
+  rd|k0                    19.89
+  rand|k0|s0               6.81
+  rd|k50                   6.59
+  rand|k50|s0              6.92
+  attr|k50                 5.82
+  rd|k0        - base|k0|s0|r+0.00   +13.13 [+10.13,+16.38] p=0.000
+  rand|k0|s0   - base|k0|s0|r+0.00    +0.05 [-0.28,+0.38] p=0.764
+  rd|k50       - base|k0|s0|r+0.00    -0.17 [-0.48,+0.15] p=0.289
+  rand|k50|s0  - base|k0|s0|r+0.00    +0.16 [-0.17,+0.51] p=0.361
+  attr|k50     - base|k0|s0|r+0.00    -0.95 [-1.26,-0.62] p=0.000
+  rd|k0        - rand|k0|s0          +13.07 [+10.11,+16.37] p=0.000
+  rd|k50       - rand|k50|s0          -0.33 [-0.66,-0.00] p=0.043
+  attr|k50     - rand|k50|s0          -1.11 [-1.42,-0.80] p=0.000

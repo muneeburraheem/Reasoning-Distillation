@@ -10,8 +10,8 @@ Both configs use reasoning mode (`enable_thinking: true`) and these models:
 | Logit KD | `Khaquan/qwen-khaquanS-distillations` | `qwen-logitKD-final/qwen_logit_kd_continue/epoch_1` |
 | ReasonDistill | `Khaquan/qwen-khaquanS-distillations` | `qwen_reasondistill_final_continue/epoch_1` |
 
-`configs/test_math.yaml` evaluates all 500 MATH-500 questions and all 30 AIME 2025
-questions at pass@1. `configs/sweep_pass_k.yaml` evaluates the same three models on
+`configs/eval/qwen_math_basic.yaml` evaluates all 500 MATH-500 questions and all 30 AIME 2025
+questions at pass@1. `configs/eval/qwen_passk.yaml` evaluates the same three models on
 MMLU, GSM8K, HellaSwag, AIME 2025, MATH-500 and ARC-C, estimating pass@2, pass@4,
 and pass@8 from eight sampled completions per question. The four existing
 benchmarks retain the September limit of 1,000 examples each; MATH-500 and AIME
@@ -26,7 +26,7 @@ No stop-after-box rule is added; EOS and the token budget retain their existing
 meaning. Token-limit rates are reported so capped reasoning can be inspected.
 
 The question batch is 1 for every benchmark, matching the training microbatch
-in `configs/qwen_logit_kd_continue.yaml`. Gradient accumulation is not used in
+in `configs/train/qwen_logit_kd_continue.yaml`. Gradient accumulation is not used in
 evaluation. In the sweep,
 `sample_batch_size: 1` generates one sample per question per call, making eight
 calls per question batch. This avoids multiplying GPU memory by eight. Increase
@@ -104,15 +104,15 @@ python -m pip install -r requirements-eval.txt
 python -m unittest discover -s tests -v
 
 # Small checks of all three checkpoints; separate outputs:
-python -m custom_eval.run_eval --config configs/test_math.yaml \
+python -m custom_eval.run_eval --config configs/eval/qwen_math_basic.yaml \
   --max-samples 2 --output-dir eval_outputs/test_math_smoke
-python -m custom_eval.run_eval --config configs/sweep_pass_k.yaml \
+python -m custom_eval.run_eval --config configs/eval/qwen_passk.yaml \
   --max-samples 2 --output-dir eval_outputs/sweep_pass_k_smoke
 
 # Full runs, ideally inside tmux:
-python -m custom_eval.run_eval --config configs/test_math.yaml \
+python -m custom_eval.run_eval --config configs/eval/qwen_math_basic.yaml \
   --output-dir "eval_outputs/test_math_$(date -u +%Y%m%dT%H%M%SZ)"
-python -m custom_eval.run_eval --config configs/sweep_pass_k.yaml \
+python -m custom_eval.run_eval --config configs/eval/qwen_passk.yaml \
   --output-dir "eval_outputs/sweep_pass_k_$(date -u +%Y%m%dT%H%M%SZ)"
 ```
 

@@ -1,0 +1,40 @@
+# October ReasonDistill on the September benchmark set (think). Settings copied from
+# september-eval-scripts/qwen_kd_comparison-think.yaml (archived) (1,000 questions, 4,096
+# tokens, batch 32, 1 sample, no answer-stopper - it did not exist then), so
+# base / LKD outputs in eval_outputs/september/20260922T180514Z-1112953/think/
+# are directly comparable (seed reset per model and benchmark).
+#
+# Run: python -m custom_eval.run_eval --config configs/eval/rd_october_september_think.yaml
+models:
+  - name: qwen-reasondistill-october-continue-epoch_1-think
+    checkpoint: Khaquan/qwen-khaquanS-distillations
+    subfolder: qwen-reasondistill-october/qwen_reasondistill_final_continue/epoch_1
+    trust_remote_code: true
+    dtype: bfloat16
+    device_map: auto
+    enable_thinking: true
+    model_type: qwen
+    strip_language_model_prefix: true
+benchmarks:
+  - gsm8k
+  - mmlu
+  - arc-c
+  - hellaswag
+output_dir: ./eval_outputs/september_rd_october/think
+cache_dir: ./cache
+split: test
+max_samples: 1000
+seed: 42
+generation:
+  max_new_tokens: 4096
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  repetition_penalty: 1.0
+  pass_at_k: 1
+  batch_size: 32
+benchmark_options:
+  mmlu:
+    subject: all
+  hellaswag:
+    split: validation

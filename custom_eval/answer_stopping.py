@@ -1,6 +1,6 @@
 """Stop generation once a final answer is complete, outside any thinking block.
 
-Extracted from september-eval-scripts/gsm8k_generation_length.py so the eval
+Extracted from scripts/eval_gsm8k_generation_length.py so the eval
 harness and the generation-length script share one definition of "finished".
 """
 

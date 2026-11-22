@@ -1,0 +1,23 @@
+######## omnimath_hard: 500 questions common to all runs, 1 sample each
+  RD_mod     strict 0.060  lenient 0.060 | committed wrong 0.220  stopped in think 0.006  truncated 0.714 | median finished tokens 12161
+  LKD        strict 0.074  lenient 0.076 | committed wrong 0.226  stopped in think 0.010  truncated 0.690 | median finished tokens 10614
+  RD_oct     strict 0.064  lenient 0.074 | committed wrong 0.302  stopped in think 0.062  truncated 0.572 | median finished tokens 9941
+  RD_mod - LKD:
+    accuracy strict   -1.4 pp [-4.0, +1.2] p=0.3193
+    accuracy lenient  -1.6 pp [-4.2, +1.0] p=0.2477
+    correct (strict)   RD_mod-only 18  LKD-only 25  sign p=0.3604
+    committed wrong    RD_mod-only 60  LKD-only 63  sign p=0.8570
+    stopped in think   RD_mod-only 3  LKD-only 5  sign p=0.7266
+  RD_mod - RD_oct:
+    accuracy strict   -0.4 pp [-2.8, +2.0] p=0.8208
+    accuracy lenient  -1.4 pp [-4.0, +1.2] p=0.3271
+    correct (strict)   RD_mod-only 19  RD_oct-only 21  sign p=0.8746
+    committed wrong    RD_mod-only 53  RD_oct-only 94  sign p=0.0009
+    stopped in think   RD_mod-only 3  RD_oct-only 31  sign p=0.0000
+
+Difficulty trend, RD_mod - LKD (strict):
+  difficulty 6: n=139 LKD 0.072 RD_mod 0.058 diff -1.4 pp
+  difficulty 7: n=186 LKD 0.059 RD_mod 0.070 diff +1.1 pp
+  difficulty 8: n=109 LKD 0.083 RD_mod 0.028 diff -5.5 pp
+  difficulty 9: n= 66 LKD 0.106 RD_mod 0.091 diff -1.5 pp
+  trend per difficulty step: -0.68 pp [-3.33, +2.02] p=0.632

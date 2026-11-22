@@ -1,0 +1,46 @@
+# October ReasonDistill, pass@8 on MATH-500 and AIME-25. Settings copied from the
+# run_config.json of eval_outputs/sweep_pass_k/20260929T073130Z-1261224 (same
+# library versions: torch 2.9.1, transformers 5.8.0, datasets 4.4.1, math-verify
+# 0.9.0), so LKD / old RD / base outputs there pair per question. Seed is reset
+# per model and benchmark.
+#
+# Run: python -m custom_eval.run_eval --config configs/eval/rd_october_passk.yaml
+models:
+  - name: qwen-reasondistill-october-continue-epoch_1-think
+    checkpoint: Khaquan/qwen-khaquanS-distillations
+    subfolder: qwen-reasondistill-october/qwen_reasondistill_final_continue/epoch_1
+    trust_remote_code: true
+    dtype: bfloat16
+    device_map: auto
+    enable_thinking: true
+    model_type: qwen
+    strip_language_model_prefix: true
+benchmarks:
+  - aime25
+  - math500
+output_dir: ./eval_outputs/sweep_pass_k_rd_october
+cache_dir: ./cache
+split: test
+max_samples: 1000
+seed: 42
+require_real_data: true
+save_partial_every: 5
+generation:
+  max_new_tokens: 8192
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  presence_penalty: 1.5
+  repetition_penalty: 1.0
+  pass_at_k: [2, 4, 8]
+  num_samples: 8
+  sample_batch_size: 8
+  stop_at_final_answer: false
+  batch_size: 8
+benchmark_options:
+  math500:
+    stop_at_final_answer: true
+  aime25:
+    max_new_tokens: 8192
+    batch_size: 2
+    stop_at_final_answer: true

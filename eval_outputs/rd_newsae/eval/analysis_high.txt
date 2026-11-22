@@ -1,0 +1,22 @@
+######## math500: 500 questions common to all runs, 1 sample each
+  RD_high    strict 0.742  lenient 0.776 | committed wrong 0.146  stopped in think 0.050  truncated 0.062 | median finished tokens 2573
+  LKD        strict 0.780  lenient 0.808 | committed wrong 0.124  stopped in think 0.048  truncated 0.048 | median finished tokens 2423
+  RD_oct     strict 0.668  lenient 0.734 | committed wrong 0.208  stopped in think 0.086  truncated 0.038 | median finished tokens 2248
+  RD_high - LKD:
+    accuracy strict   -3.8 pp [-8.0, +0.4] p=0.0853
+    accuracy lenient  -3.2 pp [-7.0, +0.6] p=0.1095
+    correct (strict)   RD_high-only 50  LKD-only 69  sign p=0.0985
+    committed wrong    RD_high-only 48  LKD-only 37  sign p=0.2780
+    stopped in think   RD_high-only 25  LKD-only 24  sign p=1.0000
+  RD_high - RD_oct:
+    accuracy strict   +7.4 pp [+2.8, +11.8] p=0.0018
+    accuracy lenient  +4.2 pp [+0.2, +8.2] p=0.0456
+    correct (strict)   RD_high-only 87  RD_oct-only 50  sign p=0.0020
+    committed wrong    RD_high-only 39  RD_oct-only 70  sign p=0.0039
+    stopped in think   RD_high-only 24  RD_oct-only 42  sign p=0.0356
+  strict accuracy by level:
+    L1 n= 43 RD_high=0.81  LKD=0.81  RD_oct=0.88
+    L2 n= 90 RD_high=0.87  LKD=0.89  RD_oct=0.88
+    L3 n=105 RD_high=0.86  LKD=0.87  RD_oct=0.79
+    L4 n=128 RD_high=0.73  LKD=0.77  RD_oct=0.62
+    L5 n=134 RD_high=0.55  LKD=0.63  RD_oct=0.41

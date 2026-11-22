@@ -147,21 +147,22 @@ class PassKTests(unittest.TestCase):
                 estimate_pass_at_k(*args)
 
     def test_requested_configs(self):
-        for filename in ('test_math.yaml', 'sweep_pass_k.yaml'):
-            cfg = load_config(ROOT / 'configs' / filename)
+        # Budgets as run: basic math 4096 with AIME-25 at 32768 (RUN_LOG 3); pass@k sweep 8192 throughout (RUN_LOG 7).
+        for filename, cap, aime_cap in (('qwen_math_basic.yaml', 4096, 32768), ('qwen_passk.yaml', 8192, 8192)):
+            cfg = load_config(ROOT / 'configs' / 'eval' / filename)
             self.assertEqual(len(cfg.models), 3)
             self.assertTrue(all(m.enable_thinking for m in cfg.models))
             self.assertEqual(cfg.models[0].checkpoint, 'Qwen/Qwen3.5-2B')
             self.assertEqual(cfg.models[1].subfolder, 'qwen-logitKD-final/qwen_logit_kd_continue/epoch_1')
             self.assertEqual(cfg.models[2].subfolder, 'qwen_reasondistill_final_continue/epoch_1')
-            self.assertEqual(cfg.max_new_tokens, 4096)
-            self.assertEqual(cfg.benchmark_options['aime25']['max_new_tokens'], 16384)
+            self.assertEqual(cfg.max_new_tokens, cap)
+            self.assertEqual(cfg.benchmark_options['aime25']['max_new_tokens'], aime_cap)
         self.assertEqual(cfg.pass_at_k, [2, 4, 8])
         self.assertEqual(cfg.num_samples, 8)
         self.assertEqual(set(cfg.benchmarks), {'aime25', 'math500', 'arc-c', 'gsm8k', 'mmlu', 'hellaswag'})
 
     def test_invalid_sweeps(self):
-        source = yaml.safe_load((ROOT / 'configs/sweep_pass_k.yaml').read_text())
+        source = yaml.safe_load((ROOT / 'configs/eval/qwen_passk.yaml').read_text())
         invalid = [
             {'pass_at_k': []}, {'pass_at_k': [2, 2]}, {'pass_at_k': [0, 4]},
             {'pass_at_k': [2.5, 4]}, {'pass_at_k': True}, {'num_samples': 4},

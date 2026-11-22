@@ -1,0 +1,1418 @@
+{
+ "sae": {
+  "title": "Old vs new SAE checks",
+  "description": "Health and target checks for the original and the retrained Qwen SAE, with the Llama SAE for reference.",
+  "source": "docs/rd_newsae.md (Pilots, Full run result, Gate, Teacher checks); eval_outputs/rd_newsae/sae/{eval,gate}.txt; eval_outputs/rd_newsae/teacher_mi/analysis.txt",
+  "rows": [
+   {
+    "id": "fve",
+    "measure": "Share of the teacher's activation explained (FVE)",
+    "old": "-0.61",
+    "new": "+0.54",
+    "llama": "—"
+   },
+   {
+    "id": "l0",
+    "measure": "Features active per token (L0)",
+    "old": "0.0",
+    "new": "77",
+    "llama": "—"
+   },
+   {
+    "id": "dead",
+    "measure": "Latents that never fire on held-out text",
+    "old": "95%",
+    "new": "84%",
+    "llama": "11%"
+   },
+   {
+    "id": "reason",
+    "measure": "Reasoning latents found by ReasonScore",
+    "old": "0",
+    "new": "43",
+    "llama": "—"
+   },
+   {
+    "id": "density",
+    "measure": "How often a target feature is on (RD's exact target path)",
+    "old": "9.3e-8",
+    "new": "1.5e-2",
+    "llama": "3.7e-3"
+   },
+   {
+    "id": "live",
+    "measure": "Target features alive (on for 20+ tokens)",
+    "old": "0 / 512",
+    "new": "512 / 512",
+    "llama": "191 / 196"
+   },
+   {
+    "id": "enrich",
+    "measure": "Target mass on reasoning words vs their base rate",
+    "old": "none",
+    "new": "7x",
+    "llama": "—"
+   },
+   {
+    "id": "causal",
+    "measure": "Teacher: ablating the RD set vs a random set (change in log p of a reasoning word)",
+    "old": "+0.0006",
+    "new": "-0.081",
+    "llama": "-0.086"
+   }
+  ]
+ },
+ "pilots": {
+  "title": "SAE pilot runs",
+  "description": "Short 10M-token SAE trainings that isolated the two causes of the dead SAE.",
+  "source": "docs/rd_newsae.md (Pilots, 10M tokens each); eval_outputs/rd_newsae/sae/eval.txt",
+  "rows": [
+   {
+    "id": "old",
+    "run": "Old SAE (as used by RD)",
+    "input": "raw",
+    "l1": "5.0",
+    "fve": -0.61,
+    "l0": 0.0,
+    "dead": 0.95,
+    "reasoning": 0
+   },
+   {
+    "id": "norm_l1_5",
+    "run": "Normalised input, same L1",
+    "input": "norm 64",
+    "l1": "5.0",
+    "fve": -0.66,
+    "l0": 0.1,
+    "dead": 0.92,
+    "reasoning": 0
+   },
+   {
+    "id": "raw_small",
+    "run": "Raw input, small L1",
+    "input": "raw",
+    "l1": "0.0015",
+    "fve": -0.63,
+    "l0": 39.9,
+    "dead": 0.01,
+    "reasoning": 0
+   },
+   {
+    "id": "n0005",
+    "run": "Normalised, L1 0.0005",
+    "input": "norm 64",
+    "l1": "0.0005",
+    "fve": 0.67,
+    "l0": 4104,
+    "dead": 0.0,
+    "reasoning": 34
+   },
+   {
+    "id": "n0015",
+    "run": "Normalised, L1 0.0015",
+    "input": "norm 64",
+    "l1": "0.0015",
+    "fve": 0.37,
+    "l0": 788,
+    "dead": 0.0,
+    "reasoning": 41
+   },
+   {
+    "id": "n005",
+    "run": "Normalised, L1 0.005",
+    "input": "norm 64",
+    "l1": "0.005",
+    "fve": -0.44,
+    "l0": 29,
+    "dead": 0.03,
+    "reasoning": 0
+   },
+   {
+    "id": "final",
+    "run": "Final SAE (150M tokens)",
+    "input": "norm 64",
+    "l1": "0.003",
+    "fve": 0.544,
+    "l0": 77,
+    "dead": 0.84,
+    "reasoning": 43
+   }
+  ]
+ },
+ "probe": {
+  "title": "Teacher-feature read-out R²",
+  "description": "Ridge read-out of the teacher's 196 reasoning features (and 196 random ones) from student layer 13, 200 held-out texts.",
+  "source": "eval_outputs/rd_newsae/student_probe/analysis.txt",
+  "rows": [
+   {
+    "id": "base",
+    "model": "Base Qwen3.5-2B",
+    "rd_r2": 0.416,
+    "rand_r2": 0.275,
+    "halfway": null,
+    "gain": null,
+    "gain_lo": null,
+    "gain_hi": null,
+    "rand_gain": null
+   },
+   {
+    "id": "lkd",
+    "model": "LKD",
+    "rd_r2": 0.4225,
+    "rand_r2": 0.281,
+    "halfway": null,
+    "gain": 0.0,
+    "gain_lo": null,
+    "gain_hi": null,
+    "rand_gain": 0.0
+   },
+   {
+    "id": "rd_low",
+    "model": "RD α 0.05",
+    "rd_r2": 0.4293,
+    "rand_r2": 0.281,
+    "halfway": 0.4268,
+    "gain": 0.0069,
+    "gain_lo": 0.0067,
+    "gain_hi": 0.007,
+    "rand_gain": 0.0003
+   },
+   {
+    "id": "rd_mod",
+    "model": "RD α 0.15",
+    "rd_r2": 0.4415,
+    "rand_r2": 0.281,
+    "halfway": 0.4354,
+    "gain": 0.019,
+    "gain_lo": 0.0187,
+    "gain_hi": 0.0192,
+    "rand_gain": 0.0007
+   },
+   {
+    "id": "rd_high",
+    "model": "RD α 0.40",
+    "rd_r2": 0.464,
+    "rand_r2": 0.283,
+    "halfway": 0.4525,
+    "gain": 0.0415,
+    "gain_lo": 0.041,
+    "gain_hi": 0.0418,
+    "rand_gain": 0.0018
+   },
+   {
+    "id": "ceiling",
+    "model": "Teacher ceiling",
+    "rd_r2": 0.469,
+    "rand_r2": 0.34,
+    "halfway": null,
+    "gain": null,
+    "gain_lo": null,
+    "gain_hi": null,
+    "rand_gain": null
+   }
+  ]
+ },
+ "math32k": {
+  "title": "MATH-500 at 32k, outcomes",
+  "description": "One sample per question at a 32,768-token budget; two LKD sampling seeds and three RD runs.",
+  "source": "eval_outputs/rd_newsae/eval/analysis_lkd_seed43.txt",
+  "rows": [
+   {
+    "id": "lkd42",
+    "model": "LKD, sampling seed 42",
+    "strict": 0.78,
+    "lenient": 0.808,
+    "committed_wrong": 0.124,
+    "stopped_in_think": 0.048,
+    "truncated": 0.048,
+    "median_tokens": 2423,
+    "diff42": null,
+    "lo": null,
+    "hi": null,
+    "p": null,
+    "diff43": null,
+    "disagree": null
+   },
+   {
+    "id": "lkd43",
+    "model": "LKD, sampling seed 43",
+    "strict": 0.77,
+    "lenient": 0.79,
+    "committed_wrong": 0.136,
+    "stopped_in_think": 0.03,
+    "truncated": 0.064,
+    "median_tokens": 2213,
+    "diff42": -1.0,
+    "lo": -5.2,
+    "hi": 3.2,
+    "p": 0.67,
+    "diff43": null,
+    "disagree": 113
+   },
+   {
+    "id": "rd_low",
+    "model": "RD α 0.05",
+    "strict": 0.756,
+    "lenient": 0.778,
+    "committed_wrong": 0.144,
+    "stopped_in_think": 0.032,
+    "truncated": 0.068,
+    "median_tokens": 2459,
+    "diff42": -2.4,
+    "lo": -6.6,
+    "hi": 1.6,
+    "p": 0.27,
+    "diff43": -1.4,
+    "disagree": 112
+   },
+   {
+    "id": "rd_mod",
+    "model": "RD α 0.15",
+    "strict": 0.746,
+    "lenient": 0.78,
+    "committed_wrong": 0.148,
+    "stopped_in_think": 0.05,
+    "truncated": 0.056,
+    "median_tokens": 2519,
+    "diff42": -3.4,
+    "lo": -7.8,
+    "hi": 1.0,
+    "p": 0.14,
+    "diff43": -2.4,
+    "disagree": 125
+   },
+   {
+    "id": "rd_high",
+    "model": "RD α 0.40",
+    "strict": 0.742,
+    "lenient": 0.776,
+    "committed_wrong": 0.146,
+    "stopped_in_think": 0.05,
+    "truncated": 0.062,
+    "median_tokens": 2573,
+    "diff42": -3.8,
+    "lo": -8.0,
+    "hi": 0.4,
+    "p": 0.085,
+    "diff43": -2.8,
+    "disagree": 119
+   }
+  ]
+ },
+ "forest32k": {
+  "title": "MATH-500 at 32k, differences",
+  "description": "Accuracy difference from LKD seed 42 with bootstrap 95% intervals, plus the pooled RD vs LKD comparison.",
+  "source": "eval_outputs/rd_newsae/eval/analysis_*.txt; pooled: paired bootstrap of per-question means",
+  "rows": [
+   {
+    "id": "lkd43",
+    "label": "LKD seed 43 (noise reference)",
+    "diff": -1.0,
+    "lo": -5.2,
+    "hi": 3.2,
+    "p": 0.67
+   },
+   {
+    "id": "rd_low",
+    "label": "RD α 0.05",
+    "diff": -2.4,
+    "lo": -6.6,
+    "hi": 1.6,
+    "p": 0.27
+   },
+   {
+    "id": "rd_mod",
+    "label": "RD α 0.15",
+    "diff": -3.4,
+    "lo": -7.8,
+    "hi": 1.0,
+    "p": 0.14
+   },
+   {
+    "id": "rd_high",
+    "label": "RD α 0.40",
+    "diff": -3.8,
+    "lo": -8.0,
+    "hi": 0.4,
+    "p": 0.085
+   },
+   {
+    "id": "pooled",
+    "label": "3 RD runs vs 2 LKD seeds",
+    "diff": -2.7,
+    "lo": -5.4,
+    "hi": 0.1,
+    "p": 0.054
+   }
+  ]
+ },
+ "levels": {
+  "title": "MATH-500 at 32k by level",
+  "description": "Strict accuracy by MATH difficulty level.",
+  "source": "eval_outputs/rd_newsae/eval/analysis_lkd_seed43.txt (strict accuracy by level)",
+  "rows": [
+   {
+    "id": "L1",
+    "level": "Level 1",
+    "n": 43,
+    "lkd42": 0.81,
+    "lkd43": 0.98,
+    "rd_low": 0.88,
+    "rd_mod": 0.93,
+    "rd_high": 0.81
+   },
+   {
+    "id": "L2",
+    "level": "Level 2",
+    "n": 90,
+    "lkd42": 0.89,
+    "lkd43": 0.84,
+    "rd_low": 0.87,
+    "rd_mod": 0.86,
+    "rd_high": 0.87
+   },
+   {
+    "id": "L3",
+    "level": "Level 3",
+    "n": 105,
+    "lkd42": 0.87,
+    "lkd43": 0.85,
+    "rd_low": 0.86,
+    "rd_mod": 0.86,
+    "rd_high": 0.86
+   },
+   {
+    "id": "L4",
+    "level": "Level 4",
+    "n": 128,
+    "lkd42": 0.77,
+    "lkd43": 0.74,
+    "rd_low": 0.74,
+    "rd_mod": 0.69,
+    "rd_high": 0.73
+   },
+   {
+    "id": "L5",
+    "level": "Level 5",
+    "n": 134,
+    "lkd42": 0.63,
+    "lkd43": 0.62,
+    "rd_low": 0.57,
+    "rd_mod": 0.58,
+    "rd_high": 0.55
+   }
+  ]
+ },
+ "bench": {
+  "title": "All benchmarks, RD vs LKD",
+  "description": "RD α 0.15 against LKD on every benchmark run, paired per question.",
+  "source": "eval_outputs/rd_newsae/eval_mod/{basic_math,passk,hard_math/A,hard_math/B,hard_math/C,september,processbench}/analysis*.txt",
+  "rows": [
+   {
+    "id": "math500_4k",
+    "group": "Math",
+    "benchmark": "MATH-500",
+    "setting": "4k cap, 1 sample",
+    "metric": "accuracy",
+    "lkd": 0.54,
+    "rd": 0.522,
+    "diff": -1.8,
+    "lo": -5.8,
+    "hi": 2.2,
+    "p": 0.41,
+    "rd_higher": "no",
+    "note": ""
+   },
+   {
+    "id": "math500_p1",
+    "group": "Math",
+    "benchmark": "MATH-500",
+    "setting": "8k cap, 8 samples",
+    "metric": "pass@1",
+    "lkd": 0.628,
+    "rd": 0.633,
+    "diff": 0.5,
+    "lo": -1.0,
+    "hi": 2.1,
+    "p": 0.51,
+    "rd_higher": "yes",
+    "note": ""
+   },
+   {
+    "id": "math500_p8",
+    "group": "Math",
+    "benchmark": "MATH-500",
+    "setting": "8k cap, 8 samples",
+    "metric": "pass@8",
+    "lkd": 0.858,
+    "rd": 0.846,
+    "diff": -1.2,
+    "lo": null,
+    "hi": null,
+    "p": 0.31,
+    "rd_higher": "no",
+    "note": "sign test, 9 vs 15 questions"
+   },
+   {
+    "id": "math500_all8",
+    "group": "Math",
+    "benchmark": "MATH-500",
+    "setting": "8k cap, 8 samples",
+    "metric": "questions solved 8 of 8",
+    "lkd": 128,
+    "rd": 154,
+    "diff": null,
+    "lo": null,
+    "hi": null,
+    "p": 0.028,
+    "rd_higher": "yes",
+    "note": "sign test, 78 vs 52 questions"
+   },
+   {
+    "id": "aime25_32k",
+    "group": "Math",
+    "benchmark": "AIME-25",
+    "setting": "32k cap, 1 sample",
+    "metric": "accuracy",
+    "lkd": 0.167,
+    "rd": 0.2,
+    "diff": 3.3,
+    "lo": -10.0,
+    "hi": 16.7,
+    "p": 0.82,
+    "rd_higher": "yes",
+    "note": "30 questions"
+   },
+   {
+    "id": "aime25_p1",
+    "group": "Math",
+    "benchmark": "AIME-25",
+    "setting": "8k cap, 8 samples",
+    "metric": "pass@1",
+    "lkd": 0.104,
+    "rd": 0.108,
+    "diff": 0.4,
+    "lo": -2.5,
+    "hi": 3.3,
+    "p": 0.88,
+    "rd_higher": "yes",
+    "note": "30 questions"
+   },
+   {
+    "id": "olympiad",
+    "group": "Hard math",
+    "benchmark": "OlympiadBench",
+    "setting": "16k cap, 1 sample",
+    "metric": "accuracy",
+    "lkd": 0.363,
+    "rd": 0.38,
+    "diff": 1.7,
+    "lo": -1.7,
+    "hi": 5.0,
+    "p": 0.36,
+    "rd_higher": "yes",
+    "note": "658 questions"
+   },
+   {
+    "id": "aime24",
+    "group": "Hard math",
+    "benchmark": "AIME-24",
+    "setting": "16k cap, 4 samples",
+    "metric": "per-sample accuracy",
+    "lkd": 0.067,
+    "rd": 0.125,
+    "diff": 5.8,
+    "lo": null,
+    "hi": null,
+    "p": null,
+    "rd_higher": "yes",
+    "note": "pass@4 0.20 vs 0.30"
+   },
+   {
+    "id": "hmmt25",
+    "group": "Hard math",
+    "benchmark": "HMMT-25",
+    "setting": "16k cap, 4 samples",
+    "metric": "per-sample accuracy",
+    "lkd": 0.067,
+    "rd": 0.108,
+    "diff": 4.1,
+    "lo": null,
+    "hi": null,
+    "p": null,
+    "rd_higher": "yes",
+    "note": "pass@4 0.10 vs 0.17"
+   },
+   {
+    "id": "brumo25",
+    "group": "Hard math",
+    "benchmark": "BRUMO-25",
+    "setting": "16k cap, 4 samples",
+    "metric": "per-sample accuracy",
+    "lkd": 0.192,
+    "rd": 0.108,
+    "diff": -8.4,
+    "lo": null,
+    "hi": null,
+    "p": null,
+    "rd_higher": "no",
+    "note": "pass@4 0.40 vs 0.23"
+   },
+   {
+    "id": "cmimc25",
+    "group": "Hard math",
+    "benchmark": "CMIMC-25",
+    "setting": "16k cap, 4 samples",
+    "metric": "per-sample accuracy",
+    "lkd": 0.025,
+    "rd": 0.031,
+    "diff": 0.6,
+    "lo": null,
+    "hi": null,
+    "p": null,
+    "rd_higher": "yes",
+    "note": "40 questions"
+   },
+   {
+    "id": "hardb_pooled",
+    "group": "Hard math",
+    "benchmark": "AIME-24 + HMMT + BRUMO + CMIMC",
+    "setting": "16k cap, 4 samples",
+    "metric": "per-sample accuracy",
+    "lkd": 0.083,
+    "rd": 0.088,
+    "diff": 0.6,
+    "lo": -1.9,
+    "hi": 3.3,
+    "p": 0.7,
+    "rd_higher": "yes",
+    "note": "130 problems pooled"
+   },
+   {
+    "id": "omnimath",
+    "group": "Hard math",
+    "benchmark": "Omni-MATH (hard)",
+    "setting": "16k cap, 1 sample",
+    "metric": "accuracy",
+    "lkd": 0.074,
+    "rd": 0.06,
+    "diff": -1.4,
+    "lo": -4.0,
+    "hi": 1.2,
+    "p": 0.32,
+    "rd_higher": "no",
+    "note": "500 questions"
+   },
+   {
+    "id": "gsm8k_t",
+    "group": "General, thinking on",
+    "benchmark": "GSM8K",
+    "setting": "4k cap, 1 sample",
+    "metric": "accuracy",
+    "lkd": 0.809,
+    "rd": 0.791,
+    "diff": -1.8,
+    "lo": -4.5,
+    "hi": 1.0,
+    "p": 0.23,
+    "rd_higher": "no",
+    "note": ""
+   },
+   {
+    "id": "mmlu_t",
+    "group": "General, thinking on",
+    "benchmark": "MMLU",
+    "setting": "4k cap, 1 sample",
+    "metric": "accuracy",
+    "lkd": 0.683,
+    "rd": 0.701,
+    "diff": 1.8,
+    "lo": -1.5,
+    "hi": 5.0,
+    "p": 0.3,
+    "rd_higher": "yes",
+    "note": ""
+   },
+   {
+    "id": "arc_t",
+    "group": "General, thinking on",
+    "benchmark": "ARC-Challenge",
+    "setting": "4k cap, 1 sample",
+    "metric": "accuracy",
+    "lkd": 0.84,
+    "rd": 0.817,
+    "diff": -2.3,
+    "lo": -5.0,
+    "hi": 0.4,
+    "p": 0.11,
+    "rd_higher": "no",
+    "note": ""
+   },
+   {
+    "id": "hella_t",
+    "group": "General, thinking on",
+    "benchmark": "HellaSwag",
+    "setting": "4k cap, 1 sample",
+    "metric": "accuracy",
+    "lkd": 0.462,
+    "rd": 0.475,
+    "diff": 1.3,
+    "lo": -2.1,
+    "hi": 4.7,
+    "p": 0.5,
+    "rd_higher": "yes",
+    "note": ""
+   },
+   {
+    "id": "gsm8k_n",
+    "group": "General, thinking off",
+    "benchmark": "GSM8K",
+    "setting": "1 sample",
+    "metric": "accuracy",
+    "lkd": 0.768,
+    "rd": 0.763,
+    "diff": -0.5,
+    "lo": -3.2,
+    "hi": 2.3,
+    "p": 0.78,
+    "rd_higher": "no",
+    "note": ""
+   },
+   {
+    "id": "mmlu_n",
+    "group": "General, thinking off",
+    "benchmark": "MMLU",
+    "setting": "1 sample",
+    "metric": "accuracy",
+    "lkd": 0.539,
+    "rd": 0.546,
+    "diff": 0.7,
+    "lo": -3.1,
+    "hi": 4.6,
+    "p": 0.76,
+    "rd_higher": "yes",
+    "note": ""
+   },
+   {
+    "id": "arc_n",
+    "group": "General, thinking off",
+    "benchmark": "ARC-Challenge",
+    "setting": "1 sample",
+    "metric": "accuracy",
+    "lkd": 0.664,
+    "rd": 0.675,
+    "diff": 1.1,
+    "lo": -2.4,
+    "hi": 4.6,
+    "p": 0.58,
+    "rd_higher": "yes",
+    "note": ""
+   },
+   {
+    "id": "hella_n",
+    "group": "General, thinking off",
+    "benchmark": "HellaSwag",
+    "setting": "1 sample",
+    "metric": "accuracy",
+    "lkd": 0.37,
+    "rd": 0.373,
+    "diff": 0.3,
+    "lo": -3.5,
+    "hi": 4.1,
+    "p": 0.92,
+    "rd_higher": "yes",
+    "note": ""
+   },
+   {
+    "id": "processbench",
+    "group": "Error finding",
+    "benchmark": "ProcessBench (all 4 splits)",
+    "setting": "8k cap, 1,600 items",
+    "metric": "F1",
+    "lkd": 0.46,
+    "rd": 0.459,
+    "diff": -0.1,
+    "lo": -3.6,
+    "hi": 3.4,
+    "p": 0.95,
+    "rd_higher": "no",
+    "note": ""
+   }
+  ]
+ },
+ "passk_hist": {
+  "title": "MATH-500 correct out of 8",
+  "description": "Number of questions by how many of 8 samples were correct, 8k budget.",
+  "source": "eval_outputs/rd_newsae/eval_mod/passk/analysis.txt (MATH-500, number of the 8 samples correct)",
+  "rows": [
+   {
+    "id": "0",
+    "correct_of_8": 0,
+    "lkd": 71,
+    "rd": 77
+   },
+   {
+    "id": "1",
+    "correct_of_8": 1,
+    "lkd": 33,
+    "rd": 33
+   },
+   {
+    "id": "2",
+    "correct_of_8": 2,
+    "lkd": 19,
+    "rd": 16
+   },
+   {
+    "id": "3",
+    "correct_of_8": 3,
+    "lkd": 26,
+    "rd": 38
+   },
+   {
+    "id": "4",
+    "correct_of_8": 4,
+    "lkd": 35,
+    "rd": 17
+   },
+   {
+    "id": "5",
+    "correct_of_8": 5,
+    "lkd": 31,
+    "rd": 28
+   },
+   {
+    "id": "6",
+    "correct_of_8": 6,
+    "lkd": 55,
+    "rd": 45
+   },
+   {
+    "id": "7",
+    "correct_of_8": 7,
+    "lkd": 102,
+    "rd": 92
+   },
+   {
+    "id": "8",
+    "correct_of_8": 8,
+    "lkd": 128,
+    "rd": 154
+   }
+  ]
+ },
+ "budget": {
+  "title": "Budget forcing",
+  "description": "MATH-500 accuracy with thinking cut at fixed budgets, hard cap and forced answer, 4 samples.",
+  "source": "eval_outputs/rd_newsae/eval_mod/budget_forcing/analysis_vs_lkd.txt (500 questions x 4 samples)",
+  "rows": [
+   {
+    "id": "512",
+    "budget": 512,
+    "lkd_cap": 0.058,
+    "rd_cap": 0.035,
+    "cap_diff": -2.3,
+    "cap_p": 0.0001,
+    "lkd_forced": 0.398,
+    "rd_forced": 0.387,
+    "forced_diff": -1.1,
+    "forced_p": 0.27
+   },
+   {
+    "id": "1024",
+    "budget": 1024,
+    "lkd_cap": 0.217,
+    "rd_cap": 0.202,
+    "cap_diff": -1.6,
+    "cap_p": 0.1,
+    "lkd_forced": 0.558,
+    "rd_forced": 0.546,
+    "forced_diff": -1.3,
+    "forced_p": 0.21
+   },
+   {
+    "id": "2048",
+    "budget": 2048,
+    "lkd_cap": 0.395,
+    "rd_cap": 0.387,
+    "cap_diff": -0.8,
+    "cap_p": 0.5,
+    "lkd_forced": 0.663,
+    "rd_forced": 0.654,
+    "forced_diff": -0.9,
+    "forced_p": 0.4
+   },
+   {
+    "id": "4096",
+    "budget": 4096,
+    "lkd_cap": 0.529,
+    "rd_cap": 0.528,
+    "cap_diff": -0.1,
+    "cap_p": 0.95,
+    "lkd_forced": 0.733,
+    "rd_forced": 0.712,
+    "forced_diff": -2.2,
+    "forced_p": 0.025
+   }
+  ]
+ },
+ "processbench": {
+  "title": "ProcessBench F1",
+  "description": "Official F1 for finding the first wrong step, by split.",
+  "source": "eval_outputs/rd_newsae/eval_mod/processbench/analysis.txt (official F1)",
+  "rows": [
+   {
+    "id": "gsm8k",
+    "split": "GSM8K",
+    "n": 400,
+    "lkd": 0.513,
+    "rd": 0.512,
+    "lo": -0.076,
+    "hi": 0.076,
+    "p": 0.98
+   },
+   {
+    "id": "math",
+    "split": "MATH",
+    "n": 400,
+    "lkd": 0.476,
+    "rd": 0.499,
+    "lo": -0.043,
+    "hi": 0.092,
+    "p": 0.53
+   },
+   {
+    "id": "olympiad",
+    "split": "OlympiadBench",
+    "n": 400,
+    "lkd": 0.428,
+    "rd": 0.407,
+    "lo": -0.087,
+    "hi": 0.044,
+    "p": 0.53
+   },
+   {
+    "id": "omnimath",
+    "split": "Omni-MATH",
+    "n": 400,
+    "lkd": 0.417,
+    "rd": 0.41,
+    "lo": -0.069,
+    "hi": 0.057,
+    "p": 0.82
+   },
+   {
+    "id": "all",
+    "split": "All",
+    "n": 1600,
+    "lkd": 0.46,
+    "rd": 0.459,
+    "lo": -0.036,
+    "hi": 0.034,
+    "p": 0.95
+   }
+  ]
+ },
+ "bonds": {
+  "title": "Reasoning behaviours",
+  "description": "Step labels (Chen et al. 2026 prompt) on 426 MATH-500 traces per model; all questions and both-correct questions.",
+  "source": "eval_outputs/rd_newsae/eval_mod/bonds/analysis.txt and bonds/reflection_coupling.txt (shares in % of steps)",
+  "rows": [
+   {
+    "id": "R",
+    "behaviour": "Self-reflection",
+    "unit": "% of steps",
+    "lkd": 16.99,
+    "rd": 18.91,
+    "diff": 1.92,
+    "lo": 1.12,
+    "hi": 2.71,
+    "p_holm": 0.0007,
+    "bc_lkd": 16.74,
+    "bc_rd": 18.77,
+    "bc_diff": 2.03,
+    "bc_lo": 1.12,
+    "bc_hi": 2.93,
+    "bc_p": 0.0001
+   },
+   {
+    "id": "E",
+    "behaviour": "Exploration",
+    "unit": "% of steps",
+    "lkd": 4.33,
+    "rd": 4.81,
+    "diff": 0.48,
+    "lo": 0.1,
+    "hi": 0.87,
+    "p_holm": 0.056,
+    "bc_lkd": 4.23,
+    "bc_rd": 4.84,
+    "bc_diff": 0.6,
+    "bc_lo": 0.17,
+    "bc_hi": 1.03,
+    "bc_p": 0.006
+   },
+   {
+    "id": "D",
+    "behaviour": "Deep reasoning",
+    "unit": "% of steps",
+    "lkd": 0.36,
+    "rd": 0.43,
+    "diff": 0.07,
+    "lo": -0.02,
+    "hi": 0.17,
+    "p_holm": 0.44,
+    "bc_lkd": null,
+    "bc_rd": null,
+    "bc_diff": null,
+    "bc_lo": null,
+    "bc_hi": null,
+    "bc_p": null
+   },
+   {
+    "id": "N",
+    "behaviour": "Normal operation",
+    "unit": "% of steps",
+    "lkd": 78.33,
+    "rd": 75.86,
+    "diff": -2.47,
+    "lo": -3.39,
+    "hi": -1.56,
+    "p_holm": 0.0007,
+    "bc_lkd": 78.71,
+    "bc_rd": 75.96,
+    "bc_diff": -2.75,
+    "bc_lo": -3.75,
+    "bc_hi": -1.72,
+    "bc_p": 0.0001
+   },
+   {
+    "id": "osc",
+    "behaviour": "Switches between reflecting/exploring and working",
+    "unit": "per 100 steps",
+    "lkd": 26.34,
+    "rd": 28.16,
+    "diff": 1.82,
+    "lo": 1.0,
+    "hi": 2.64,
+    "p_holm": 0.0007,
+    "bc_lkd": 26.24,
+    "bc_rd": 28.13,
+    "bc_diff": 1.89,
+    "bc_lo": 0.94,
+    "bc_hi": 2.83,
+    "bc_p": 0.0001
+   },
+   {
+    "id": "steps",
+    "behaviour": "Steps per trace",
+    "unit": "steps",
+    "lkd": null,
+    "rd": null,
+    "diff": null,
+    "lo": null,
+    "hi": null,
+    "p_holm": null,
+    "bc_lkd": 126.0,
+    "bc_rd": 138.2,
+    "bc_diff": 12.2,
+    "bc_lo": 2.1,
+    "bc_hi": 22.5,
+    "bc_p": 0.019
+   },
+   {
+    "id": "graph_r",
+    "behaviour": "Step-to-step pattern, correlation with LKD",
+    "unit": "Pearson r",
+    "lkd": 1.0,
+    "rd": 0.9977,
+    "diff": null,
+    "lo": null,
+    "hi": null,
+    "p_holm": null,
+    "bc_lkd": null,
+    "bc_rd": null,
+    "bc_diff": null,
+    "bc_lo": null,
+    "bc_hi": null,
+    "bc_p": null
+   }
+  ]
+ },
+ "replicate": {
+  "title": "Reflection across benchmarks",
+  "description": "Self-reflection share on questions both students answered correctly, on the four benchmarks (where RD scored above LKD) with enough such questions.",
+  "source": "eval_outputs/rd_newsae/reflection_more/analysis.txt (both-correct questions, first finished trace per question; shares in % of steps; reflection p Holm-adjusted over the 4 benchmarks)",
+  "rows": [
+   {
+    "id": "math500",
+    "bench": "MATH-500",
+    "kind": "Math",
+    "n": 342,
+    "lkd": 16.75,
+    "rd": 18.8,
+    "diff": 2.05,
+    "lo": 1.15,
+    "hi": 2.96,
+    "p_holm": 0.0004,
+    "e_diff": 0.59,
+    "e_p": 0.0056,
+    "n_diff": -2.74,
+    "n_p": 0.0001,
+    "osc_diff": 1.84,
+    "osc_p": 0.0004
+   },
+   {
+    "id": "olympiad",
+    "bench": "OlympiadBench",
+    "kind": "Math",
+    "n": 178,
+    "lkd": 16.97,
+    "rd": 19.2,
+    "diff": 2.23,
+    "lo": 0.98,
+    "hi": 3.45,
+    "p_holm": 0.0004,
+    "e_diff": -0.14,
+    "e_p": 0.6,
+    "n_diff": -2.1,
+    "n_p": 0.0022,
+    "osc_diff": 1.29,
+    "osc_p": 0.019
+   },
+   {
+    "id": "mmlu",
+    "bench": "MMLU (thinking)",
+    "kind": "General",
+    "n": 528,
+    "lkd": 18.6,
+    "rd": 20.14,
+    "diff": 1.54,
+    "lo": 0.57,
+    "hi": 2.53,
+    "p_holm": 0.0052,
+    "e_diff": 0.75,
+    "e_p": 0.0054,
+    "n_diff": -2.26,
+    "n_p": 0.0002,
+    "osc_diff": 1.32,
+    "osc_p": 0.043
+   },
+   {
+    "id": "hellaswag",
+    "bench": "HellaSwag (thinking)",
+    "kind": "General",
+    "n": 309,
+    "lkd": 22.35,
+    "rd": 23.71,
+    "diff": 1.36,
+    "lo": 0.06,
+    "hi": 2.61,
+    "p_holm": 0.043,
+    "e_diff": 0.11,
+    "e_p": 0.88,
+    "n_diff": -1.32,
+    "n_p": 0.14,
+    "osc_diff": -0.45,
+    "osc_p": 0.55
+   }
+  ]
+ },
+ "october": {
+  "title": "Earlier October RD run",
+  "description": "Text-only comparison figures for the earlier RD run that trained against the dead SAE.",
+  "source": "eval_outputs/rd_newsae/eval/analysis_low.txt and eval_mod/basic_math/analysis.txt (RD_oct rows); eval_outputs/rd_newsae/eval_mod/bonds/reflection_coupling.txt",
+  "rows": [
+   {
+    "id": "strict32k",
+    "measure": "MATH-500 32k accuracy",
+    "october": 0.668,
+    "new": 0.746
+   },
+   {
+    "id": "committed_wrong",
+    "measure": "MATH-500 32k committed-wrong share",
+    "october": 0.208,
+    "new": 0.148
+   },
+   {
+    "id": "stopped",
+    "measure": "MATH-500 32k stopped inside thinking",
+    "october": 0.086,
+    "new": 0.05
+   },
+   {
+    "id": "reflect_bc",
+    "measure": "Extra self-reflection vs LKD on both-correct traces (points)",
+    "october": 1.91,
+    "new": 2.03
+   }
+  ]
+ },
+ "closeness": {
+  "title": "Closeness to the teacher",
+  "description": "Teacher-forced comparison on 1,000 teacher traces, and answer-token entropy.",
+  "source": "eval_outputs/rd_newsae/eval_mod/teacher_forced/summary.txt and answer_entropy/analysis.txt",
+  "rows": [
+   {
+    "id": "kl_think",
+    "measure": "KL to the teacher, thinking tokens",
+    "lkd": 0.195,
+    "rd": 0.1934,
+    "teacher": null,
+    "diff": -0.0018,
+    "p": 0.0001,
+    "note": "RD closer on 703 of 1,000 traces"
+   },
+   {
+    "id": "kl_close",
+    "measure": "KL to the teacher where thinking ends",
+    "lkd": 2.24,
+    "rd": 2.045,
+    "teacher": null,
+    "diff": -0.195,
+    "p": 0.0001,
+    "note": "RD closer on 394 of 508 traces"
+   },
+   {
+    "id": "ent_think",
+    "measure": "Prediction entropy, thinking tokens (nats)",
+    "lkd": 0.5424,
+    "rd": 0.5452,
+    "teacher": 0.4204,
+    "diff": 0.0034,
+    "p": 0.0001,
+    "note": ""
+   },
+   {
+    "id": "nll",
+    "measure": "Loss on the teacher's own text (nats)",
+    "lkd": 0.5372,
+    "rd": 0.5379,
+    "teacher": 0.545,
+    "diff": 0.0004,
+    "p": 0.0058,
+    "note": ""
+   },
+   {
+    "id": "ans_first",
+    "measure": "Entropy of the first answer token (nats)",
+    "lkd": 0.042,
+    "rd": 0.0547,
+    "teacher": null,
+    "diff": 0.0135,
+    "p": 0.0002,
+    "note": "both near-certain"
+   },
+   {
+    "id": "ans_all",
+    "measure": "Mean entropy of answer tokens (nats)",
+    "lkd": 0.024,
+    "rd": 0.0287,
+    "teacher": null,
+    "diff": 0.0048,
+    "p": 0.0018,
+    "note": ""
+   }
+  ]
+ },
+ "causal": {
+  "title": "Feature-removal test",
+  "description": "Pre-registered mean-ablation of the teacher-feature subspace at layer 13: drop in P(reasoning word).",
+  "source": "eval_outputs/rd_newsae/student_causal/analysis.txt (teacher-forced, 199 held-out texts, 4,323 reasoning-word positions)",
+  "rows": [
+   {
+    "id": "base_k32",
+    "model": "Base",
+    "k": 32,
+    "clean_p": 0.532,
+    "drop_rd": -0.35,
+    "drop_rand": 0.29,
+    "effect": -0.64,
+    "effect_lo": -1.07,
+    "effect_hi": -0.2,
+    "vs_lkd": 0.69,
+    "vs_lkd_lo": 0.38,
+    "vs_lkd_hi": 0.99,
+    "vs_lkd_p": 0.0001
+   },
+   {
+    "id": "lkd_k32",
+    "model": "LKD",
+    "k": 32,
+    "clean_p": 0.525,
+    "drop_rd": -1.1,
+    "drop_rand": 0.23,
+    "effect": -1.33,
+    "effect_lo": -1.75,
+    "effect_hi": -0.91,
+    "vs_lkd": null,
+    "vs_lkd_lo": null,
+    "vs_lkd_hi": null,
+    "vs_lkd_p": null
+   },
+   {
+    "id": "rd_low_k32",
+    "model": "RD α 0.05",
+    "k": 32,
+    "clean_p": 0.549,
+    "drop_rd": -0.89,
+    "drop_rand": 0.33,
+    "effect": -1.21,
+    "effect_lo": -1.61,
+    "effect_hi": -0.82,
+    "vs_lkd": 0.12,
+    "vs_lkd_lo": -0.01,
+    "vs_lkd_hi": 0.24,
+    "vs_lkd_p": 0.0636
+   },
+   {
+    "id": "rd_mod_k32",
+    "model": "RD α 0.15",
+    "k": 32,
+    "clean_p": 0.55,
+    "drop_rd": -0.79,
+    "drop_rand": 0.27,
+    "effect": -1.06,
+    "effect_lo": -1.45,
+    "effect_hi": -0.67,
+    "vs_lkd": 0.27,
+    "vs_lkd_lo": 0.13,
+    "vs_lkd_hi": 0.4,
+    "vs_lkd_p": 0.0001
+   },
+   {
+    "id": "rd_high_k32",
+    "model": "RD α 0.40",
+    "k": 32,
+    "clean_p": 0.551,
+    "drop_rd": -0.76,
+    "drop_rand": 0.22,
+    "effect": -0.98,
+    "effect_lo": -1.36,
+    "effect_hi": -0.62,
+    "vs_lkd": 0.35,
+    "vs_lkd_lo": 0.19,
+    "vs_lkd_hi": 0.5,
+    "vs_lkd_p": 0.0001
+   },
+   {
+    "id": "base_k128",
+    "model": "Base",
+    "k": 128,
+    "clean_p": 0.532,
+    "drop_rd": -7.09,
+    "drop_rand": 1.41,
+    "effect": -8.5,
+    "effect_lo": -9.45,
+    "effect_hi": -7.68,
+    "vs_lkd": 1.77,
+    "vs_lkd_lo": 1.02,
+    "vs_lkd_hi": 2.43,
+    "vs_lkd_p": 0.0001
+   },
+   {
+    "id": "lkd_k128",
+    "model": "LKD",
+    "k": 128,
+    "clean_p": 0.525,
+    "drop_rd": -9.46,
+    "drop_rand": 0.82,
+    "effect": -10.28,
+    "effect_lo": -11.05,
+    "effect_hi": -9.54,
+    "vs_lkd": null,
+    "vs_lkd_lo": null,
+    "vs_lkd_hi": null,
+    "vs_lkd_p": null
+   },
+   {
+    "id": "rd_low_k128",
+    "model": "RD α 0.05",
+    "k": 128,
+    "clean_p": 0.549,
+    "drop_rd": -9.11,
+    "drop_rand": 1.05,
+    "effect": -10.16,
+    "effect_lo": -10.9,
+    "effect_hi": -9.46,
+    "vs_lkd": 0.11,
+    "vs_lkd_lo": -0.08,
+    "vs_lkd_hi": 0.31,
+    "vs_lkd_p": 0.2576
+   },
+   {
+    "id": "rd_mod_k128",
+    "model": "RD α 0.15",
+    "k": 128,
+    "clean_p": 0.55,
+    "drop_rd": -8.99,
+    "drop_rand": 0.98,
+    "effect": -9.97,
+    "effect_lo": -10.72,
+    "effect_hi": -9.27,
+    "vs_lkd": 0.3,
+    "vs_lkd_lo": 0.11,
+    "vs_lkd_hi": 0.5,
+    "vs_lkd_p": 0.0012
+   },
+   {
+    "id": "rd_high_k128",
+    "model": "RD α 0.40",
+    "k": 128,
+    "clean_p": 0.551,
+    "drop_rd": -8.49,
+    "drop_rand": 0.97,
+    "effect": -9.47,
+    "effect_lo": -10.2,
+    "effect_hi": -8.77,
+    "vs_lkd": 0.81,
+    "vs_lkd_lo": 0.59,
+    "vs_lkd_hi": 1.03,
+    "vs_lkd_p": 0.0001
+   }
+  ]
+ },
+ "llama": {
+  "title": "Llama arm summary",
+  "description": "Same comparisons on Llama-3.2-1B students of R1-Distill-Llama-8B.",
+  "source": "docs/RUN_LOG.md sections 8k, 8u, 8aa, 8ab (Llama-3.2-1B students of R1-Distill-Llama-8B)",
+  "rows": [
+   {
+    "id": "probe",
+    "measure": "Teacher-feature read-out (R²) at the aligned layer",
+    "lkd": "0.493",
+    "rd": "0.514",
+    "result": "RD higher (+0.021), RD features only"
+   },
+   {
+    "id": "reliance",
+    "measure": "Drop in P(reasoning word) when the feature subspace is removed (k=128)",
+    "lkd": "-12.2 pp",
+    "rd": "-12.6 pp",
+    "result": "RD relies slightly more (about 1 pp, p<0.001)"
+   },
+   {
+    "id": "kl",
+    "measure": "KL to the teacher, held-out text",
+    "lkd": "0.4750",
+    "rd": "0.4735",
+    "result": "RD 0.3% closer"
+   },
+   {
+    "id": "reflect",
+    "measure": "Self-reflection share (GSM8K traces)",
+    "lkd": "15.6%",
+    "rd": "15.3%",
+    "result": "no difference"
+   },
+   {
+    "id": "acc",
+    "measure": "GSM8K / MATH-500 accuracy (pass@8 runs)",
+    "lkd": "11.4% / 1.5%",
+    "rd": "11.6% / 1.8%",
+    "result": "no difference"
+   }
+  ]
+ }
+}

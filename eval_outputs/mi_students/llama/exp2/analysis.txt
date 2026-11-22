@@ -1,0 +1,116 @@
+# Exp 2 · Feature breakdown (h[11], ridge probe, 400 held-out test texts)
+reasoning-word tokens are 0.88% of test tokens (marker share of a feature that ignores them)
+
+## rd set: 191 live features; mean gain +0.0092, median +0.0018; CI above 0: 109, below 0: 5; top-10 carry 36% and top-25 64% of the positive gain
+  Spearman(gain, marker_share_on     ) -0.156 [-0.288, -0.015]
+  Spearman(gain, marker_share_before ) -0.170 [-0.305, -0.012]
+  Spearman(gain, density             ) +0.521 [+0.411, +0.609]
+  Spearman(gain, rank                ) -0.335 [-0.459, -0.206]
+  Spearman(gain, r2_lkd              ) +0.615 [+0.516, +0.707]
+
+## rand set: 193 live features; mean gain +0.0004, median +0.0002; CI above 0: 45, below 0: 15; top-10 carry 54% and top-25 75% of the positive gain
+  Spearman(gain, marker_share_on     ) +0.241 [+0.103, +0.369]
+  Spearman(gain, marker_share_before ) +0.079 [-0.063, +0.215]
+  Spearman(gain, density             ) +0.170 [+0.021, +0.326]
+  Spearman(gain, rank                ) +0.209 [-0.512, +0.736]
+  Spearman(gain, r2_lkd              ) +0.114 [-0.058, +0.263]
+
+## RD features by gain (live only): feature, rank, R2 LKD -> RD, gain [CI], density, marker share on / before
+  f29046  #41   +0.454 -> +0.557  +0.1023 [+0.0976,+0.1059]  dens 0.0089  mk 0.00/0.01
+  f18229  #151  +0.555 -> +0.646  +0.0907 [+0.0879,+0.0937]  dens 0.0026  mk 0.01/0.00
+  f25480  #60   +0.450 -> +0.528  +0.0788 [+0.0755,+0.0819]  dens 0.0060  mk 0.00/0.02
+  f56842  #39   +0.594 -> +0.656  +0.0620 [+0.0591,+0.0651]  dens 0.0205  mk 0.00/0.00
+  f47812  #21   +0.637 -> +0.694  +0.0563 [+0.0544,+0.0584]  dens 0.0096  mk 0.02/0.01
+  f40597  #17   +0.470 -> +0.524  +0.0537 [+0.0495,+0.0585]  dens 0.0190  mk 0.06/0.03
+  f27235  #59   +0.536 -> +0.589  +0.0528 [+0.0474,+0.0590]  dens 0.0026  mk 0.00/0.00
+  f29150  #79   +0.556 -> +0.606  +0.0509 [+0.0487,+0.0533]  dens 0.0214  mk 0.08/0.15
+  f62638  #8    +0.689 -> +0.736  +0.0472 [+0.0452,+0.0489]  dens 0.0254  mk 0.01/0.18
+  f49373  #32   +0.534 -> +0.577  +0.0431 [+0.0396,+0.0466]  dens 0.0130  mk 0.00/0.00
+  f52689  #49   +0.514 -> +0.557  +0.0425 [+0.0404,+0.0446]  dens 0.0883  mk 0.00/0.00
+  f34819  #19   +0.552 -> +0.594  +0.0417 [+0.0396,+0.0436]  dens 0.0111  mk 0.02/0.03
+  f14356  #94   +0.636 -> +0.676  +0.0403 [+0.0387,+0.0420]  dens 0.0027  mk 0.00/0.00
+  f27466  #73   +0.554 -> +0.593  +0.0383 [+0.0360,+0.0403]  dens 0.0325  mk 0.02/0.00
+  f55078  #44   +0.421 -> +0.459  +0.0380 [+0.0345,+0.0413]  dens 0.0118  mk 0.00/0.01
+  f7803   #96   +0.488 -> +0.526  +0.0375 [+0.0348,+0.0399]  dens 0.0120  mk 0.01/0.00
+  f27926  #11   +0.105 -> +0.140  +0.0356 [+0.0255,+0.0458]  dens 0.0005  mk 0.00/0.00
+  f37516  #26   +0.680 -> +0.713  +0.0332 [+0.0319,+0.0344]  dens 0.0110  mk 0.01/0.00
+  f11950  #66   +0.561 -> +0.594  +0.0330 [+0.0313,+0.0344]  dens 0.0104  mk 0.00/0.02
+  f28917  #122  +0.311 -> +0.341  +0.0306 [+0.0277,+0.0332]  dens 0.0216  mk 0.01/0.03
+  f17423  #36   +0.335 -> +0.363  +0.0283 [+0.0238,+0.0320]  dens 0.0095  mk 0.01/0.01
+  f4490   #14   +0.605 -> +0.633  +0.0280 [+0.0264,+0.0295]  dens 0.0089  mk 0.00/0.02
+  f26687  #55   +0.460 -> +0.485  +0.0253 [+0.0236,+0.0271]  dens 0.0117  mk 0.02/0.22
+  f30057  #120  +0.305 -> +0.330  +0.0246 [+0.0217,+0.0273]  dens 0.0038  mk 0.00/0.12
+  f34622  #9    +0.279 -> +0.300  +0.0205 [+0.0176,+0.0230]  dens 0.0125  mk 0.01/0.01
+  ...
+  f44284  #173  +0.099 -> +0.098  -0.0008 [-0.0018,+0.0001]  dens 0.0066  mk 0.07/0.11
+  f50862  #192  +0.160 -> +0.159  -0.0010 [-0.0017,+0.0000]  dens 0.0035  mk 0.01/0.16
+  f22749  #110  +0.026 -> +0.025  -0.0011 [-0.0031,+0.0095]  dens 0.0003  mk 0.00/0.00
+  f65064  #48   +0.460 -> +0.459  -0.0011 [-0.0027,+0.0004]  dens 0.0063  mk 0.00/0.20
+  f64079  #64   +0.342 -> +0.340  -0.0017 [-0.0026,-0.0009]  dens 0.0114  mk 0.00/0.11
+  f64845  #156  +0.282 -> +0.280  -0.0018 [-0.0039,+0.0006]  dens 0.0008  mk 0.93/0.00
+  f47916  #125  +0.485 -> +0.483  -0.0019 [-0.0031,-0.0006]  dens 0.0016  mk 0.99/0.00
+  f59202  #177  +0.023 -> +0.021  -0.0021 [-0.0050,+0.0002]  dens 0.0063  mk 0.03/0.02
+  f62078  #104  +0.272 -> +0.268  -0.0033 [-0.0041,-0.0024]  dens 0.0021  mk 0.00/0.26
+  f18285  #111  +0.661 -> +0.656  -0.0058 [-0.0071,-0.0044]  dens 0.0018  mk 0.96/0.00
+
+## top contexts of the 12 highest-gain RD features ([[token]] = strongest activation)
+  f29046 (gain +0.1023, rank #41)
+       29.17  Okay, let's tackle this problem step by step[[.]] The question is
+       28.94   let's try to tackle this problem step by step[[.]] So, we
+       28.69  Okay, let's tackle this problem step by step[[.]] First, let
+       28.28  Alright, let's tackle this problem step by step[[.]] The function given
+  f18229 (gain +0.0907, rank #151)
+       31.74  _\_.\n<think>Okay, let's[[ see]]. The problem
+       31.53  0 yuan?\n<think>Okay, let's[[ see]]. I need
+       31.48   second group.\n<think>Alright, let's[[ see]]. I need
+       31.01   five terms.\n<think>Okay, let's[[ see]]. I have
+  f25480 (gain +0.0788, rank #60)
+       26.87  , so replacing x with 2x. So[[,]] if the problem
+       26.26  1st and B ≠ 5th. So[[,]] we need to
+       25.40   the normals of the planes α and β. So[[,]] if I can
+       25.21  1 and 1. That seems manageable. So[[,]] I can re
+  f56842 (gain +0.0620, rank #39)
+       17.23   \}$\n<think>Okay, let's[[ tackle]] this problem step
+       17.20  6}$\n<think>Okay, let's[[ tackle]] this problem step
+       16.91   $3$\n<think>Okay, let's[[ tackle]] this problem step
+       16.68  .\n<think>Alright, let's try to[[ tackle]] this problem step
+  f47812 (gain +0.0563, rank #21)
+       26.46   given individual is selected?\n<think>Okay,[[ so]] the problem here
+       26.05  D: 76\n<think>Okay,[[ so]] I need to
+       25.93   resulting line is ______.\n<think>Okay,[[ so]] I need to
+       25.68  )^6$ is.\n<think>Okay,[[ so]] I need to
+  f40597 (gain +0.0537, rank #17)
+       32.56   is 1/3 of BD. Hmm,[[ where]] do I start
+       29.70  2} + 4a \). Hmm,[[ where]] do I start
+       17.82   all a >= 3. Hmm. Let me[[ see]]. Maybe I
+       17.38   the imaginary part of z is positive. Hmm,[[ let]] me start by
+  f27235 (gain +0.0528, rank #59)
+       16.47   first round, 8 in the second, and[[ so]] on, until
+       15.42   scientific notation, I need to move the decimal point[[ so]] that there's
+       14.38   taking the angle between the lines if one is translated[[ so]] that they intersect
+       13.80  . So, essentially, you move the decimal point[[ so]] that there's
+  f29150 (gain +0.0509, rank #79)
+       25.48   by this intersection is 4√3. Hmm[[,]] let me think
+       25.19   find the range of the real number a. Hmm[[,]] let's see
+       24.82  ), where Γ is the number of faces. Hmm[[,]] let me start
+       24.36   log(3 sin α + cos α). Hmm[[,]] let me try
+  f62638 (gain +0.0472, rank #8)
+       26.99  }\) is in, based on the determinant given[[.]] Let me start
+       26.32   how many lines are tangent to both of these circles[[.]] Let me start
+       25.88   y = 2x up by 5 units[[.]] Hmm, let
+       25.78  (-\frac{x^2y}{7}\[[).]] Let me start
+  f49373 (gain +0.0431, rank #32)
+       29.48  , let's see. I need to solve this[[ problem]] where we have
+       29.24  ink>Okay, so I need to solve this[[ problem]] where there are
+       28.65  ink>Okay, so I need to solve this[[ problem]] where adding two
+       28.48  ink>Alright, so I need to solve this[[ problem]] where the function
+  f52689 (gain +0.0425, rank #49)
+       12.33   this problem here about a class of 60 students[[,]] and their math
+       11.57  , so there's this problem about four elevators[[ and]] three people taking
+       10.81  . So there's this ant starting at point A[[,]] moving in different
+       10.81  , so I have this problem here where an object[[ is]] moving on a
+  f34819 (gain +0.0417, rank #19)
+       19.91  . Let's break this down step by step.[[ \n\n]]First, I
+       19.73   Hmm, let's break this down step by step[[.\n\n]]First, I
+       19.68   Let me start by understanding the problem step by step[[.\n\n]]First, there
+       19.49   Let me try to break this down step by step[[.\n\n]]First, let

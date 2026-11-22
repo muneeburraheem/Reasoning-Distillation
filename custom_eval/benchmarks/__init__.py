@@ -1,6 +1,7 @@
 """Benchmark loaders and adapters."""
 
 from custom_eval.benchmarks import aime25, arc_c, gpqa, gsm8k, hellaswag, math500, mmlu
+from custom_eval.benchmarks import hard_math, processbench
 from custom_eval.benchmarks.base import Benchmark, EvalExample
 
 
@@ -12,6 +13,13 @@ LOADERS = {
     "hellaswag": hellaswag.load,
     "mmlu": mmlu.load,
     "gpqa": gpqa.load,
+    "aime24": hard_math.load_aime24,
+    "hmmt25": hard_math.load_hmmt25,
+    "brumo25": hard_math.load_brumo25,
+    "cmimc25": hard_math.load_cmimc25,
+    "olympiadbench": hard_math.load_olympiadbench,
+    "omnimath_hard": hard_math.load_omnimath_hard,
+    "processbench": processbench.load,
 }
 
 

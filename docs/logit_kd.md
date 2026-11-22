@@ -56,8 +56,8 @@ bash scripts/train_logit_kd.sh continue
 The equivalent direct training commands are:
 
 ```bash
-python3 scripts/train.py --config configs/qwen_logit_kd.yaml
-python3 scripts/train.py --config configs/qwen_logit_kd_continue.yaml
+python3 scripts/train.py --config configs/train/qwen_logit_kd.yaml
+python3 scripts/train.py --config configs/train/qwen_logit_kd_continue.yaml
 ```
 
 Training settings remain in YAML, following the existing training interface.

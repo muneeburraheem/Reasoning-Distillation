@@ -1,0 +1,28 @@
+# Exp 4 · Student attribution overlap: attribution of log P(reasoning word) to teacher features
+373 held-out texts with reasoning-word targets inside <think>; bootstrap over texts (500)
+  base Spearman with teacher: all +0.032 [-0.042,+0.061] | rd +0.035 [-0.039,+0.061] | rand -0.018 [-0.149,+0.085] | top-20 overlap 7 | features' share of student total +1.180
+  lkd  Spearman with teacher: all +0.314 [+0.225,+0.338] | rd +0.403 [+0.325,+0.437] | rand +0.135 [-0.010,+0.210] | top-20 overlap 11 | features' share of student total +1.113
+  rd   Spearman with teacher: all +0.310 [+0.228,+0.336] | rd +0.395 [+0.323,+0.432] | rand +0.149 [+0.012,+0.220] | top-20 overlap 11 | features' share of student total +1.154
+
+## RD - LKD in Spearman with teacher (paired bootstrap over texts)
+  all  -0.0039 [-0.0159,+0.0105] p=0.672
+  rd   -0.0071 [-0.0160,+0.0054] p=0.300
+  rand +0.0136 [-0.0102,+0.0460] p=0.296
+
+## mean attribution per feature, RD set vs random set (per text, then bootstrap)
+  teacher RD set +1.662e-03  random set -1.484e-04  difference +1.810e-03 [+1.373e-03,+2.258e-03]
+  base    RD set +1.761e-02  random set -1.178e-03  difference +1.879e-02 [+1.691e-02,+2.059e-02]
+  lkd     RD set +2.742e-02  random set -1.552e-04  difference +2.757e-02 [+2.562e-02,+2.949e-02]
+  rd      RD set +2.660e-02  random set -3.183e-04  difference +2.691e-02 [+2.494e-02,+2.888e-02]
+
+## teacher's top-10 RD features by attribution, and their rank in each student (of 392)
+  f10948  teacher +1.219e-01  base #385  lkd #5  rd #5
+  f49981  teacher +1.186e-01  base #27  lkd #4  rd #4
+  f16792  teacher +1.120e-01  base #375  lkd #12  rd #11
+  f46387  teacher +9.579e-02  base #1  lkd #1  rd #1
+  f37635  teacher +7.850e-02  base #35  lkd #15  rd #16
+  f65064  teacher +6.238e-02  base #18  lkd #25  rd #24
+  f4490   teacher +5.789e-02  base #368  lkd #30  rd #32
+  f62638  teacher +5.069e-02  base #20  lkd #10  rd #9
+  f57945  teacher +3.979e-02  base #11  lkd #14  rd #14
+  f29150  teacher +3.758e-02  base #379  lkd #3  rd #3

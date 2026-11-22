@@ -1,0 +1,29 @@
+######## math500: 500 questions common to all runs, 1 sample each
+  RD_mod     strict 0.746  lenient 0.780 | committed wrong 0.148  stopped in think 0.050  truncated 0.056 | median finished tokens 2519
+  LKD        strict 0.780  lenient 0.808 | committed wrong 0.124  stopped in think 0.048  truncated 0.048 | median finished tokens 2423
+  RD_high    strict 0.742  lenient 0.776 | committed wrong 0.146  stopped in think 0.050  truncated 0.062 | median finished tokens 2573
+  RD_oct     strict 0.668  lenient 0.734 | committed wrong 0.208  stopped in think 0.086  truncated 0.038 | median finished tokens 2248
+  RD_mod - LKD:
+    accuracy strict   -3.4 pp [-7.8, +1.0] p=0.1398
+    accuracy lenient  -2.8 pp [-6.8, +1.2] p=0.1892
+    correct (strict)   RD_mod-only 54  LKD-only 71  sign p=0.1521
+    committed wrong    RD_mod-only 48  LKD-only 36  sign p=0.2299
+    stopped in think   RD_mod-only 25  LKD-only 24  sign p=1.0000
+  RD_mod - RD_high:
+    accuracy strict   +0.4 pp [-3.8, +4.6] p=0.8791
+    accuracy lenient  +0.4 pp [-3.6, +4.4] p=0.8677
+    correct (strict)   RD_mod-only 59  RD_high-only 57  sign p=0.9261
+    committed wrong    RD_mod-only 45  RD_high-only 44  sign p=1.0000
+    stopped in think   RD_mod-only 25  RD_high-only 25  sign p=1.0000
+  RD_mod - RD_oct:
+    accuracy strict   +7.8 pp [+3.2, +12.2] p=0.0009
+    accuracy lenient  +4.6 pp [+0.8, +8.6] p=0.0233
+    correct (strict)   RD_mod-only 87  RD_oct-only 48  sign p=0.0010
+    committed wrong    RD_mod-only 33  RD_oct-only 63  sign p=0.0029
+    stopped in think   RD_mod-only 21  RD_oct-only 39  sign p=0.0273
+  strict accuracy by level:
+    L1 n= 43 RD_mod=0.93  LKD=0.81  RD_high=0.81  RD_oct=0.88
+    L2 n= 90 RD_mod=0.86  LKD=0.89  RD_high=0.87  RD_oct=0.88
+    L3 n=105 RD_mod=0.86  LKD=0.87  RD_high=0.86  RD_oct=0.79
+    L4 n=128 RD_mod=0.69  LKD=0.77  RD_high=0.73  RD_oct=0.62
+    L5 n=134 RD_mod=0.58  LKD=0.63  RD_high=0.55  RD_oct=0.41

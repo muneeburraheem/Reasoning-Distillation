@@ -1,0 +1,43 @@
+######## math500: 500 questions common to all runs, 1 sample each
+  LKD43      strict 0.770  lenient 0.790 | committed wrong 0.136  stopped in think 0.030  truncated 0.064 | median finished tokens 2213
+  LKD42      strict 0.780  lenient 0.808 | committed wrong 0.124  stopped in think 0.048  truncated 0.048 | median finished tokens 2423
+  RD_low     strict 0.756  lenient 0.778 | committed wrong 0.144  stopped in think 0.032  truncated 0.068 | median finished tokens 2459
+  RD_mod     strict 0.746  lenient 0.780 | committed wrong 0.148  stopped in think 0.050  truncated 0.056 | median finished tokens 2519
+  RD_high    strict 0.742  lenient 0.776 | committed wrong 0.146  stopped in think 0.050  truncated 0.062 | median finished tokens 2573
+  RD_oct     strict 0.668  lenient 0.734 | committed wrong 0.208  stopped in think 0.086  truncated 0.038 | median finished tokens 2248
+  LKD43 - LKD42:
+    accuracy strict   -1.0 pp [-5.2, +3.2] p=0.6667
+    accuracy lenient  -1.8 pp [-5.6, +2.0] p=0.3758
+    correct (strict)   LKD43-only 54  LKD42-only 59  sign p=0.7069
+    committed wrong    LKD43-only 42  LKD42-only 36  sign p=0.5716
+    stopped in think   LKD43-only 15  LKD42-only 24  sign p=0.1996
+  LKD43 - RD_low:
+    accuracy strict   +1.4 pp [-2.6, +5.6] p=0.5394
+    accuracy lenient  +1.2 pp [-2.6, +5.0] p=0.5734
+    correct (strict)   LKD43-only 59  RD_low-only 52  sign p=0.5692
+    committed wrong    LKD43-only 35  RD_low-only 39  sign p=0.7275
+    stopped in think   LKD43-only 15  RD_low-only 16  sign p=1.0000
+  LKD43 - RD_mod:
+    accuracy strict   +2.4 pp [-1.8, +6.6] p=0.2905
+    accuracy lenient  +1.0 pp [-3.0, +5.0] p=0.6577
+    correct (strict)   LKD43-only 63  RD_mod-only 51  sign p=0.3029
+    committed wrong    LKD43-only 42  RD_mod-only 48  sign p=0.5984
+    stopped in think   LKD43-only 14  RD_mod-only 24  sign p=0.1433
+  LKD43 - RD_high:
+    accuracy strict   +2.8 pp [-1.2, +6.8] p=0.1898
+    accuracy lenient  +1.4 pp [-2.2, +5.2] p=0.4870
+    correct (strict)   LKD43-only 61  RD_high-only 47  sign p=0.2108
+    committed wrong    LKD43-only 39  RD_high-only 44  sign p=0.6609
+    stopped in think   LKD43-only 12  RD_high-only 22  sign p=0.1214
+  LKD43 - RD_oct:
+    accuracy strict   +10.2 pp [+5.8, +14.6] p=0.0001
+    accuracy lenient  +5.6 pp [+1.8, +9.4] p=0.0052
+    correct (strict)   LKD43-only 91  RD_oct-only 40  sign p=0.0000
+    committed wrong    LKD43-only 32  RD_oct-only 68  sign p=0.0004
+    stopped in think   LKD43-only 14  RD_oct-only 42  sign p=0.0002
+  strict accuracy by level:
+    L1 n= 43 LKD43=0.98  LKD42=0.81  RD_low=0.88  RD_mod=0.93  RD_high=0.81  RD_oct=0.88
+    L2 n= 90 LKD43=0.84  LKD42=0.89  RD_low=0.87  RD_mod=0.86  RD_high=0.87  RD_oct=0.88
+    L3 n=105 LKD43=0.85  LKD42=0.87  RD_low=0.86  RD_mod=0.86  RD_high=0.86  RD_oct=0.79
+    L4 n=128 LKD43=0.74  LKD42=0.77  RD_low=0.74  RD_mod=0.69  RD_high=0.73  RD_oct=0.62
+    L5 n=134 LKD43=0.62  LKD42=0.63  RD_low=0.57  RD_mod=0.58  RD_high=0.55  RD_oct=0.41

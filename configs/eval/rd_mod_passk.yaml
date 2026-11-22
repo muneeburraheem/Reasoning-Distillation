@@ -1,0 +1,43 @@
+# New-SAE RD moderate (final_step_94). Copied from configs/eval/rd_october_passk.yaml: only the model list
+# (October RD -> RD moderate, local checkpoint) and output_dir changed; LKD / October RD outputs reused.
+models:
+- name: qwen-rd-newsae-moderate-final-think
+  checkpoint: ./checkpoints/rd_newsae_moderate/final_step_94
+  trust_remote_code: true
+  dtype: bfloat16
+  device_map: auto
+  enable_thinking: true
+  model_type: qwen
+  strip_language_model_prefix: true
+benchmarks:
+- aime25
+- math500
+output_dir: ./eval_outputs/rd_newsae/eval_mod/passk
+cache_dir: ./cache
+split: test
+max_samples: 1000
+seed: 42
+require_real_data: true
+save_partial_every: 5
+generation:
+  max_new_tokens: 8192
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  presence_penalty: 1.5
+  repetition_penalty: 1.0
+  pass_at_k:
+  - 2
+  - 4
+  - 8
+  num_samples: 8
+  sample_batch_size: 8
+  stop_at_final_answer: false
+  batch_size: 8
+benchmark_options:
+  math500:
+    stop_at_final_answer: true
+  aime25:
+    max_new_tokens: 8192
+    batch_size: 2
+    stop_at_final_answer: true

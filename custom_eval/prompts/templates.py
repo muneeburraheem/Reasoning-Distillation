@@ -67,6 +67,12 @@ def build_prompt(question: str, benchmark_name: str) -> str:
         "hellaswag": HELLASWAG_TEMPLATE,
         "mmlu": MMLU_TEMPLATE,
         "gpqa": GPQA_TEMPLATE,
+        "aime24": AIME25_TEMPLATE,
+        "hmmt25": MATH500_TEMPLATE,
+        "brumo25": MATH500_TEMPLATE,
+        "cmimc25": MATH500_TEMPLATE,
+        "olympiadbench": MATH500_TEMPLATE,
+        "omnimath_hard": MATH500_TEMPLATE,
     }
     
     template = templates.get(benchmark_name.lower(), "{question}")

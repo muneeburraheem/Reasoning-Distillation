@@ -1,0 +1,25 @@
+######## olympiadbench: 658 questions common to all runs, 1 sample each
+  LKD        strict 0.363  lenient 0.378 | committed wrong 0.179  stopped in think 0.021  truncated 0.436 | median finished tokens 4291
+  RD_oct     strict 0.312  lenient 0.356 | committed wrong 0.226  stopped in think 0.070  truncated 0.392 | median finished tokens 4412
+  RD_mod     strict 0.380  lenient 0.388 | committed wrong 0.169  stopped in think 0.012  truncated 0.439 | median finished tokens 4479
+  LKD - RD_oct:
+    accuracy strict   +5.2 pp [+1.5, +8.8] p=0.0053
+    accuracy lenient  +2.3 pp [-1.4, +5.8] p=0.2219
+    correct (strict)   LKD-only 90  RD_oct-only 56  sign p=0.0061
+    committed wrong    LKD-only 71  RD_oct-only 102  sign p=0.0223
+    stopped in think   LKD-only 13  RD_oct-only 45  sign p=0.0000
+  LKD - RD_mod:
+    accuracy strict   -1.7 pp [-5.0, +1.7] p=0.3590
+    accuracy lenient  -0.9 pp [-4.3, +2.4] p=0.6193
+    correct (strict)   LKD-only 61  RD_mod-only 72  sign p=0.3860
+    committed wrong    LKD-only 77  RD_mod-only 70  sign p=0.6208
+    stopped in think   LKD-only 14  RD_mod-only 8  sign p=0.2863
+######## olympiadbench: 658 questions common to all runs, 1 sample each
+  RD_mod     strict 0.380  lenient 0.388 | committed wrong 0.169  stopped in think 0.012  truncated 0.439 | median finished tokens 4479
+  RD_oct     strict 0.312  lenient 0.356 | committed wrong 0.226  stopped in think 0.070  truncated 0.392 | median finished tokens 4412
+  RD_mod - RD_oct:
+    accuracy strict   +6.8 pp [+3.3, +10.3] p=0.0004
+    accuracy lenient  +3.2 pp [-0.3, +6.7] p=0.0815
+    correct (strict)   RD_mod-only 93  RD_oct-only 48  sign p=0.0002
+    committed wrong    RD_mod-only 67  RD_oct-only 105  sign p=0.0046
+    stopped in think   RD_mod-only 7  RD_oct-only 45  sign p=0.0000

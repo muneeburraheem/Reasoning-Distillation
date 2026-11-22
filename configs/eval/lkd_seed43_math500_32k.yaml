@@ -1,0 +1,32 @@
+# LKD-continue re-sampled: configs/eval/qwen_math500_32k.yaml with only the LKD model, seed 42 -> 43, new output_dir.
+# Purpose: run-to-run sampling noise of a single MATH-500 @32k run (vs the seed-42 LKD run).
+models:
+  - name: qwen-logit-kd-continue-epoch_1-think
+    checkpoint: Khaquan/qwen-khaquanS-distillations
+    subfolder: qwen-logitKD-final/qwen_logit_kd_continue/epoch_1
+    trust_remote_code: true
+    dtype: bfloat16
+    device_map: auto
+    enable_thinking: true
+    model_type: qwen
+    strip_language_model_prefix: true
+
+benchmarks:
+  - math500
+
+output_dir: ./eval_outputs/rd_newsae/eval/lkd_seed43_math500_32k
+cache_dir: ./cache
+split: test
+max_samples: null
+seed: 43
+require_real_data: true
+
+generation:
+  max_new_tokens: 32768
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  repetition_penalty: 1.0
+  pass_at_k: 1
+  stop_at_final_answer: true   # End a row once its final answer is complete.
+  batch_size: 8

@@ -1,0 +1,22 @@
+######## math500: 500 questions common to all runs, 1 sample each
+  RD_new     strict 0.668  lenient 0.734 | committed wrong 0.208  stopped in think 0.086  truncated 0.038 | median finished tokens 2248
+  LKD        strict 0.780  lenient 0.808 | committed wrong 0.124  stopped in think 0.048  truncated 0.048 | median finished tokens 2423
+  RD_old     strict 0.682  lenient 0.730 | committed wrong 0.176  stopped in think 0.074  truncated 0.068 | median finished tokens 2151
+  RD_new - LKD:
+    accuracy strict   -11.2 pp [-15.6, -6.8] p=0.0001
+    accuracy lenient  -7.4 pp [-11.2, -3.6] p=0.0001
+    correct (strict)   RD_new-only 39  LKD-only 95  sign p=0.0000
+    committed wrong    RD_new-only 64  LKD-only 22  sign p=0.0000
+    stopped in think   RD_new-only 41  LKD-only 22  sign p=0.0226
+  RD_new - RD_old:
+    accuracy strict   -1.4 pp [-6.0, +3.2] p=0.5731
+    accuracy lenient  +0.4 pp [-3.6, +4.4] p=0.8867
+    correct (strict)   RD_new-only 66  RD_old-only 73  sign p=0.6110
+    committed wrong    RD_new-only 58  RD_old-only 42  sign p=0.1332
+    stopped in think   RD_new-only 37  RD_old-only 31  sign p=0.5446
+  strict accuracy by level:
+    L1 n= 43 RD_new=0.88  LKD=0.81  RD_old=0.91
+    L2 n= 90 RD_new=0.88  LKD=0.89  RD_old=0.91
+    L3 n=105 RD_new=0.79  LKD=0.87  RD_old=0.71
+    L4 n=128 RD_new=0.62  LKD=0.77  RD_old=0.62
+    L5 n=134 RD_new=0.41  LKD=0.63  RD_old=0.49
