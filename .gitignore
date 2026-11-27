@@ -9,6 +9,7 @@ eval_outputs/**
 !eval_outputs/rd_newsae/pretrain_head.out
 !eval_outputs/rd_newsae/vast_probe_analysis.txt
 !eval_outputs/rd_newsae/eval_mod/bonds/reflection_coupling.txt
+!eval_outputs/mi_qwen_students/alpha0/properties.txt
 
 # Weights, caches, environments, logs
 checkpoints/

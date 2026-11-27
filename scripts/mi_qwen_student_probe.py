@@ -40,9 +40,9 @@ SNAP = ROOT / "cache/models--Khaquan--qwen-khaquanS-distillations/snapshots/e3a0
 STUDENTS = {"base": "Qwen/Qwen3.5-2B",
             "lkd": str(SNAP / "qwen-logitKD-final/qwen_logit_kd_continue/epoch_1"),
             "rd_oct": str(SNAP / "qwen-reasondistill-october/qwen_reasondistill_final_continue/epoch_1")}
-# new-SAE RD warm-start runs (Vast, 2026-11-13); compared against "lkd" (= LKD-continue, same config but alpha_align 0)
+# new-SAE RD warm-start runs (Vast, 2026-11-13; zero = alpha 0 ablation, lowrerun = alpha 0.05 replication, 2026-11-24)
 NEW = {f"rd_{lvl}{tag}": str(ROOT / "checkpoints" / f"rd_newsae_{lvl}" / d)
-       for lvl in ("low", "moderate", "high") for tag, d in (("", "final_step_94"), ("_h", "step_47_halfway"))}
+       for lvl in ("low", "moderate", "high", "zero", "lowrerun") for tag, d in (("", "final_step_94"), ("_h", "step_47_halfway"))}
 STUDENTS.update({k: v for k, v in NEW.items() if (Path(v) / "model.safetensors").exists()})
 MATH_SOURCES = {"NuminaMath_1.5", "MATH_metamathQA", "MATH_numina", "openR1Math_default", "MATH-lighteval", "Omni-MATH"}
 N_TEXT, N_SET, T_HS, S_HS, NORM, MAXLEN = 400, 196, 17, 13, 64.0, 2048

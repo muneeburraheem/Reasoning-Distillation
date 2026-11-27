@@ -6,8 +6,9 @@ Where every reported number lives, what produced it, and how to regenerate it.
 - **Summary files:** the `analysis*.txt` / `summary*.txt` files under `eval_outputs/`. They are tracked in git; the raw
   outputs they read (per-question JSON, about 6 GB) are not, and stay on the lab machine / shared drive.
 - **Regenerate every summary** from the raw outputs (CPU, ~6 min): `PY=/path/to/python bash scripts/run_all_analyses.sh`.
-  It writes 38 files. On 2026-11-22 the 36 that already existed came out byte-identical to the stored ones (library
-  warning lines aside); the two teacher-accuracy summaries are new. Files it does not write are listed at the end.
+  It writes 46 files. On 2026-11-22 the 36 that already existed came out byte-identical to the stored ones (library
+  warning lines aside); the two teacher-accuracy summaries are new. The 8 student-MI summaries of section 6a (added
+  2026-11-28) came out identical on 2026-11-28. Files it does not write are listed at the end.
 - **Context:** `docs/RUN_LOG.md` (chronological lab log, section numbers below), `docs/rd_newsae.md` (new SAE and
   new-SAE RD, with the pre-registrations), `docs/REPO_MAP.md` (old -> new names; what was archived).
 
@@ -61,6 +62,20 @@ Produced by `scripts/eval_bond_annotate.py` (labels, GPU) -> `analyze_bonds.py`,
 
 ## 6. Mechanism: do the students use the teacher-feature directions? (RUN_LOG 8ah, pre-registered)
 `eval_outputs/rd_newsae/student_causal/analysis.txt` - `scripts/mi_qwen_student_causal.py tf` (GPU) then `analyze`.
+
+## 6a. Mechanism: what the alignment term does inside the student (docs/mi_qwen_students.md)
+Every RD student against the matched alpha = 0 run (`rd_zero`, same RD pipeline) and an alpha 0.05 rerun (`rd_low_rr`).
+Run log and file list: `docs/mi_qwen_students_tracker.md`.
+| What | Summary file | Produced by |
+|---|---|---|
+| P_R (reflection-onset probability at step boundaries) by model | `eval_outputs/mi_qwen_students/patching/analysis.txt` | `scripts/mi_qwen_patching.py gap` (GPU) then `analyze` |
+| Weight updates vs LKD epoch 1 | `eval_outputs/mi_qwen_students/diffs/analysis.txt` | `scripts/mi_qwen_diffs.py weights` then `analyze` |
+| Crosscoder + pooled SAE at hs[13], reflection latents; teacher-feature transfer | `eval_outputs/mi_qwen_students/crosscoder/analysis.txt` | `scripts/mi_qwen_crosscoder.py train/eval/label/transfer` (GPU) then `analyze` |
+| alpha = 0 ablation: P_R and weight cosines | `eval_outputs/mi_qwen_students/alpha0/analysis_vast.txt` | `scripts/mi_qwen_alpha0.py pr/weights` (GPU) then `analyze_vast` |
+| alpha = 0 ablation: enrichment, transfer, probe R^2 per model | `eval_outputs/mi_qwen_students/alpha0/properties.txt` | `scripts/mi_qwen_alpha0_props.py model NAME` (GPU) then `compare` |
+| Causal tests: patching rd_high <-> rd_zero, weight graft, other benchmarks | `eval_outputs/mi_qwen_students/alpha_causal/analysis.txt` | `scripts/mi_qwen_alpha_causal.py patch/graft/bench` (GPU) then `analyze` |
+| Probe R^2 of the teacher's features at every layer (M1) | `eval_outputs/mi_qwen_students/alpha_mech/analysis.txt` | `scripts/mi_qwen_alpha_mech.py analyze` |
+| Teacher agreement, weight arithmetic, SVD shape, M1 off math (X1, X2, X4, X5) | `eval_outputs/mi_qwen_students/alpha_ext/analysis.txt` | `scripts/mi_qwen_alpha_ext.py svd/teacher/students/arith/x5fix` (GPU) then `analyze` |
 
 ## 7. Teacher MI: steering, patching, suppression (RUN_LOG 8w-8z)
 `eval_outputs/mi_steering/{llama_teacher,qwen_teacher}/analysis.txt` (`scripts/mi_steering.py` -> `analyze_mi_steering.py [subject]`),

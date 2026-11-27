@@ -1,8 +1,9 @@
 #!/bin/bash
 # Regenerates every summary behind a number reported in the paper, from the raw outputs in eval_outputs/.
 # CPU only, about 6 minutes. Each summary is written to its usual place (results/README.md lists them by
-# paper section). It writes 38 files; on 2026-11-22 the 36 that already existed came out identical to the stored
-# ones (warning lines aside) and the two teacher-accuracy summaries were new.
+# paper section). It writes 46 files; on 2026-11-22 the 36 that already existed came out identical to the stored
+# ones (warning lines aside) and the two teacher-accuracy summaries were new. The 8 student-MI summaries (added
+# 2026-11-28) came out identical on 2026-11-28.
 #   bash scripts/run_all_analyses.sh            # PY=/path/to/venv/bin/python to pick the interpreter
 cd "$(dirname "$0")/.."
 PY=${PY:-python}
@@ -68,6 +69,14 @@ echo "== Mechanism (Qwen, new SAE)"
 $PY scripts/mi_qwen_student_probe.py --analyze > /dev/null 2>&1         # -> $E/student_probe/analysis.txt
 $PY scripts/mi_qwen_student_causal.py analyze > /dev/null 2>&1          # -> $E/student_causal/analysis.txt
 $PY scripts/analyze_mi_qwen_teacher_newsae.py 2>/dev/null > $E/teacher_mi/analysis.txt
+
+## What the alignment term does inside the student (docs/mi_qwen_students.md)
+echo "== What the alignment term does inside the student"
+Q=eval_outputs/mi_qwen_students
+for c in "mi_qwen_patching.py analyze" "mi_qwen_diffs.py analyze" "mi_qwen_crosscoder.py analyze" "mi_qwen_alpha0.py analyze_vast" \
+         "mi_qwen_alpha0_props.py compare" "mi_qwen_alpha_causal.py analyze" "mi_qwen_alpha_mech.py analyze" "mi_qwen_alpha_ext.py analyze"; do
+  $PY scripts/$c > /dev/null 2>&1                                      # -> $Q/*/analysis*.txt, $Q/alpha0/properties.txt
+done
 
 ## Teacher MI: steering, patching and suppression (Llama and Qwen teachers)
 echo "== Teacher MI: steering, patching and suppression (Llama and Qwen teachers)"

@@ -1,0 +1,10 @@
+# Exp 3 · P_R by model (teacher-forced, held-out MATH-500 traces of both models)
+  P_R = probability of starting a reflection step, at step boundaries; per-question means, bootstrap over questions
+
+## P_R by model (213 questions x 2 trace sets)
+  anc      P_R 0.0963  refl 0.2945  other 0.0528  | - lkd -0.0006 [-0.0012,+0.0000] p=0.0536
+  lkd      P_R 0.0969  refl 0.2957  other 0.0534
+  rd_low   P_R 0.1080  refl 0.3199  other 0.0614  | - lkd +0.0111 [+0.0104,+0.0118] p=0.0001
+  rd_mod   P_R 0.1081  refl 0.3201  other 0.0615  | - lkd +0.0112 [+0.0105,+0.0119] p=0.0001
+  rd_high  P_R 0.1082  refl 0.3204  other 0.0616  | - lkd +0.0113 [+0.0106,+0.0120] p=0.0001
+  dose: rd_high - rd_low +0.0002 [+0.0001,+0.0003] p=0.0034  (same RD pipeline; the RD term's part)

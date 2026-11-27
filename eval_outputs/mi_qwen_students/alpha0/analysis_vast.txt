@@ -1,0 +1,40 @@
+# alpha = 0 ablation of the RD term (rd_zero) and same-machine replication of alpha 0.05 (rd_low_rr)  [P_R and weights computed on the Vast instance]
+
+## Environment cross-check: P_R Vast vs local, same models and text
+  anc      vast 0.0963  local 0.0963  max |per-question diff| 0.00174
+  lkd      vast 0.0969  local 0.0969  max |per-question diff| 0.00133
+  rd_low   vast 0.1080  local 0.1080  max |per-question diff| 0.00164
+  rd_mod   vast 0.1081  local 0.1081  max |per-question diff| 0.00178
+  rd_high  vast 0.1082  local 0.1082  max |per-question diff| 0.00142
+
+## P_R at step boundaries, identical text (213 test questions x 2 trace sets)
+  anc        0.0963
+  lkd        0.0969
+  rd_zero    0.1080
+  rd_low_rr  0.1081
+  rd_low     0.1080
+  rd_mod     0.1081
+  rd_high    0.1082
+  rd_zero - lkd: +0.0111 [+0.0104,+0.0118] p=0.0001
+  rd_low - rd_zero: +0.0001 [-0.0000,+0.0002] p=0.0534   the RD term at alpha 0.05 (cross-machine)
+  rd_low_rr - rd_zero: +0.0001 [+0.0000,+0.0002] p=0.0232   the RD term at alpha 0.05 (SAME machine: the ablation)
+  rd_low_rr - rd_low: +0.0000 [-0.0001,+0.0001] p=0.7484   replication: same config, other machine
+  rd_high - rd_low: +0.0002 [+0.0001,+0.0003] p=0.0010   dose 0.05 -> 0.40
+
+## Weight updates (vs LKD epoch 1): cosine per pair, mean over layer bands
+  pair                           0-8    9-12   13-23   | dist/|dW_lkd|      0-8    9-12   13-23
+  lkd ~ rd_zero                0.651   0.674   0.710   |                 0.836   0.807   0.762
+  lkd ~ rd_low_rr              0.651   0.673   0.710   |                 0.836   0.808   0.762
+  lkd ~ rd_low                 0.651   0.673   0.710   |                 0.836   0.808   0.762
+  lkd ~ rd_mod                 0.651   0.670   0.709   |                 0.837   0.813   0.763
+  lkd ~ rd_high                0.648   0.657   0.708   |                 0.840   0.835   0.765
+  rd_zero ~ rd_low_rr          0.994   0.995   0.996   |                 0.106   0.104   0.087
+  rd_zero ~ rd_low             0.995   0.995   0.996   |                 0.102   0.103   0.085
+  rd_zero ~ rd_mod             0.993   0.987   0.995   |                 0.122   0.157   0.101
+  rd_zero ~ rd_high            0.985   0.962   0.990   |                 0.173   0.271   0.138
+  rd_low_rr ~ rd_low           0.995   0.996   0.997   |                 0.099   0.089   0.082
+  rd_low_rr ~ rd_mod           0.994   0.992   0.996   |                 0.109   0.125   0.090
+  rd_low_rr ~ rd_high          0.988   0.971   0.992   |                 0.158   0.239   0.128
+  rd_low ~ rd_mod              0.994   0.992   0.996   |                 0.109   0.125   0.091
+  rd_low ~ rd_high             0.988   0.971   0.992   |                 0.158   0.239   0.127
+  rd_mod ~ rd_high             0.991   0.984   0.994   |                 0.132   0.177   0.108

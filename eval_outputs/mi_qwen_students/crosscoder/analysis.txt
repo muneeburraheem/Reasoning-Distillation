@@ -1,0 +1,35 @@
+# Exp 1 · Shared dictionaries for the students (hidden_states[13]); Exp 5 · teacher-feature transfer
+
+## Quality, 1,540,016 held-out tokens per model
+  FVE crosscoder lkd 0.755  rd_low 0.758  rd_mod 0.760  rd_high 0.765  | L0 68.2  dead 30
+  FVE pooled SAE lkd 0.754  rd_low 0.756  rd_mod 0.758  rd_high 0.762  | L0 67.3  dead 0
+
+## Crosscoder: relative decoder norm r = |d_B| / (|d_A| + |d_B|) per live latent (0.5 = equally present)
+  pair (A -> B)          n    r<0.1  r<0.3  0.3-0.7  r>0.7  r>0.9   sd(r)
+      lkd -> rd_low   32768      0      0   32768      0      0   0.0023   mostly the RD run
+   rd_low -> rd_high  32768      0      0   32768      0      0   0.0047   RD term strength
+      lkd -> rd_mod   32768      0      0   32768      0      0   0.0032   the paper's pair
+   rd_low -> rd_mod   32768      0      0   32768      0      0   0.0017   
+  decoder cosine lkd vs rd_mod per latent: median 0.9969, 1st pct 0.9478
+
+## Pooled SAE: firing rate per model on identical held-out text
+  lkd -> rd_mod: latents with rate > 1e-4: 29594; |log2 ratio| > 0.5: 140, > 1: 29; sd 0.1584
+  rd_low -> rd_high: latents with rate > 1e-4: 29545; |log2 ratio| > 0.5: 120, > 1: 11; sd 0.1243
+  lkd -> rd_low: latents with rate > 1e-4: 29629; |log2 ratio| > 0.5: 71, > 1: 21; sd 0.1315
+
+## Composition: step-type enrichment of pooled-SAE latents (262,208 reflection / 1,269,297 other tokens, all models)
+  latents with >= 200 firings on reflection tokens: 19261; of these enriched x2: 3940, x4: 1557; depleted x2: 2212
+  per model, mean activation on reflection tokens of the top-512 reflection-enriched latents, paired over traces:
+    rd_mod vs lkd: +4.44% [+4.30,+4.58] p=0.0001
+    rd_low vs lkd: +1.32% [+1.23,+1.40] p=0.0001
+    rd_high vs rd_low: +9.83% [+9.69,+9.96] p=0.0001
+    rd_high vs lkd: +11.28% [+11.09,+11.47] p=0.0001
+  crosscoder shared               n= 32768  median reflection enrichment 0.955
+
+## Exp 5 · Teacher-feature transfer: best correlation of each teacher feature with any student latent (291,912 tokens)
+  rd set   lkd 0.5909  rd_low 0.5924  rd_mod 0.5944  rd_high 0.5982
+    rd_mod - lkd: +0.0035 [+0.0026,+0.0045] p=0.0001; features with a match r > 0.7: lkd 60, rd_mod 63
+    rd_high - rd_low: +0.0058 [+0.0046,+0.0071] p=0.0001; features with a match r > 0.7: rd_low 63, rd_high 63
+  rand set lkd 0.4340  rd_low 0.4343  rd_mod 0.4342  rd_high 0.4345
+    rd_mod - lkd: +0.0002 [-0.0003,+0.0008] p=0.3816; features with a match r > 0.7: lkd 29, rd_mod 29
+    rd_high - rd_low: +0.0001 [-0.0005,+0.0008] p=0.6946; features with a match r > 0.7: rd_low 29, rd_high 29
